@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + main styles -->
 	<link rel="stylesheet" href="assets/css/md_sifatullah.css">
+    <!--emailjs for send mail-->
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 </head>
 <body data-target=".navbar" data-offset="40" id="home">
     <header class="header">
@@ -493,18 +495,18 @@
                 <div class="col-lg-8">
                     <div class="contact-form-card">
                         <h4 class="contact-title">Send a message</h4>
-                        <form action="">
+                        <form id="contact-form" action="">
                             <div class="form-group">
-                                <input  class="form-control" type="text" placeholder="Name *" required>
+                                <input id="fullname" class="form-control" type="text" placeholder="Name *" required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" type="email" placeholder="Email *" required>
+                                <input id="email_id" class="form-control" type="email" placeholder="Email *" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id=" placeholder="Message *" rows="7" required></textarea>
+                                <textarea id="message" class="form-control" placeholder="Message *" rows="7" required></textarea>
                             </div>
                             <div class="form-group ">
-                                <button type="submit" class="form-control btn btn-primary" >Send Message</button>
+                                <button type="submit" class="form-control btn btn-primary">Send Message</button>
                             </div>
                         </form>
                     </div>
@@ -571,6 +573,32 @@
 
     <!-- JohnDoe js -->
     <script src="assets/js/md_sifatullah.js"></script>
+
+    <!-- send emailjs function-->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            // Get the form element
+            var param = {
+                from_name: document.getElementById('fullname').value,
+                from_email: document.getElementById('email_id').value,
+                message: document.getElementById('message').value
+            }
+    
+            // Send the email using EmailJS
+            emailjs.send('service_e6mzcki', 'template_pea1bkj', param, 'Z1h6SmOboLeI0sgr7')
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Email sent successfully!');
+                    document.getElementById('contact-form').reset();
+                }, function (error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send email. Please try again later.');
+                });
+        });
+    </script>
+      
 
 </body>
 </html>
