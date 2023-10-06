@@ -35,28 +35,19 @@ class TechstackMobileWidget extends StatelessWidget {
             Container(
               // width: ,
               child: const Text(
-                "I have served as the Founder of growmonks, overseeing the entire project lifecycle from ideation to successful client project delivery. As a Flutter Engineer at Tickertape(10M+), where I had the privilege of developing for a huge user base. I gained invaluable experience and deepened my understanding of mobile development concepts.",
+                "I have served as the Founder of growmonks, overseeing the entire project lifecycle from ideation to successful client project delivery. As a Flutter Engineer at DeshIT-BD, where I had the privilege of developing for a huge user base. I gained invaluable experience and deepened my understanding of mobile development concepts.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14),
               ),
             ),
             const SizedBox(height: 20),
-            Column(
+            Wrap(
+              alignment: WrapAlignment.center,
               children: [
-                Wrap(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        12,
-                        (index) => techStackCircle(
-                            techStackImages.values.toList()[index]))),
-                // Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: List.generate(
-                //         6,
-                //         (index) => techStackCircle(techStackImages.values
-                //             .toList()
-                //             .reversed
-                //             .toList()[index])))
+                ...List.generate(
+                    techStackImages.length,
+                    (index) =>
+                        techStackCircle(techStackImages.values.toList()[index]))
               ],
             )
           ],

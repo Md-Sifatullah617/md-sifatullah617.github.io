@@ -4,7 +4,6 @@ import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
 class IntroDesktopWidget extends StatelessWidget {
@@ -28,13 +27,15 @@ class IntroDesktopWidget extends StatelessWidget {
               const SizedBox(height: 100),
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: w / 14,
-                    backgroundColor: Colors.white,
-                    child: CircleAvatar(
-                      radius: w / 14 - 4,
-                      backgroundImage: const AssetImage(AppImages.selfImage),
-                    ),
+                  Container(
+                    width: w / 7,
+                    height: w / 7,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 5),
+                        image: const DecorationImage(
+                            image: AssetImage(AppImages.selfImage),
+                            fit: BoxFit.cover)),
                   ),
                   const SizedBox(width: 100),
                   Column(
@@ -49,13 +50,13 @@ class IntroDesktopWidget extends StatelessWidget {
                             children: [
                               const TextSpan(text: 'I am '),
                               TextSpan(
-                                  text: 'Akshit Madan ',
+                                  text: 'Md. Sifatullah ',
                                   style: TextStyle(color: AppColors.purple))
                             ]),
                       ),
                       const SizedBox(height: 20),
                       const Text(
-                        'A Solopreneur,',
+                        'A Code Maverick,',
                         style: TextStyle(decoration: TextDecoration.underline),
                       ),
                       RichText(
@@ -75,8 +76,6 @@ class IntroDesktopWidget extends StatelessWidget {
                               const TextSpan(text: '...')
                             ]),
                       ),
-                      // const Text(
-                      //     'Because if the cover does not impress you what else can?'),
                     ],
                   )
                 ],
@@ -103,28 +102,31 @@ class IntroDesktopWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                         children: const [
                           TextSpan(
-                              text: ' a Tech YouTuber ',
+                              text: ' a Tech Enthusiast ',
                               style: TextStyle(
                                   backgroundColor: Colors.yellowAccent,
                                   color: Colors.black)),
                           TextSpan(
-                              text: ' who loves sharing his coding journey!')
+                              text: ' who loves to share and learn new things!')
                         ]),
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
                     child: Row(
                       children: [
-                        socialIcon('https://www.instagram.com/akshitmadan_/',
-                            SocialIconsFlutter.instagram),
-                        socialIcon('https://github.com/akmadan',
+                        socialIcon('https://github.com/Md-Sifatullah617',
                             SocialIconsFlutter.github),
                         socialIcon(
-                            'https://www.linkedin.com/in/akshit-madan-394a82a6/',
+                            'https://www.linkedin.com/in/md-sifatullah617',
                             SocialIconsFlutter.linkedin_box),
                         socialIcon(
-                            'https://www.youtube.com/channel/UCBlphb6_k7X1P28OCYXMsWg',
-                            SocialIconsFlutter.youtube)
+                            'https://www.beecrowd.com.br/judge/en/profile/433345',
+                            Icons.code),
+                        socialIcon(
+                            'https://www.instagram.com/_._broken.paws._/',
+                            SocialIconsFlutter.instagram),
+                        socialIcon('https://www.facebook.com/md.sifatullah.02/',
+                            SocialIconsFlutter.facebook),
                       ],
                     ),
                   )

@@ -2,7 +2,6 @@ import 'package:akshit_madan/design/constants/app_images.dart';
 import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:html' as html;
 
 class IntroMobileWidget extends StatelessWidget {
@@ -14,10 +13,6 @@ class IntroMobileWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [
-          // const Align(
-          //   alignment: Alignment.topCenter,
-          //   child: RiveAnimation.asset(AppAnimations.introAnimation),
-          // ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +36,7 @@ class IntroMobileWidget extends StatelessWidget {
                         height: 1),
                     children: [
                       TextSpan(
-                          text: 'Akshit Madan ',
+                          text: 'Md. Sifatullah ',
                           style: TextStyle(color: AppColors.purple))
                     ]),
               ),
@@ -49,22 +44,23 @@ class IntroMobileWidget extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    socialIcon('https://www.instagram.com/akshitmadan_/',
-                        SocialIconsFlutter.instagram),
-                    socialIcon('https://github.com/akmadan',
+                    socialIcon('https://github.com/Md-Sifatullah617',
                         SocialIconsFlutter.github),
-                    socialIcon(
-                        'https://www.linkedin.com/in/akshit-madan-394a82a6/',
+                    socialIcon('https://www.linkedin.com/in/md-sifatullah617',
                         SocialIconsFlutter.linkedin_box),
                     socialIcon(
-                        'https://www.youtube.com/channel/UCBlphb6_k7X1P28OCYXMsWg',
-                        SocialIconsFlutter.youtube)
+                        'https://www.beecrowd.com.br/judge/en/profile/433345',
+                        Icons.code),
+                    socialIcon('https://www.instagram.com/_._broken.paws._/',
+                        SocialIconsFlutter.instagram),
+                    socialIcon('https://www.facebook.com/md.sifatullah.02/',
+                        SocialIconsFlutter.facebook),
                   ],
                 ),
               ),
               const SizedBox(height: 30),
               const Text(
-                'A Solopreneur,',
+                'A Code Maverick,',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     decoration: TextDecoration.underline, fontSize: 14),
@@ -107,12 +103,12 @@ class IntroMobileWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                         children: [
                           TextSpan(
-                              text: ' a Tech YouTuber ',
+                              text: ' a Tech Enthusiast ',
                               style: TextStyle(
                                   backgroundColor: Colors.yellowAccent,
                                   color: Colors.black)),
                           TextSpan(
-                              text: ' who loves sharing his coding journey!')
+                              text: ' who loves to share and learn new things!')
                         ]),
                   ),
                 ],

@@ -3,6 +3,7 @@ import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/design/widgets/app_image_widget.dart';
 import 'package:akshit_madan/design/widgets/buttons/app_outlined_button.dart';
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class HighlightsMobileWidget extends StatelessWidget {
   const HighlightsMobileWidget({super.key});
@@ -28,52 +29,53 @@ class HighlightsMobileWidget extends StatelessWidget {
               ]),
             ),
           ),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Highlights',
-                  style: TextStyle(fontSize: 24),
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  runSpacing: 8,
-                  spacing: 8,
-                  direction: Axis.horizontal,
-                  children: [
-                    highlightContainer(
-                        context,
-                        false,
-                        '14,000+ YouTube Subscribers',
-                        AppImages.bookmarkImage,
-                        'Published over 350 Videos sharing my Development Experiences and Technical Expertise. ',
-                        'VISIT CHANNEL'),
-                    highlightContainer(
-                        context,
-                        false,
-                        'Ex-Intern @Tickertape',
-                        AppImages.bulbImage,
-                        'Worked at Indian Fintech Startup Tickertape as a Mobile Development Engineer',
-                        'VISIT CHANNEL'),
-                    highlightContainer(
-                        context,
-                        false,
-                        'SDE @Stealth Startup',
-                        AppImages.cupImage,
-                        'I am currently employed as an SDE at a HealthTech Accelerator Startup based in a beautiful city, Pune.',
-                        'VISIT CHANNEL'),
-                    highlightContainer(
-                        context,
-                        false,
-                        'ML Researcher',
-                        AppImages.pickerImage,
-                        "With a passion for pushing AI's boundaries, I continually delve into the latest research and developments in the field.",
-                        'VISIT CHANNEL'),
-                  ],
-                )
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Highlights',
+                style: TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              Wrap(
+                runSpacing: 8,
+                spacing: 8,
+                direction: Axis.horizontal,
+                children: [
+                  highlightContainer(
+                      context,
+                      true,
+                      '1K+ Downloads',
+                      AppImages.bookmarkImage,
+                      'My First App named Ostadjee, a Flutter App, has crossed 1K+ Downloads on Play Store. Though it is not maintained after the first release, it is still available on Play Store.',
+                      'VISIT PLAY STORE',
+                      link:
+                          'https://play.google.com/store/search?q=ostadjee&c=apps'),
+                  highlightContainer(
+                      context,
+                      true,
+                      'Ex-Intern @DeshIT-BD',
+                      AppImages.bulbImage,
+                      'Worked at Deshit-BD as a Flutter Developer Intern for 4 months.',
+                      'VISIT DeshIT-BD',
+                      link: "https://www.deshit-bd.com/"),
+                  highlightContainer(
+                      context,
+                      false,
+                      '2+ Website & 25+ Apps',
+                      AppImages.cupImage,
+                      'From the journey of 1 year, I have developed 25+ Apps and 2+ Websites using Flutter and Firebase.',
+                      'VISIT CHANNEL'),
+                  highlightContainer(
+                      context,
+                      false,
+                      'Cyber Security Enthusiast',
+                      AppImages.pickerImage,
+                      "With a passion for Cyber Security, I'm always learning new things about it.",
+                      'VISIT CHANNEL'),
+                ],
+              )
+            ],
           )
         ],
       ),
@@ -81,7 +83,8 @@ class HighlightsMobileWidget extends StatelessWidget {
   }
 
   Widget highlightContainer(BuildContext context, bool showButton, String topic,
-      imagePath, text, buttonText) {
+      imagePath, text, buttonText,
+      {String? link}) {
     return Container(
       width: double.maxFinite,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
@@ -114,11 +117,13 @@ class HighlightsMobileWidget extends StatelessWidget {
                   style: const TextStyle(fontSize: 12),
                 ),
                 if (showButton) const SizedBox(height: 10),
-                if (showButton)
-                  AppOutlinedButton(
-                    title: buttonText,
-                    textStyle: const TextStyle(fontSize: 12),
-                  )
+                showButton
+                    ? AppOutlinedButton(
+                        title: buttonText,
+                        textStyle: const TextStyle(fontSize: 12),
+                        onTap: () => html.window.open(link!, '_blank'),
+                      )
+                    : const SizedBox.shrink()
               ],
             ),
           ),

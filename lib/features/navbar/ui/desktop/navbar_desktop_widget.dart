@@ -45,9 +45,6 @@ class NavBarDesktopWidget extends StatelessWidget {
               },
             )
           ],
-        )
-            // RichText(
-
-            ));
+        )));
   }
 }

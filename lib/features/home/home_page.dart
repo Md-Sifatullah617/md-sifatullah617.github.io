@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return const Scaffold(
       body: Column(
         children: [
-          NavBarWidget(),
+          // NavBarWidget(),
           Expanded(
               child: SingleChildScrollView(
             child: Padding(

@@ -32,31 +32,22 @@ class TechstackDesktopWidget extends StatelessWidget {
                   ]),
             ),
             const SizedBox(height: 20),
-            Container(
-              // width: ,
-              child: const Text(
-                "I have served as the Founder of growmonks, overseeing the entire project lifecycle from ideation to successful client project delivery. As a Flutter Engineer at Tickertape(10M+), where I had the privilege of developing for a huge user base. I gained invaluable experience and deepened my understanding of mobile development concepts.",
-                textAlign: TextAlign.center,
-              ),
+            const Text(
+              "I have served as the Founder of growmonks, overseeing the entire project lifecycle from ideation to successful client project delivery. As a Flutter Engineer at DeshiIT-BD, where I had the privilege of developing for a huge user base. I gained invaluable experience and deepened my understanding of mobile development concepts.",
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            Column(
-              children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        7,
-                        (index) => techStackCircle(
-                            techStackImages.values.toList()[index]))),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        6,
-                        (index) => techStackCircle(techStackImages.values
-                            .toList()
-                            .reversed
-                            .toList()[index])))
-              ],
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.4,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  ...List.generate(
+                      techStackImages.length,
+                      (index) => techStackCircle(
+                          techStackImages.values.toList()[index])),
+                ],
+              ),
             )
           ],
         ),
