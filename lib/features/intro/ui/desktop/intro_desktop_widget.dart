@@ -26,7 +26,7 @@ class IntroDesktopWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 25),
               Row(
                 children: [
                   // ZoomIn(
@@ -145,6 +145,32 @@ class IntroDesktopWidget extends StatelessWidget {
                         socialIcon('https://www.facebook.com/md.sifatullah.02/',
                             SocialIconsFlutter.facebook),
                       ],
+                    ),
+                  ),
+
+                  //a button to download my cv
+                  const SizedBox(height: 20),
+                  InkWell(
+                    onTap: () => html.window.open(
+                        'https://drive.google.com/file/d/1Z3Z3QZ2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2/view?usp=sharing',
+                        '_blank'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.download_rounded, color: Colors.white),
+                          SizedBox(width: 10),
+                          Text(
+                            'Download CV',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
