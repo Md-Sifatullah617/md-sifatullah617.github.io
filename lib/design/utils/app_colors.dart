@@ -6,4 +6,5 @@ class AppColors {
   static Color purpleDark = const Color(0xff2C1250);
   static Color navBarColor = const Color(0xff1A0B2E);
   static Color violet = const Color(0xff251C31);
+  static Color secondaryColor = const Color(0xFFFE53BB);
 }

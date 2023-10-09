@@ -1,9 +1,5 @@
-import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/features/videos/bloc/videos_bloc.dart';
-import 'package:akshit_madan/project/di/app_dependency_injection.dart';
+import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class VideosDesktopWidget extends StatefulWidget {
   const VideosDesktopWidget({super.key});
@@ -13,79 +9,64 @@ class VideosDesktopWidget extends StatefulWidget {
 }
 
 class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
-  final VideosBloc videosBloc = AppDependencyInjection.getIt.get();
-
-  @override
-  void initState() {
-    videosBloc.add(VideosFetchEvent());
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(bottom: 40),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Text(
-            'Latest Videos',
+            'Latest Projects',
             style: TextStyle(fontSize: 40),
           ),
           const SizedBox(height: 40),
-          BlocConsumer<VideosBloc, VideosState>(
-            bloc: videosBloc,
-            listener: (context, state) {},
-            buildWhen: (previous, current) => current is! VideosActionState,
-            listenWhen: (previous, current) => current is VideosActionState,
-            builder: (context, state) {
-              switch (state.runtimeType) {
-                case VideosFetchedState:
-                  final successState = state as VideosFetchedState;
-
-                  return Wrap(
-                      direction: Axis.horizontal,
-                      children:
-                          List.generate(successState.videos.length, (index) {
-                        return videoContainer(
-                            successState.videos[index].thumbnailUrl,
-                            successState.videos[index].title,
-                            successState.videos[index].videoId);
-                      }));
-                default:
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.purple,
-                    ),
-                  );
-              }
-            },
-          )
+          GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: projectsList.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                  childAspectRatio: 1.5),
+              itemBuilder: (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage(projectsList[index].thumbnail!),
+                          fit: BoxFit.cover)),
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                          child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black.withOpacity(0.3)),
+                      )),
+                      Positioned.fill(
+                          child: Container(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              projectsList[index].title!,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              projectsList[index].description!,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
+                      ))
+                    ],
+                  ),
+                );
+              })
         ]));
-  }
-
-  Widget videoContainer(String imageUrl, String title, String videoId) {
-    return InkWell(
-      onTap: () {
-        launchUrl(Uri.parse('https://youtu.be/$videoId'));
-      },
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        width: 338,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              width: 338,
-              height: 190,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                      image: NetworkImage(imageUrl), fit: BoxFit.cover)),
-            ),
-            Text(title)
-          ],
-        ),
-      ),
-    );
   }
 }
