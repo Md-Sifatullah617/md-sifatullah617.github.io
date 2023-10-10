@@ -152,7 +152,7 @@ class IntroDesktopWidget extends StatelessWidget {
                   const SizedBox(height: 20),
                   InkWell(
                     onTap: () => html.window.open(
-                        'https://drive.google.com/file/d/1Z3Z3QZ2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2Z2/view?usp=sharing',
+                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing',
                         '_blank'),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
