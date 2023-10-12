@@ -253,90 +253,91 @@ class _VideoDialogueState extends State<VideoDialogue> {
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapUp: (details) {
-                print("GestureDetector tapped");
-                final screenWidth = MediaQuery.of(context).size.width;
-                final tapPosition = details.localPosition.dx;
-                final position = widget.controller.value.position;
-                const seekDuration = Duration(seconds: 10);
+          // Positioned(
+          //   left: 0,
+          //   right: 0,
+          //   bottom: 0,
+          //   top: 0,
+          //   child: GestureDetector(
+          //     behavior: HitTestBehavior.opaque,
+          //     onTapUp: (details) {
+          //       print("GestureDetector tapped");
+          //       final screenWidth = MediaQuery.of(context).size.width;
+          //       final tapPosition = details.localPosition.dx;
+          //       final position = widget.controller.value.position;
+          //       const seekDuration = Duration(seconds: 10);
 
-                if (tapPosition < screenWidth / 2) {
-                  widget.controller.seekTo(position - seekDuration);
-                  setState(() {
-                    isLeftSide = true;
-                    print("tapPosition $tapPosition");
-                    Future.delayed(const Duration(seconds: 1), () {
-                      setState(() {
-                        isLeftSide = false;
-                      });
-                    });
-                  });
-                } else {
-                  widget.controller.seekTo(position + seekDuration);
-                  setState(() {
-                    isRightSide = true;
-                    print("tapPosition $tapPosition");
-                    Future.delayed(const Duration(seconds: 1), () {
-                      setState(() {
-                        isRightSide = false;
-                      });
-                    });
-                  });
-                }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: isLeftSide
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.end,
-                children: [
-                  Visibility(
-                    visible: isLeftSide,
-                    child: Container(
-                        height: widget.controller.value.size.height,
-                        width: widget.controller.value.size.width * 0.4,
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(
-                                    widget.controller.value.size.width * 0.4),
-                                bottomRight: Radius.circular(
-                                    widget.controller.value.size.width * 0.4))),
-                        child: Icon(
-                          Icons.fast_rewind,
-                          size: 50,
-                          color: Colors.white.withOpacity(0.5),
-                        )),
-                  ),
-                  Visibility(
-                    visible: isRightSide,
-                    child: Container(
-                        height: widget.controller.value.size.height,
-                        width: widget.controller.value.size.width * 0.4,
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(
-                                    widget.controller.value.size.width * 0.4),
-                                bottomLeft: Radius.circular(
-                                    widget.controller.value.size.width * 0.4))),
-                        child: Icon(
-                          Icons.fast_forward,
-                          size: 50,
-                          color: Colors.white.withOpacity(0.5),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          //       if (tapPosition < screenWidth / 2) {
+          //         widget.controller.seekTo(position - seekDuration);
+          //         setState(() {
+          //           isLeftSide = true;
+          //           print("tapPosition $tapPosition");
+          //           Future.delayed(const Duration(seconds: 1), () {
+          //             setState(() {
+          //               isLeftSide = false;
+          //             });
+          //           });
+          //         });
+          //       } else {
+          //         widget.controller.seekTo(position + seekDuration);
+          //         setState(() {
+          //           isRightSide = true;
+          //           print("tapPosition $tapPosition");
+          //           Future.delayed(const Duration(seconds: 1), () {
+          //             setState(() {
+          //               isRightSide = false;
+          //             });
+          //           });
+          //         });
+          //       }
+          //     },
+          //     child: Row(
+          //       mainAxisSize: MainAxisSize.min,
+          //       mainAxisAlignment: isLeftSide
+          //           ? MainAxisAlignment.start
+          //           : MainAxisAlignment.end,
+          //       children: [
+          //         Visibility(
+          //           visible: isLeftSide,
+          //           child: Container(
+          //               height: widget.controller.value.size.height,
+          //               width: widget.controller.value.size.width * 0.4,
+          //               decoration: BoxDecoration(
+          //                   color: Colors.white.withOpacity(0.2),
+          //                   borderRadius: BorderRadius.only(
+          //                       topRight: Radius.circular(
+          //                           widget.controller.value.size.width * 0.4),
+          //                       bottomRight: Radius.circular(
+          //                           widget.controller.value.size.width * 0.4))),
+          //               child: Icon(
+          //                 Icons.fast_rewind,
+          //                 size: 50,
+          //                 color: Colors.white.withOpacity(0.5),
+          //               )),
+          //         ),
+          //         Visibility(
+          //           visible: isRightSide,
+          //           child: Container(
+          //               height: widget.controller.value.size.height,
+          //               width: widget.controller.value.size.width * 0.4,
+          //               decoration: BoxDecoration(
+          //                   color: Colors.white.withOpacity(0.2),
+          //                   borderRadius: BorderRadius.only(
+          //                       topLeft: Radius.circular(
+          //                           widget.controller.value.size.width * 0.4),
+          //                       bottomLeft: Radius.circular(
+          //                           widget.controller.value.size.width * 0.4))),
+          //               child: Icon(
+          //                 Icons.fast_forward,
+          //                 size: 50,
+          //                 color: Colors.white.withOpacity(0.5),
+          //               )),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+
           Positioned(
             top: 5,
             right: 5,

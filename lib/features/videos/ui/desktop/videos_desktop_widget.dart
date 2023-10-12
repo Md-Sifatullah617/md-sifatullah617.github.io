@@ -229,113 +229,128 @@ class _VideoDialogueState extends State<VideoDialogue> {
   GlobalKey videoPlayerKey = GlobalKey();
   bool isLeftSide = false;
   bool isRightSide = false;
+  late double swidth;
+  late double tps;
+  late Duration pst;
+  late Duration spst;
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Stack(
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Chewie(
-              controller: ChewieController(
-                videoPlayerController: widget.controller,
-                autoPlay: true,
-                looping: true,
-                showControls: true,
-                allowFullScreen: true,
-                allowPlaybackSpeedChanging: false,
-                allowMuting: true,
-                showOptions: true,
-                placeholder: Container(
-                  color: Colors.black,
+          Positioned.fill(
+            child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Chewie(
+                controller: ChewieController(
+                  videoPlayerController: widget.controller,
+                  autoPlay: true,
+                  looping: true,
+                  showControls: true,
+                  allowFullScreen: true,
+                  allowPlaybackSpeedChanging: true,
+                  allowMuting: true,
+                  showOptions: true,
+                  placeholder: Container(
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTapUp: (details) {
-                print("GestureDetector tapped");
-                final screenWidth = MediaQuery.of(context).size.width;
-                final tapPosition = details.localPosition.dx;
-                final position = widget.controller.value.position;
-                const seekDuration = Duration(seconds: 10);
-
-                if (tapPosition < screenWidth / 2) {
-                  widget.controller.seekTo(position - seekDuration);
-                  setState(() {
-                    isLeftSide = true;
-                    print("tapPosition $tapPosition");
-                    Future.delayed(const Duration(seconds: 1), () {
-                      setState(() {
-                        isLeftSide = false;
-                      });
-                    });
-                  });
-                } else {
-                  widget.controller.seekTo(position + seekDuration);
-                  setState(() {
-                    isRightSide = true;
-                    print("tapPosition $tapPosition");
-                    Future.delayed(const Duration(seconds: 1), () {
-                      setState(() {
-                        isRightSide = false;
-                      });
-                    });
-                  });
-                }
-              },
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: isLeftSide
-                    ? MainAxisAlignment.start
-                    : MainAxisAlignment.end,
-                children: [
-                  Visibility(
-                    visible: isLeftSide,
-                    child: Container(
-                        height: widget.controller.value.size.height,
-                        width: widget.controller.value.size.width * 2,
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(
-                                    widget.controller.value.size.width),
-                                bottomRight: Radius.circular(
-                                    widget.controller.value.size.width))),
-                        child: Icon(
-                          Icons.fast_rewind,
-                          size: 100,
-                          color: Colors.white.withOpacity(0.5),
-                        )),
-                  ),
-                  Visibility(
-                    visible: isRightSide,
-                    child: Container(
-                        height: widget.controller.value.size.height,
-                        width: widget.controller.value.size.width * 2,
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(
-                                    widget.controller.value.size.width),
-                                bottomLeft: Radius.circular(
-                                    widget.controller.value.size.width))),
-                        child: Icon(
-                          Icons.fast_forward,
-                          size: 100,
-                          color: Colors.white.withOpacity(0.5),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   left: 0,
+          //   right: 0,
+          //   bottom: 0,
+          //   top: 0,
+          //   child: Listener(
+          //     behavior: HitTestBehavior.opaque,
+          //     onPointerUp: (details) {
+          //       print("GestureDetector tapped");
+          //       var tapPosition = details.localPosition.dx;
+          //       setState(() {
+          //         tps = tapPosition;
+          //       });
+          //     },
+          //     child: GestureDetector(
+          //       behavior: HitTestBehavior.opaque,
+          //       onDoubleTap: () {
+          //         var screenWidth = MediaQuery.of(context).size.width;
+          //         var position = widget.controller.value.position;
+          //         if (tps < screenWidth / 2) {
+          //           widget.controller
+          //               .seekTo(position - const Duration(seconds: 10));
+          //           setState(() {
+          //             isLeftSide = true;
+          //             print("tapPosition $tps");
+          //             Future.delayed(const Duration(seconds: 1), () {
+          //               setState(() {
+          //                 isLeftSide = false;
+          //               });
+          //             });
+          //           });
+          //         } else {
+          //           widget.controller
+          //               .seekTo(position + const Duration(seconds: 10));
+          //           setState(() {
+          //             isRightSide = true;
+          //             print("tapPosition $tps");
+          //             Future.delayed(const Duration(seconds: 1), () {
+          //               setState(() {
+          //                 isRightSide = false;
+          //               });
+          //             });
+          //           });
+          //         }
+          //       },
+          //       child: Row(
+          //         mainAxisSize: MainAxisSize.min,
+          //         mainAxisAlignment: isLeftSide
+          //             ? MainAxisAlignment.start
+          //             : MainAxisAlignment.end,
+          //         crossAxisAlignment: CrossAxisAlignment.center,
+          //         children: [
+          //           Visibility(
+          //             visible: isLeftSide,
+          //             child: Container(
+          //                 height: widget.controller.value.size.height * 0.7,
+          //                 width: widget.controller.value.size.width * 2,
+          //                 decoration: BoxDecoration(
+          //                     color: Colors.white.withOpacity(0.2),
+          //                     borderRadius: BorderRadius.only(
+          //                         topRight: Radius.circular(
+          //                             widget.controller.value.size.width),
+          //                         bottomRight: Radius.circular(
+          //                             widget.controller.value.size.width))),
+          //                 child: Icon(
+          //                   Icons.fast_rewind,
+          //                   size: 100,
+          //                   color: Colors.white.withOpacity(0.5),
+          //                 )),
+          //           ),
+          //           Visibility(
+          //             visible: isRightSide,
+          //             child: Container(
+          //                 height: widget.controller.value.size.height * 0.7,
+          //                 width: widget.controller.value.size.width * 2,
+          //                 decoration: BoxDecoration(
+          //                     color: Colors.white.withOpacity(0.2),
+          //                     borderRadius: BorderRadius.only(
+          //                         topLeft: Radius.circular(
+          //                             widget.controller.value.size.width),
+          //                         bottomLeft: Radius.circular(
+          //                             widget.controller.value.size.width))),
+          //                 child: Icon(
+          //                   Icons.fast_forward,
+          //                   size: 100,
+          //                   color: Colors.white.withOpacity(0.5),
+          //                 )),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Positioned(
             top: 10,
             right: 10,
