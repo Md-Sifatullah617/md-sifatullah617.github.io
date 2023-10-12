@@ -1,6 +1,5 @@
 import 'package:akshit_madan/design/utils/app_theme.dart';
 import 'package:akshit_madan/features/home/home_page.dart';
-
 import 'package:flutter/material.dart';
 
 void main() async {

@@ -29,64 +29,76 @@ class VideoDataModel {
 }
 
 List<VideoDataModel> projectsList = [
-  //7 projects dummy data
   VideoDataModel(
-    title: 'Flutter Chat App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/chat_app.mp4',
+    title: 'Ostadjee',
+    thumbnail: 'assets/project_image/ostadjee.webp',
+    videoUrl: 'assets/project_image/ostad.mp4',
     description:
-        'A chat app made using Flutter and Firebase. It has features like sending text messages, images, videos, audio, location, etc. It also has features like online status, last seen, etc.',
+        'Ostadjee.com Limited is a Bangladeshi EdTech company that connects students and tutors 24/7 through website and mobile apps utilizing digital mechanism and confirms security and quality. This platform includes e-learning and examination, job placement and career development and education blog.',
     githubLink: '',
+    apkFile: '',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.ostadjee.application&pcampaignid=web_share',
+  ),
+  VideoDataModel(
+    title: 'Holy Heart Halal Food BD',
+    thumbnail: 'assets/project_image/hhhf.png',
+    videoUrl: 'assets/project_image/hhhf.mp4',
+    description:
+        'Welcome to Holy Heart Halal Food, your one-stop destination for all your grocery needs in Japan. We are proud to offer a wide range of halal-certified products, ensuring that our customers can conveniently access quality groceries while adhering to their dietary requirements.',
+    githubLink: 'https://github.com/Md-Sifatullah617/halal-food.git',
     apkFile: '',
     playStoreLink: '',
   ),
   VideoDataModel(
-    title: 'Flutter E-Commerce App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/ecommerce_app.mp4',
+    title: 'Discount Hut',
+    thumbnail: 'assets/project_image/dh.png',
+    videoUrl: 'assets/project_image/dh.mp4',
     description:
-        'A E-Commerce app made using Flutter and Firebase. It has features like adding products to cart, wishlist, checkout, etc.',
-    githubLink: '',
+        'Discount Hut is a discount app that helps you find the best deals, discount, and offers on food, fashion, electronics, and more. You can save money on your favorite brands and stores by using the Discount Hut app. Get the best deals, offers, and discounts on food, fashion, electronics, and more.',
+    githubLink: 'https://github.com/Md-Sifatullah617/DiscountHut-copy.git',
     apkFile: '',
     playStoreLink: '',
   ),
   VideoDataModel(
-    title: 'Flutter Food Delivery App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/food_delivery_app.mp4',
+    title: 'The Soumi\'s Can Product BD',
+    thumbnail: 'assets/project_image/soumi.webp',
+    videoUrl: '',
     description:
-        'A food delivery app made using Flutter and Firebase. It has features like adding products to cart, checkout, etc.',
+        "Discover beauty like never before with the Soumis Can Product BD app. Elevate your skincare and makeup game with our curated collection of premium cosmetics. From skincare essentials to makeup must-haves, our app brings you a world of radiant possibilities. Explore, indulge, and redefine your beauty routine with Soumis Can Product BD. Your journey to flawless beauty starts here.",
     githubLink: '',
+    apkFile: '',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.deshitbd.the_soumis_can_product_bd&pcampaignid=web_share',
+  ),
+  VideoDataModel(
+    title: 'Task Management App',
+    thumbnail: 'assets/project_image/todo.png',
+    videoUrl: 'assets/project_image/tma.mp4',
+    description:
+        "A task management app made using Flutter and Rest API. It has features like adding tasks, deleting tasks, updating tasks, etc. It also has features like Profile update, Profile picture update, etc.",
+    githubLink: 'https://github.com/Md-Sifatullah617/task_management_app.git',
     apkFile: '',
     playStoreLink: '',
   ),
   VideoDataModel(
-    title: 'Flutter News App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/news_app.mp4',
+    title: 'Blockchain-Based-Property-Registration',
+    thumbnail: 'assets/project_image/lrs.png',
+    videoUrl: 'assets/project_image/lra.mp4',
     description:
-        'A news app made using Flutter and News API. It has features like searching news, bookmarking news, etc.',
-    githubLink: '',
+        ' A blockchain-based property registration system made using Ethereum Blockchain. It has features like adding property, deleting property, updating property, etc. ',
+    githubLink:
+        'https://github.com/Md-Sifatullah617/Blockchain-Based-Property-Registration.git',
     apkFile: '',
     playStoreLink: '',
   ),
   VideoDataModel(
-    title: 'Flutter Quiz App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/quiz_app.mp4',
+    title: 'Wallify',
+    thumbnail: 'assets/project_image/wallify.png',
+    videoUrl: 'assets/project_image/wallify.mp4',
     description:
-        'A quiz app made using Flutter and Open Trivia API. It has features like selecting category, difficulty level, etc.',
-    githubLink: '',
-    apkFile: '',
-    playStoreLink: '',
-  ),
-  VideoDataModel(
-    title: 'Flutter Social Media App',
-    thumbnail: 'assets/images/my.jpg',
-    videoUrl: 'assets/videos/social_media_app.mp4',
-    description:
-        'A social media app made using Flutter and Firebase. It has features like posting images, videos, audio, etc. It also has features like online status, last seen, etc.',
-    githubLink: '',
+        'Wallify is a wallpaper app made using Flutter and Rest API. It has features like adding wallpaper, deleting wallpaper, updating wallpaper, etc.',
+    githubLink: 'https://github.com/Md-Sifatullah617/Wallify.git',
     apkFile: '',
     playStoreLink: '',
   ),

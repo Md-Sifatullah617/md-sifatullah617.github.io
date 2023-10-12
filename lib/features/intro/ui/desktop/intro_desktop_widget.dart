@@ -1,7 +1,6 @@
 import 'package:akshit_madan/design/constants/app_animations.dart';
 import 'package:akshit_madan/design/constants/app_images.dart';
 import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/design/widgets/zoom_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
@@ -29,19 +28,6 @@ class IntroDesktopWidget extends StatelessWidget {
               const SizedBox(height: 25),
               Row(
                 children: [
-                  // ZoomIn(
-                  //   duration: const Duration(seconds: 1),
-                  //   child: Container(
-                  //     width: w / 7,
-                  //     height: w / 7,
-                  //     decoration: BoxDecoration(
-                  //         shape: BoxShape.circle,
-                  //         border: Border.all(color: Colors.white, width: 5),
-                  //         image: const DecorationImage(
-                  //             image: AssetImage(AppImages.selfImage),
-                  //             fit: BoxFit.cover)),
-                  //   ),
-                  // ),
                   const RippleAnimation(
                     color: Colors.deepOrange,
                     delay: Duration(milliseconds: 300),

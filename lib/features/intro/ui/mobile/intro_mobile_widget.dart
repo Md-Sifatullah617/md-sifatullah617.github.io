@@ -111,6 +111,30 @@ class IntroMobileWidget extends StatelessWidget {
                               text: ' who loves to share and learn new things!')
                         ]),
                   ),
+                  const SizedBox(height: 20),
+                  InkWell(
+                    onTap: () => html.window.open(
+                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing',
+                        '_blank'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.download_rounded, color: Colors.white),
+                          SizedBox(width: 10),
+                          Text(
+                            'Download CV',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               )
             ],
