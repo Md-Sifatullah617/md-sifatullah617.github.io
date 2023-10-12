@@ -1,3 +1,4 @@
+import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,24 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
             style: TextStyle(fontSize: 40),
           ),
           const SizedBox(height: 40),
+          RichText(
+            text: TextSpan(
+                style: TextStyle(
+                    color: Colors.white,
+                    height: 1.2,
+                    fontFamily: 'Preah',
+                    fontSize: MediaQuery.of(context).size.width / 44,
+                    fontWeight: FontWeight.bold),
+                children: const [
+                  TextSpan(
+                      text: ' N.B. ',
+                      style: TextStyle(
+                          backgroundColor: Colors.yellowAccent,
+                          color: Colors.black)),
+                  TextSpan(text: ' This website was developed using Flutter.')
+                ]),
+          ),
+          const SizedBox(height: 20),
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -46,6 +65,11 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                 videoPlayerControllers.add(controller);
                 return Container(
                     margin: const EdgeInsets.only(bottom: 40),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 20),
+                    decoration: BoxDecoration(
+                        color: AppColors.purpleDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20)),
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -62,6 +86,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                           Expanded(
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                 Text(projectsList[index].title!,
                                     style: const TextStyle(

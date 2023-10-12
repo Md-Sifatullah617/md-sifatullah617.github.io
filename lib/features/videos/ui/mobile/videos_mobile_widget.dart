@@ -1,3 +1,4 @@
+import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,24 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
             style: TextStyle(fontSize: 24),
           ),
           SizedBox(height: h * 0.05),
+          RichText(
+            textAlign: TextAlign.center,
+            text: const TextSpan(
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Preah',
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                      text: ' N.B. ',
+                      style: TextStyle(
+                          backgroundColor: Colors.yellowAccent,
+                          color: Colors.black)),
+                  TextSpan(text: ' This website was developed using Flutter.'),
+                ]),
+          ),
+          SizedBox(height: h * 0.02),
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -49,6 +68,11 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                 videoPlayerControllers.add(controller);
                 return Container(
                     margin: EdgeInsets.only(bottom: h * 0.05),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: AppColors.purpleDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(children: [
                       Container(
                           width: w,
