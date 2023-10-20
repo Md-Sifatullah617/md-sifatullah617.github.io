@@ -18,12 +18,10 @@ class IntroDesktopWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [
-          const Align(
-            alignment: Alignment.bottomRight,
-            child: RiveAnimation.asset(AppAnimations.introAnimation),
-          ),
+          const RiveAnimation.asset(AppAnimations.introAnimation),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 25),
               Row(

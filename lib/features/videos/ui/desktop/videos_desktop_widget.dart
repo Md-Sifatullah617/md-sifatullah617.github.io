@@ -2,6 +2,7 @@ import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'dart:html' as html;
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,9 +54,13 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                 ]),
           ),
           const SizedBox(height: 20),
-          ListView.builder(
+          MasonryGridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
+              gridDelegate:
+                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+              crossAxisSpacing: 40,
               itemCount: projectsList.length,
               itemBuilder: (context, index) {
                 VideoPlayerController controller = VideoPlayerController.asset(
@@ -70,144 +75,145 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                     decoration: BoxDecoration(
                         color: AppColors.purpleDark.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              width: 400,
-                              height: 300,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          projectsList[index].thumbnail!),
-                                      fit: BoxFit.cover))),
-                          const SizedBox(width: 40),
-                          Expanded(
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                Text(projectsList[index].title!,
-                                    style: const TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold)),
-                                const SizedBox(height: 20),
-                                Text(projectsList[index].description!,
-                                    style: const TextStyle(fontSize: 20)),
-                                const SizedBox(height: 20),
-                                Row(children: [
-                                  if (projectsList[index].githubLink != '')
-                                    InkWell(
-                                        onTap: () => html.window.open(
-                                            projectsList[index].githubLink!,
-                                            '_blank'),
-                                        child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Icon(FontAwesomeIcons.github,
-                                                      color: Colors.white),
-                                                  SizedBox(width: 10),
-                                                  Text('Github Link',
-                                                      style: TextStyle(
-                                                          color: Colors.white))
-                                                ]))),
-                                  const SizedBox(width: 10),
-                                  if (projectsList[index].videoUrl != '')
-                                    InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return VideoDialogue(
-                                                    controller: controller);
-                                              });
-                                        },
-                                        child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Icon(FontAwesomeIcons.youtube,
-                                                      color: Colors.white),
-                                                  SizedBox(width: 10),
-                                                  Text('Watch Video',
-                                                      style: TextStyle(
-                                                          color: Colors.white))
-                                                ]))),
-                                  const SizedBox(width: 10),
-                                  if (projectsList[index].playStoreLink != '')
-                                    InkWell(
-                                        onTap: () => html.window.open(
-                                            projectsList[index].playStoreLink!,
-                                            '_blank'),
-                                        child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Icon(
-                                                      FontAwesomeIcons
-                                                          .googlePlay,
-                                                      color: Colors.white),
-                                                  SizedBox(width: 10),
-                                                  Text('Play Store Link',
-                                                      style: TextStyle(
-                                                          color: Colors.white))
-                                                ]))),
-                                  const SizedBox(width: 10),
-                                  if (projectsList[index].apkFile != '')
-                                    InkWell(
-                                        onTap: () => html.window.open(
-                                            projectsList[index].apkFile!,
-                                            '_blank'),
-                                        child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 10),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: const Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Icon(
-                                                      FontAwesomeIcons
-                                                          .fileDownload,
-                                                      color: Colors.white),
-                                                  SizedBox(width: 10),
-                                                  Text('Apk File',
-                                                      style: TextStyle(
-                                                          color: Colors.white))
-                                                ])))
-                                ])
-                              ]))
-                        ]));
+                    child: Column(
+                      children: [
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                  width: 400,
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              projectsList[index].thumbnail!),
+                                          fit: BoxFit.cover))),
+                              const SizedBox(width: 40),
+                              Expanded(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                    Text(projectsList[index].title!,
+                                        style: const TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 20),
+                                    Text(projectsList[index].description!,
+                                        style: const TextStyle(fontSize: 20)),
+                                    const SizedBox(height: 20),
+                                  ]))
+                            ]),
+                        const SizedBox(height: 20),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              if (projectsList[index].githubLink != '')
+                                InkWell(
+                                    onTap: () => html.window.open(
+                                        projectsList[index].githubLink!,
+                                        '_blank'),
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(FontAwesomeIcons.github,
+                                                  color: Colors.white),
+                                              SizedBox(width: 10),
+                                              Text('Github Link',
+                                                  style: TextStyle(
+                                                      color: Colors.white))
+                                            ]))),
+                              const SizedBox(width: 10),
+                              if (projectsList[index].videoUrl != '')
+                                InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return VideoDialogue(
+                                                controller: controller);
+                                          });
+                                    },
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(FontAwesomeIcons.youtube,
+                                                  color: Colors.white),
+                                              SizedBox(width: 10),
+                                              Text('Watch Video',
+                                                  style: TextStyle(
+                                                      color: Colors.white))
+                                            ]))),
+                              const SizedBox(width: 10),
+                              if (projectsList[index].playStoreLink != '')
+                                InkWell(
+                                    onTap: () => html.window.open(
+                                        projectsList[index].playStoreLink!,
+                                        '_blank'),
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(FontAwesomeIcons.googlePlay,
+                                                  color: Colors.white),
+                                              SizedBox(width: 10),
+                                              Text('Play Store Link',
+                                                  style: TextStyle(
+                                                      color: Colors.white))
+                                            ]))),
+                              const SizedBox(width: 10),
+                              if (projectsList[index].apkFile != '')
+                                InkWell(
+                                    onTap: () => html.window.open(
+                                        projectsList[index].apkFile!, '_blank'),
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                  FontAwesomeIcons.fileDownload,
+                                                  color: Colors.white),
+                                              SizedBox(width: 10),
+                                              Text('Apk File',
+                                                  style: TextStyle(
+                                                      color: Colors.white))
+                                            ])))
+                            ])
+                      ],
+                    ));
               })
         ]));
   }

@@ -69,7 +69,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                 return Container(
                     margin: EdgeInsets.only(bottom: h * 0.05),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
+                        horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
                         color: AppColors.purpleDark.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(10)),
@@ -103,27 +103,27 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                           InkWell(
                               onTap: () => html.window.open(
                                   projectsList[index].githubLink!, '_blank'),
-                              child: Expanded(
-                                child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.white, width: 2),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: const Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(FontAwesomeIcons.github,
-                                              color: Colors.white, size: 15),
-                                          SizedBox(width: 10),
-                                          Text('Github Link',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12))
-                                        ])),
-                              )),
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: h * 0.04,
+                                  width: w * 0.3,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.white, width: 2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: const Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(FontAwesomeIcons.github,
+                                            color: Colors.white, size: 15),
+                                        SizedBox(width: 10),
+                                        Text('Github Link',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12))
+                                      ]))),
                         const SizedBox(width: 10),
                         if (projectsList[index].videoUrl != '')
                           InkWell(
@@ -135,61 +135,64 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                           controller: controller);
                                     });
                               },
-                              child: Expanded(
-                                child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.white, width: 2),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: const Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(FontAwesomeIcons.youtube,
-                                              color: Colors.white, size: 15),
-                                          SizedBox(width: 10),
-                                          Text('Watch Video',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12))
-                                        ])),
-                              )),
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: h * 0.04,
+                                  width: w * 0.3,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.white, width: 2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: const Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(FontAwesomeIcons.youtube,
+                                            color: Colors.white, size: 15),
+                                        SizedBox(width: 10),
+                                        Text('Watch Video',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12))
+                                      ]))),
                         const SizedBox(width: 10),
                         if (projectsList[index].playStoreLink != '')
                           InkWell(
                               onTap: () => html.window.open(
                                   projectsList[index].playStoreLink!, '_blank'),
-                              child: Expanded(
-                                child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 5),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.white, width: 2),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: const Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(FontAwesomeIcons.googlePlay,
-                                              color: Colors.white, size: 15),
-                                          SizedBox(width: 10),
-                                          Text('Play Store',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12))
-                                        ])),
-                              )),
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  height: h * 0.04,
+                                  width: w * 0.3,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.white, width: 2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: const Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(FontAwesomeIcons.googlePlay,
+                                            color: Colors.white, size: 15),
+                                        SizedBox(width: 10),
+                                        Text('Play Store',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12))
+                                      ]))),
                         const SizedBox(width: 10),
                         if (projectsList[index].apkFile != '')
                           InkWell(
                               onTap: () => html.window
                                   .open(projectsList[index].apkFile!, '_blank'),
                               child: Container(
+                                  alignment: Alignment.center,
+                                  height: h * 0.04,
+                                  width: w * 0.3,
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
+                                      horizontal: 5, vertical: 5),
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Colors.white, width: 2),
