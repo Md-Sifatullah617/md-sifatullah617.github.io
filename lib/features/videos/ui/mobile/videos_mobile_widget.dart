@@ -98,7 +98,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                           moreStyle: const TextStyle(fontSize: 12)),
                       SizedBox(height: h * 0.02),
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             if (projectsList[index].githubLink != '')
                               InkWell(
@@ -106,7 +106,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       projectsList[index].githubLink!)),
                                   child: Container(
                                       alignment: Alignment.center,
-                                      height: h * 0.04,
+                                      height: h * 0.05,
                                       width: w * 0.3,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5),
@@ -139,7 +139,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                   },
                                   child: Container(
                                       alignment: Alignment.center,
-                                      height: h * 0.04,
+                                      height: h * 0.05,
                                       width: w * 0.3,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5),
@@ -166,7 +166,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       projectsList[index].playStoreLink!)),
                                   child: Container(
                                       alignment: Alignment.center,
-                                      height: h * 0.04,
+                                      height: h * 0.05,
                                       width: w * 0.3,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5),
@@ -193,7 +193,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       Uri.parse(projectsList[index].apkFile!)),
                                   child: Container(
                                       alignment: Alignment.center,
-                                      height: h * 0.04,
+                                      height: h * 0.05,
                                       width: w * 0.3,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 5, vertical: 5),
