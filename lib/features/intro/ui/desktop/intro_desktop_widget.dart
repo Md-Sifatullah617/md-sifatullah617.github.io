@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class IntroDesktopWidget extends StatelessWidget {
   const IntroDesktopWidget({super.key});
@@ -135,9 +135,8 @@ class IntroDesktopWidget extends StatelessWidget {
                   //a button to download my cv
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () => html.window.open(
-                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing',
-                        '_blank'),
+                    onTap: () => launchUrl(Uri.parse(
+                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing')),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -168,7 +167,7 @@ class IntroDesktopWidget extends StatelessWidget {
 
   Widget socialIcon(String link, IconData iconPath) {
     return InkWell(
-      onTap: () => html.window.open(link, '_blank'),
+      onTap: () => launchUrl(Uri.parse(link)),
       child: SocialWidget(
         placeholderText: '',
         iconData: iconPath,

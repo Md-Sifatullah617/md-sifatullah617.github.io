@@ -16,24 +16,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
           // NavBarWidget(),
           Expanded(
-              child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                children: [
-                  IntroWidget(),
-                  HighlightsWidget(),
-                  TechStackWidget(),
-                  AllProjectWidget(),
-                  ContactUsWidget()
-                ],
-              ),
-            ),
+              child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            children: const [
+              IntroWidget(),
+              HighlightsWidget(),
+              TechStackWidget(),
+              AllProjectWidget(),
+              ContactUsWidget()
+            ],
           ))
         ],
       ),

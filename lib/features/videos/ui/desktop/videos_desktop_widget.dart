@@ -3,9 +3,8 @@ import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'dart:html' as html;
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
 class VideosDesktopWidget extends StatefulWidget {
@@ -113,9 +112,8 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                             children: [
                               if (projectsList[index].githubLink != '')
                                 InkWell(
-                                    onTap: () => html.window.open(
-                                        projectsList[index].githubLink!,
-                                        '_blank'),
+                                    onTap: () => launchUrl(Uri.parse(
+                                        projectsList[index].githubLink!)),
                                     child: Container(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20, vertical: 10),
@@ -166,9 +164,8 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                               const SizedBox(width: 10),
                               if (projectsList[index].playStoreLink != '')
                                 InkWell(
-                                    onTap: () => html.window.open(
-                                        projectsList[index].playStoreLink!,
-                                        '_blank'),
+                                    onTap: () => launchUrl(Uri.parse(
+                                        projectsList[index].playStoreLink!)),
                                     child: Container(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20, vertical: 10),
@@ -190,8 +187,8 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                               const SizedBox(width: 10),
                               if (projectsList[index].apkFile != '')
                                 InkWell(
-                                    onTap: () => html.window.open(
-                                        projectsList[index].apkFile!, '_blank'),
+                                    onTap: () => launchUrl(Uri.parse(
+                                        projectsList[index].apkFile!)),
                                     child: Container(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20, vertical: 10),

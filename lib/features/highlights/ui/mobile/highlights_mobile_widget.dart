@@ -3,7 +3,7 @@ import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/design/widgets/app_image_widget.dart';
 import 'package:akshit_madan/design/widgets/buttons/app_outlined_button.dart';
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class HighlightsMobileWidget extends StatelessWidget {
   const HighlightsMobileWidget({super.key});
@@ -121,7 +121,7 @@ class HighlightsMobileWidget extends StatelessWidget {
                     ? AppOutlinedButton(
                         title: buttonText,
                         textStyle: const TextStyle(fontSize: 12),
-                        onTap: () => html.window.open(link!, '_blank'),
+                        onTap: () => launchUrl(Uri.parse(link!)),
                       )
                     : const SizedBox.shrink()
               ],

@@ -2,7 +2,6 @@ import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/design/widgets/buttons/app_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:html' as html;
 
 class NavBarDesktopWidget extends StatelessWidget {
   const NavBarDesktopWidget({super.key});
@@ -36,9 +35,8 @@ class NavBarDesktopWidget extends StatelessWidget {
               title: 'Enroll Here',
               onTap: () {
                 try {
-                  html.window.open(
-                      'https://akshitmadan9134.graphy.com/courses/Learn-to-make-apps-in-Flutter-6443deb6e4b01162ff92ed9d',
-                      '_blank');
+                  launchUrl(Uri.parse(
+                      'https://akshitmadan9134.graphy.com/courses/Learn-to-make-apps-in-Flutter-6443deb6e4b01162ff92ed9d'));
                 } catch (e) {
                   print(e.toString());
                 }

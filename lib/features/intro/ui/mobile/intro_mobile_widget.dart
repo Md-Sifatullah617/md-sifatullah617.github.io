@@ -2,7 +2,7 @@ import 'package:akshit_madan/design/constants/app_images.dart';
 import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
-import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class IntroMobileWidget extends StatelessWidget {
   const IntroMobileWidget({super.key});
@@ -12,6 +12,7 @@ class IntroMobileWidget extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Stack(
+        alignment: Alignment.center,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,9 +114,10 @@ class IntroMobileWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () => html.window.open(
-                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing',
-                        '_blank'),
+                    onTap: () {
+                      launchUrl(Uri.parse(
+                          'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing'));
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -146,7 +148,7 @@ class IntroMobileWidget extends StatelessWidget {
 
   Widget socialIcon(String link, IconData iconPath) {
     return InkWell(
-      onTap: () => html.window.open(link, '_blank'),
+      onTap: () => launchUrl(Uri.parse(link)),
       child: SocialWidget(
         placeholderText: '',
         iconData: iconPath,
