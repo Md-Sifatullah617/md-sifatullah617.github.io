@@ -1,9 +1,11 @@
 import 'package:akshit_madan/design/utils/app_colors.dart';
 import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
+import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
@@ -75,37 +77,66 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                         color: AppColors.purpleDark.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                  width: 400,
-                                  height: 300,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              projectsList[index].thumbnail!),
-                                          fit: BoxFit.cover))),
-                              const SizedBox(width: 40),
-                              Expanded(
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                    Text(projectsList[index].title!,
-                                        style: const TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold)),
-                                    const SizedBox(height: 20),
-                                    Text(projectsList[index].description!,
-                                        style: const TextStyle(fontSize: 20)),
-                                    const SizedBox(height: 20),
-                                  ]))
-                            ]),
+                        Text(projectsList[index].title!,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        const SizedBox(height: 10),
+                        DropCapText(
+                          projectsList[index].description!,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w100,
+                              fontFamily: GoogleFonts.poppins().fontFamily),
+                          dropCapPadding: const EdgeInsets.all(10),
+                          dropCap: DropCap(
+                              width: 100,
+                              height: 100,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: AppColors.purpleDark,
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            projectsList[index].thumbnail!),
+                                        fit: BoxFit.cover)),
+                              )),
+                        ),
+                        // Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+
+                        //       Container(
+                        //           width: 400,
+                        //           height: 300,
+                        //           decoration: BoxDecoration(
+                        //               borderRadius: BorderRadius.circular(10),
+                        //               image: DecorationImage(
+                        //                   image: AssetImage(
+                        //                       projectsList[index].thumbnail!),
+                        //                   fit: BoxFit.cover))),
+                        //       const SizedBox(width: 40),
+                        //       Expanded(
+                        //           child: Column(
+                        //               crossAxisAlignment:
+                        //                   CrossAxisAlignment.start,
+                        //               mainAxisAlignment:
+                        //                   MainAxisAlignment.start,
+                        //               children: [
+                        //             Text(projectsList[index].title!,
+                        //                 style: const TextStyle(
+                        //                     fontSize: 30,
+                        //                     fontWeight: FontWeight.bold)),
+                        //             const SizedBox(height: 20),
+                        //             Text(projectsList[index].description!,
+                        //                 style: const TextStyle(fontSize: 20)),
+                        //             const SizedBox(height: 20),
+                        //           ]))
+                        //     ]),
+
                         const SizedBox(height: 20),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
