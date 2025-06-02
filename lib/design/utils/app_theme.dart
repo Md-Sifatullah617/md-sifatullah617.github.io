@@ -1,4 +1,4 @@
-import 'package:akshit_madan/design/utils/app_colors.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -21,12 +21,12 @@ class AppTheme {
       elevation: 0,
     ),
     textTheme: const TextTheme(
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         color: Colors.black,
         fontSize: 18,
         fontWeight: FontWeight.w600,
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         color: Colors.black,
         fontSize: 16,
         fontWeight: FontWeight.normal,
@@ -54,12 +54,12 @@ class AppTheme {
           const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
     ),
     textTheme: const TextTheme(
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         color: Colors.white,
         fontSize: 18,
         fontWeight: FontWeight.w600,
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.normal,

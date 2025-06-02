@@ -1,5 +1,5 @@
-import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -222,9 +222,9 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
 
 class VideoDialogue extends StatefulWidget {
   const VideoDialogue({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final VideoPlayerController controller;
 

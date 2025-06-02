@@ -21,10 +21,10 @@ class AppImageWidget extends StatelessWidget {
     this.imageHeight,
     this.imageTint,
     this.imageFit,
-    Key? key,
+    super.key,
     this.placeholder,
     this.boxDecoration,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

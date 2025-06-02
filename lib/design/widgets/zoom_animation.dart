@@ -1,10 +1,10 @@
-import 'package:akshit_madan/design/constants/app_images.dart';
-import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/design/widgets/custom_outline.dart';
+import 'package:md_sifatullah/design/constants/app_images.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/design/widgets/custom_outline.dart';
 import 'package:flutter/material.dart';
 
 class ZoomAnimations extends StatefulWidget {
-  const ZoomAnimations({Key? key}) : super(key: key);
+  const ZoomAnimations({super.key});
 
   @override
   State<ZoomAnimations> createState() => _ZoomAnimationsState();

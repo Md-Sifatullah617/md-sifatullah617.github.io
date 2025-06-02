@@ -1,6 +1,6 @@
-import 'package:akshit_madan/design/constants/app_animations.dart';
-import 'package:akshit_madan/design/constants/app_images.dart';
-import 'package:akshit_madan/design/utils/app_colors.dart';
+import 'package:md_sifatullah/design/constants/app_animations.dart';
+import 'package:md_sifatullah/design/constants/app_images.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';

@@ -1,4 +1,4 @@
-name: akshit_madan
+name: md_sifatullah
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -30,7 +30,10 @@ environment:
 dependencies:
   chewie: ^1.7.1
   cupertino_icons: ^1.0.2
-  drop_cap_text: ^1.1.3
+  drop_cap_text:
+    git:
+      url: https://github.com/parlough/drop_cap_text
+      ref: feat/adapt-for-deprecations
   flutter:
     sdk: flutter
   flutter_staggered_grid_view: ^0.7.0
@@ -40,16 +43,16 @@ dependencies:
   google_fonts: ^6.1.0
   http: null
   marquee: ^2.2.3
-  readmore: ^2.2.0
+  readmore: ^3.0.0
   responsive_builder: null
-  rive: ^0.11.2
-  simple_ripple_animation: ^0.0.7
+  rive: ^0.13.20
+  simple_ripple_animation: ^0.1.0
   social_media_flutter: ^0.0.2
   url_launcher: null
   video_player: ^2.7.2
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 

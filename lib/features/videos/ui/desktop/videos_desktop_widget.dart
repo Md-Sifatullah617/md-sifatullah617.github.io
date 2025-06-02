@@ -1,5 +1,5 @@
-import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/features/videos/models/videos_data_ui_model.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';

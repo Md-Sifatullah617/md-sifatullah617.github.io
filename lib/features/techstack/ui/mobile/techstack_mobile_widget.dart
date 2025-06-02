@@ -1,6 +1,6 @@
-import 'package:akshit_madan/design/constants/app_constants.dart';
-import 'package:akshit_madan/design/utils/app_colors.dart';
-import 'package:akshit_madan/design/widgets/app_image_widget.dart';
+import 'package:md_sifatullah/design/constants/app_constants.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/design/widgets/app_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class TechstackMobileWidget extends StatelessWidget {

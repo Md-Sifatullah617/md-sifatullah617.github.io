@@ -1,4 +1,4 @@
-import 'package:akshit_madan/design/utils/app_colors.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppOutlinedButton extends StatelessWidget {
@@ -10,15 +10,14 @@ class AppOutlinedButton extends StatelessWidget {
   final Color? borderColor;
   final bool? enabled;
   const AppOutlinedButton(
-      {Key? key,
+      {super.key,
       this.onTap,
       this.height,
       this.width,
       required this.title,
       this.enabled = true,
       this.textStyle,
-      this.borderColor})
-      : super(key: key);
+      this.borderColor});
 
   @override
   Widget build(BuildContext context) {
