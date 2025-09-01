@@ -131,7 +131,7 @@ class IntroDesktopWidget extends StatelessWidget {
                   const SizedBox(height: 20),
                   InkWell(
                     onTap: () =>
-                        launchUrl(Uri.parse('assets/animations/cv.html')),
+                        launchUrl(Uri.parse('Md_Sifatullah_3years_Exp.html')),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),

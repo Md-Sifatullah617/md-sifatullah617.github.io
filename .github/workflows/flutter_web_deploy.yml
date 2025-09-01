@@ -3,11 +3,11 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches: ["**"] # any branch
-    # paths:
-    #   - "lib/**"
-    #   - "web/**"
-    #   - "pubspec.yaml"
-    #   - ".github/workflows/flutter_web_deploy.yml"
+    paths:
+      - "lib/**"
+      - "web/**"
+      - "pubspec.yaml"
+      - ".github/workflows/flutter_web_deploy.yml"
   workflow_dispatch:
     inputs:
       force:
@@ -62,7 +62,7 @@ jobs:
         # Use pubspec name for base href (requested). NOTE: If repo name differs, ensure Pages path matches.
         run: |
           echo "Building with base href: /"
-          flutter build web --release --base-href "/"
+          flutter build web --wasm --release --base-href "/"
 
       - name: Fix leading slash asset path (flutter_inappwebview script)
         run: |
