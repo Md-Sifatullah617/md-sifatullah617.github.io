@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:md_sifatullah/design/constants/app_animations.dart';
 import 'package:md_sifatullah/design/constants/app_images.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,58 +25,54 @@ class IntroDesktopWidget extends StatelessWidget {
               const SizedBox(height: 25),
               Row(
                 children: [
-                  const RippleAnimation(
-                    color: Colors.deepOrange,
-                    delay: Duration(milliseconds: 300),
-                    repeat: true,
-                    minRadius: 75,
-                    ripplesCount: 6,
-                    duration: Duration(milliseconds: 6 * 300),
-                    child: CircleAvatar(
-                      radius: 100,
-                      backgroundImage: AssetImage(AppImages.selfImage),
-                    ),
+                  CircleAvatar(
+                    radius: 100,
+                    backgroundImage: AssetImage(AppImages.selfImage),
                   ),
                   const SizedBox(width: 100),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Preah',
-                                fontSize: w / 40),
-                            children: [
-                              const TextSpan(text: 'I am '),
-                              TextSpan(
-                                  text: 'Md. Sifatullah ',
-                                  style: TextStyle(color: AppColors.purple))
-                            ]),
-                      ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'A Code Maverick,',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                            style: TextStyle(
-                                color: Colors.white,
-                                height: 1.2,
-                                fontFamily: 'Preah',
-                                fontSize: w / 20,
-                                fontWeight: FontWeight.bold),
-                            children: [
-                              const TextSpan(text: 'Crafting code to bring\n'),
-                              const TextSpan(text: 'ideas to '),
-                              TextSpan(
-                                  text: 'life',
-                                  style: TextStyle(color: AppColors.purple)),
-                              const TextSpan(text: '...')
-                            ]),
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Preah',
+                                  fontSize: w / 40),
+                              children: [
+                                const TextSpan(text: 'I am '),
+                                TextSpan(
+                                    text: 'Md. Sifatullah ',
+                                    style: TextStyle(color: AppColors.purple))
+                              ]),
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'A Code Maverick,',
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  height: 1.2,
+                                  fontFamily: 'Preah',
+                                  fontSize: w / 20,
+                                  fontWeight: FontWeight.bold),
+                              children: [
+                                const TextSpan(
+                                    text: 'Crafting code to bring\n'),
+                                const TextSpan(text: 'ideas to '),
+                                TextSpan(
+                                    text: 'life',
+                                    style: TextStyle(color: AppColors.purple)),
+                                const TextSpan(text: '...')
+                              ]),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -135,8 +130,8 @@ class IntroDesktopWidget extends StatelessWidget {
                   //a button to download my cv
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () => launchUrl(Uri.parse(
-                        'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing')),
+                    onTap: () =>
+                        launchUrl(Uri.parse('assets/animations/cv.html')),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
@@ -146,10 +141,10 @@ class IntroDesktopWidget extends StatelessWidget {
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.download_rounded, color: Colors.white),
+                          Icon(Icons.article_outlined, color: Colors.white),
                           SizedBox(width: 10),
                           Text(
-                            'Download CV',
+                            'View CV',
                             style: TextStyle(color: Colors.white),
                           )
                         ],

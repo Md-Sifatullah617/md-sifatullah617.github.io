@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:md_sifatullah/design/constants/app_images.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:social_media_flutter/social_media_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -115,8 +115,7 @@ class IntroMobileWidget extends StatelessWidget {
                   const SizedBox(height: 20),
                   InkWell(
                     onTap: () {
-                      launchUrl(Uri.parse(
-                          'https://drive.google.com/file/d/1HZTVJ_3qpHmpSIjKZXTHRWhqKMRtAtpk/view?usp=sharing'));
+                      launchUrl(Uri.parse('assets/animations/cv.html'));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -127,10 +126,10 @@ class IntroMobileWidget extends StatelessWidget {
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.download_rounded, color: Colors.white),
+                          Icon(Icons.article_outlined, color: Colors.white),
                           SizedBox(width: 10),
                           Text(
-                            'Download CV',
+                            'View CV',
                             style: TextStyle(color: Colors.white),
                           )
                         ],
@@ -141,6 +140,7 @@ class IntroMobileWidget extends StatelessWidget {
               )
             ],
           ),
+          const Positioned(bottom: 20, child: AnimatedArrow())
         ],
       ),
     );
@@ -155,6 +155,46 @@ class IntroMobileWidget extends StatelessWidget {
         iconSize: 20,
         iconColor: Colors.white,
         link: link,
+      ),
+    );
+  }
+}
+
+class AnimatedArrow extends StatefulWidget {
+  const AnimatedArrow({super.key});
+
+  @override
+  State<AnimatedArrow> createState() => _AnimatedArrowState();
+}
+
+class _AnimatedArrowState extends State<AnimatedArrow>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 1),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(0.0, 0.5),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeInOut,
+  ));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _offsetAnimation,
+      child: const Icon(
+        Icons.keyboard_arrow_down,
+        color: Colors.white,
+        size: 30,
       ),
     );
   }

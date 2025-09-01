@@ -52,7 +52,7 @@ class ContactUsDesktopWidget extends StatelessWidget {
     );
   }
 
-  _launchEmail(String emailAddress) async {
+  Future<void> _launchEmail(String emailAddress) async {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: emailAddress,

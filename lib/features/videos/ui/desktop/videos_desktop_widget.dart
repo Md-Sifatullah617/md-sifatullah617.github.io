@@ -1,11 +1,11 @@
-import 'package:md_sifatullah/design/utils/app_colors.dart';
-import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
 
@@ -74,7 +74,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 40, vertical: 20),
                     decoration: BoxDecoration(
-                        color: AppColors.purpleDark.withOpacity(0.1),
+                        color: AppColors.purpleDark.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,8 +138,10 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                         //     ]),
 
                         const SizedBox(height: 20),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 10,
+                            runSpacing: 10,
                             children: [
                               if (projectsList[index].githubLink != '')
                                 InkWell(
@@ -153,26 +155,27 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                                 color: Colors.white, width: 2),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        child: const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(FontAwesomeIcons.github,
-                                                  color: Colors.white),
-                                              SizedBox(width: 10),
-                                              Text('Github Link',
-                                                  style: TextStyle(
-                                                      color: Colors.white))
-                                            ]))),
-                              const SizedBox(width: 10),
-                              if (projectsList[index].videoUrl != '')
+                                        child: FittedBox(
+                                          child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(FontAwesomeIcons.github,
+                                                    color: Colors.white),
+                                                SizedBox(width: 10),
+                                                Text('Github Link',
+                                                    style: TextStyle(
+                                                        color: Colors.white))
+                                              ]),
+                                        ))),
+                              if (projectsList[index].livePreviewUrl != null &&
+                                  projectsList[index].livePreviewUrl != '')
                                 InkWell(
                                     onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return VideoDialogue(
-                                                controller: controller);
-                                          });
+                                      launchUrl(
+                                        Uri.parse(projectsList[index]
+                                            .livePreviewUrl!),
+                                        mode: LaunchMode.externalApplication,
+                                      );
                                     },
                                     child: Container(
                                         padding: const EdgeInsets.symmetric(
@@ -182,17 +185,18 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                                 color: Colors.white, width: 2),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        child: const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(FontAwesomeIcons.youtube,
-                                                  color: Colors.white),
-                                              SizedBox(width: 10),
-                                              Text('Watch Video',
-                                                  style: TextStyle(
-                                                      color: Colors.white))
-                                            ]))),
-                              const SizedBox(width: 10),
+                                        child: FittedBox(
+                                          child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(FontAwesomeIcons.desktop,
+                                                    color: Colors.white),
+                                                SizedBox(width: 10),
+                                                Text('Live Preview',
+                                                    style: TextStyle(
+                                                        color: Colors.white))
+                                              ]),
+                                        ))),
                               if (projectsList[index].playStoreLink != '')
                                 InkWell(
                                     onTap: () => launchUrl(Uri.parse(
@@ -205,17 +209,43 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                                 color: Colors.white, width: 2),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        child: const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(FontAwesomeIcons.googlePlay,
-                                                  color: Colors.white),
-                                              SizedBox(width: 10),
-                                              Text('Play Store Link',
-                                                  style: TextStyle(
-                                                      color: Colors.white))
-                                            ]))),
-                              const SizedBox(width: 10),
+                                        child: FittedBox(
+                                          child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(
+                                                    FontAwesomeIcons.googlePlay,
+                                                    color: Colors.white),
+                                                SizedBox(width: 10),
+                                                Text('Play Store Link',
+                                                    style: TextStyle(
+                                                        color: Colors.white))
+                                              ]),
+                                        ))),
+                              if (projectsList[index].appStoreLink != null)
+                                InkWell(
+                                    onTap: () => launchUrl(Uri.parse(
+                                        projectsList[index].appStoreLink!)),
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: FittedBox(
+                                          child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(FontAwesomeIcons.apple,
+                                                    color: Colors.white),
+                                                SizedBox(width: 10),
+                                                Text('App Store Link',
+                                                    style: TextStyle(
+                                                        color: Colors.white))
+                                              ]),
+                                        ))),
                               if (projectsList[index].apkFile != '')
                                 InkWell(
                                     onTap: () => launchUrl(Uri.parse(
@@ -238,7 +268,36 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                               Text('Apk File',
                                                   style: TextStyle(
                                                       color: Colors.white))
-                                            ])))
+                                            ]))),
+                              if (projectsList[index].videoUrl != null &&
+                                  projectsList[index].videoUrl != '')
+                                InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => VideoDialogue(
+                                              controller: controller));
+                                    },
+                                    child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white, width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: FittedBox(
+                                          child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(FontAwesomeIcons.video,
+                                                    color: Colors.white),
+                                                SizedBox(width: 10),
+                                                Text('Watch Video',
+                                                    style: TextStyle(
+                                                        color: Colors.white))
+                                              ]),
+                                        ))),
                             ])
                       ],
                     ));
@@ -350,7 +409,7 @@ class _VideoDialogueState extends State<VideoDialogue> {
           //                 height: widget.controller.value.size.height * 0.7,
           //                 width: widget.controller.value.size.width * 2,
           //                 decoration: BoxDecoration(
-          //                     color: Colors.white.withOpacity(0.2),
+          //                     color: Colors.white.withValues(alpha:0.2),
           //                     borderRadius: BorderRadius.only(
           //                         topRight: Radius.circular(
           //                             widget.controller.value.size.width),
@@ -359,7 +418,7 @@ class _VideoDialogueState extends State<VideoDialogue> {
           //                 child: Icon(
           //                   Icons.fast_rewind,
           //                   size: 100,
-          //                   color: Colors.white.withOpacity(0.5),
+          //                   color: Colors.white.withValues(alpha:0.5),
           //                 )),
           //           ),
           //           Visibility(
@@ -368,7 +427,7 @@ class _VideoDialogueState extends State<VideoDialogue> {
           //                 height: widget.controller.value.size.height * 0.7,
           //                 width: widget.controller.value.size.width * 2,
           //                 decoration: BoxDecoration(
-          //                     color: Colors.white.withOpacity(0.2),
+          //                     color: Colors.white.withValues(alpha:0.2),
           //                     borderRadius: BorderRadius.only(
           //                         topLeft: Radius.circular(
           //                             widget.controller.value.size.width),
@@ -377,7 +436,7 @@ class _VideoDialogueState extends State<VideoDialogue> {
           //                 child: Icon(
           //                   Icons.fast_forward,
           //                   size: 100,
-          //                   color: Colors.white.withOpacity(0.5),
+          //                   color: Colors.white.withValues(alpha:0.5),
           //                 )),
           //           ),
           //         ],

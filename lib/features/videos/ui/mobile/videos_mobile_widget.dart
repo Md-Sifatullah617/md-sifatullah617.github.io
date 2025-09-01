@@ -1,8 +1,8 @@
-import 'package:md_sifatullah/design/utils/app_colors.dart';
-import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:md_sifatullah/design/utils/app_colors.dart';
+import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
@@ -70,7 +70,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
-                        color: AppColors.purpleDark.withOpacity(0.1),
+                        color: AppColors.purpleDark.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(10)),
                     child: Column(children: [
                       Container(
@@ -99,6 +99,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                       SizedBox(height: h * 0.02),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.start,
+                          spacing: 10,
                           children: [
                             if (projectsList[index].githubLink != '')
                               InkWell(
@@ -126,16 +127,15 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                                     color: Colors.white,
                                                     fontSize: 12))
                                           ]))),
-                            const SizedBox(width: 10),
-                            if (projectsList[index].videoUrl != '')
+                            if (projectsList[index].livePreviewUrl != null &&
+                                projectsList[index].livePreviewUrl != '')
                               InkWell(
                                   onTap: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return VideoDialogue(
-                                              controller: controller);
-                                        });
+                                    launchUrl(
+                                      Uri.parse(
+                                          projectsList[index].livePreviewUrl!),
+                                      mode: LaunchMode.externalApplication,
+                                    );
                                   },
                                   child: Container(
                                       alignment: Alignment.center,
@@ -151,15 +151,14 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.youtube,
+                                            Icon(FontAwesomeIcons.desktop,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
-                                            Text('Watch Video',
+                                            Text('Live Preview',
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12))
                                           ]))),
-                            const SizedBox(width: 10),
                             if (projectsList[index].playStoreLink != '')
                               InkWell(
                                   onTap: () => launchUrl(Uri.parse(
@@ -186,7 +185,32 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                                     color: Colors.white,
                                                     fontSize: 12))
                                           ]))),
-                            const SizedBox(width: 10),
+                            if (projectsList[index].appStoreLink != null)
+                              InkWell(
+                                  onTap: () => launchUrl(Uri.parse(
+                                      projectsList[index].appStoreLink!)),
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      height: h * 0.05,
+                                      width: w * 0.3,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 5),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.white, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: const Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(FontAwesomeIcons.apple,
+                                                color: Colors.white, size: 15),
+                                            SizedBox(width: 10),
+                                            Text('App Store Link',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12))
+                                          ]))),
                             if (projectsList[index].apkFile != '')
                               InkWell(
                                   onTap: () => launchUrl(
@@ -212,7 +236,39 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 12))
-                                          ])))
+                                          ]))),
+                            if (projectsList[index].videoUrl != null &&
+                                projectsList[index].videoUrl != '')
+                              InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => VideoDialogue(
+                                          controller: controller));
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: h * 0.05,
+                                  width: w * 0.3,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.white, width: 2),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: const Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(FontAwesomeIcons.video,
+                                            color: Colors.white, size: 15),
+                                        SizedBox(width: 10),
+                                        Text('Watch Video',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12))
+                                      ]),
+                                ),
+                              ),
                           ])
                     ]));
               })

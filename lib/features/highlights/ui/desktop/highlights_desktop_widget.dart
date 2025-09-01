@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:md_sifatullah/design/constants/app_images.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:md_sifatullah/design/widgets/app_image_widget.dart';
 import 'package:md_sifatullah/design/widgets/buttons/app_outlined_button.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HighlightsDesktopWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class HighlightsDesktopWidget extends StatelessWidget {
                 BoxShadow(
                   blurRadius: 200,
                   spreadRadius: 200,
-                  color: AppColors.purple.withOpacity(0.4),
+                  color: AppColors.purple.withValues(alpha: 0.4),
                 )
               ]),
             ),
@@ -36,42 +37,54 @@ class HighlightsDesktopWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 40),
               ),
               const SizedBox(height: 40),
-              Wrap(
-                runSpacing: 20,
-                spacing: 20,
-                direction: Axis.horizontal,
+              StaggeredGrid.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
                 children: [
-                  highlightContainer(
-                      context,
-                      true,
-                      '1K+ Downloads',
-                      AppImages.bookmarkImage,
-                      'My First App named Ostadjee, a Flutter App, has crossed 1K+ Downloads on Play Store. Though it is not maintained after the first release, it is still available on Play Store.',
-                      'VISIT PLAY STORE',
-                      link:
-                          'https://play.google.com/store/search?q=ostadjee&c=apps'),
-                  highlightContainer(
-                      context,
-                      true,
-                      'Ex-Intern @DeshIT-BD',
-                      AppImages.bulbImage,
-                      'Worked at Deshit-BD as a Flutter Developer Intern for 4 months.',
-                      'VISIT DeshIT-BD',
-                      link: "https://www.deshit-bd.com/"),
-                  highlightContainer(
-                      context,
-                      false,
-                      '2+ Website & 25+ Apps',
-                      AppImages.cupImage,
-                      'From the journey of 1 year, I have developed 25+ Apps and 2+ Websites using Flutter and Firebase.',
-                      'VISIT CHANNEL'),
-                  highlightContainer(
-                      context,
-                      false,
-                      'Cyber Security Enthusiast',
-                      AppImages.pickerImage,
-                      "With a passion for Cyber Security, I'm always learning new things about it.",
-                      'VISIT CHANNEL'),
+                  StaggeredGridTile.fit(
+                    crossAxisCellCount: 1,
+                    child: highlightContainer(
+                        context,
+                        true,
+                        '100+ Downloads',
+                        AppImages.bookmarkImage,
+                        "Charge.AI simplifies managing your electric vehicle (EV) charging experience, offering real-time access to a wide network of charging stations and seamless integration with your fleet. Whether you're at home, work, or on the road, Charge.AI provides a fast, reliable, and smart charging experience tailored to your needs.",
+                        'VISIT PLAY STORE',
+                        link:
+                            'https://play.google.com/store/apps/details?id=com.mulytic_energy.chargeai'),
+                  ),
+                  StaggeredGridTile.fit(
+                    crossAxisCellCount: 1,
+                    child: highlightContainer(
+                        context,
+                        true,
+                        'Ex-Flutter Engineer @DeshIT-BD',
+                        AppImages.bulbImage,
+                        'Worked at Deshit-BD as a Flutter Developer for 12+ months.',
+                        'VISIT DeshIT-BD',
+                        link: "https://www.deshit-bd.com/"),
+                  ),
+                  StaggeredGridTile.fit(
+                    crossAxisCellCount: 1,
+                    child: highlightContainer(
+                        context,
+                        false,
+                        '4+ Website & 25+ Apps',
+                        AppImages.cupImage,
+                        'From the journey of 3 years, I have developed 25+ Apps and 4+ Websites using Flutter, Firebase and other technologies.',
+                        'VISIT CHANNEL'),
+                  ),
+                  StaggeredGridTile.fit(
+                    crossAxisCellCount: 1,
+                    child: highlightContainer(
+                        context,
+                        false,
+                        'Cyber Security Enthusiast',
+                        AppImages.pickerImage,
+                        "With a passion for Cyber Security, I'm always learning new things about it.",
+                        'VISIT CHANNEL'),
+                  ),
                 ],
               )
             ],
@@ -84,13 +97,12 @@ class HighlightsDesktopWidget extends StatelessWidget {
   Widget highlightContainer(BuildContext context, bool showButton, String topic,
       imagePath, text, buttonText,
       {String? link}) {
-    double w = MediaQuery.of(context).size.width;
     return Container(
-      width: w / 2.4,
-      height: 260,
+      // width: w / 2.4, // Removed to allow dynamic width from grid
+      // height: 260,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       decoration: BoxDecoration(
-          color: AppColors.purpleDark.withOpacity(0.5),
+          color: AppColors.purpleDark.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(20)),
       child: Center(
         child: Row(

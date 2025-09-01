@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:md_sifatullah/design/constants/app_images.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:md_sifatullah/design/widgets/custom_outline.dart';
-import 'package:flutter/material.dart';
 
 class ZoomAnimations extends StatefulWidget {
   const ZoomAnimations({super.key});
@@ -76,8 +76,8 @@ class _ZoomAnimationsState extends State<ZoomAnimations>
               end: Alignment.bottomRight,
               colors: [
                 AppColors.secondaryColor,
-                AppColors.secondaryColor.withOpacity(0),
-                theme.primaryColor.withOpacity(0.1),
+                AppColors.secondaryColor.withValues(alpha: 0),
+                theme.primaryColor.withValues(alpha: 0.1),
                 theme.primaryColor
               ],
               stops: const [
@@ -89,7 +89,7 @@ class _ZoomAnimationsState extends State<ZoomAnimations>
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.black.withOpacity(0.8),
+              color: Colors.black.withValues(alpha: 0.8),
               image: const DecorationImage(
                 alignment: Alignment.bottomLeft,
                 fit: BoxFit.cover,

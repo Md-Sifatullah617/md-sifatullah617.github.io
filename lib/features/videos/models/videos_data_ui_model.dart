@@ -6,6 +6,9 @@ class VideoDataModel {
   final String? githubLink;
   final String? apkFile;
   final String? playStoreLink;
+  final String? appStoreLink;
+  final String? livePreviewUrl;
+
   VideoDataModel({
     this.title,
     this.thumbnail,
@@ -14,7 +17,10 @@ class VideoDataModel {
     this.githubLink,
     this.apkFile,
     this.playStoreLink,
+    this.appStoreLink,
+    this.livePreviewUrl,
   });
+
   factory VideoDataModel.fromJson(Map<String, dynamic> json) {
     return VideoDataModel(
       title: json['title'],
@@ -24,21 +30,51 @@ class VideoDataModel {
       githubLink: json['githubLink'],
       apkFile: json['apkFile'],
       playStoreLink: json['playStoreLink'],
+      appStoreLink: json['appStoreLink'],
+      livePreviewUrl: json['livePreviewUrl'],
     );
   }
 }
 
 List<VideoDataModel> projectsList = [
   VideoDataModel(
-    title: 'Ostadjee',
-    thumbnail: 'assets/project_image/ostadjee.webp',
-    videoUrl: 'assets/project_image/ostad.mp4',
+    title: 'Charge.AI',
+    thumbnail: 'assets/project_image/chargeai.png',
+    videoUrl: '',
     description:
-        'Ostadjee.com Limited is a Bangladeshi EdTech company that connects students and tutors 24/7 through website and mobile apps utilizing digital mechanism and confirms security and quality. This platform includes e-learning and examination, job placement and career development and education blog.',
+        "Charge.AI simplifies managing your electric vehicle (EV) charging experience, offering real-time access to a wide network of charging stations and seamless integration with your fleet. Whether you're at home, work, or on the road, Charge.AI provides a fast, reliable, and smart charging experience tailored to your needs.",
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.mulytic_energy.chargeai',
+    appStoreLink: 'https://apps.apple.com/us/app/charge-ai/id6478091732',
     githubLink: '',
     apkFile: '',
+    livePreviewUrl: '',
+  ),
+  VideoDataModel(
+    title: 'Medilogy',
+    thumbnail: 'assets/project_image/medilogy.png',
+    videoUrl: '',
+    description:
+        "An all-in-one platform for medical admission preparation. It offers lecture notes, video classes, topic-wise MCQs, and model tests to help students master the syllabus. Users can track progress, get personalized recommendations, and access materials 24/7.",
     playStoreLink:
-        'https://play.google.com/store/apps/details?id=com.ostadjee.application&pcampaignid=web_share',
+        'https://play.google.com/store/apps/details?id=com.aap.medilogy',
+    appStoreLink: '',
+    githubLink: '',
+    apkFile: '',
+    livePreviewUrl: '',
+  ),
+  VideoDataModel(
+    title: 'Hiye',
+    thumbnail: 'assets/project_image/Hiye.webp',
+    videoUrl: '',
+    description:
+        "A health companion app for tribal communities to monitor blood pressure and diabetes. It allows users to track health data, ask questions, read healthcare blogs, and schedule appointments through a user-friendly interface.",
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.Hiye.hiye',
+    appStoreLink: '',
+    githubLink: '',
+    apkFile: '',
+    livePreviewUrl: '',
   ),
   VideoDataModel(
     title: 'Holy Heart Halal Food BD',
@@ -49,6 +85,19 @@ List<VideoDataModel> projectsList = [
     githubLink: 'https://github.com/Md-Sifatullah617/halal-food.git',
     apkFile: '',
     playStoreLink: '',
+    livePreviewUrl: '',
+  ),
+  VideoDataModel(
+    title: 'Ostadjee',
+    thumbnail: 'assets/project_image/ostadjee.webp',
+    videoUrl: 'assets/project_image/ostad.mp4',
+    description:
+        'Ostadjee.com Limited is a Bangladeshi EdTech company that connects students and tutors 24/7 through website and mobile apps utilizing digital mechanism and confirms security and quality. This platform includes e-learning and examination, job placement and career development and education blog.',
+    githubLink: '',
+    apkFile: '',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.ostadjee.application&pcampaignid=web_share',
+    livePreviewUrl: '',
   ),
   VideoDataModel(
     title: 'Discount Hut',
@@ -59,6 +108,7 @@ List<VideoDataModel> projectsList = [
     githubLink: 'https://github.com/Md-Sifatullah617/DiscountHut-copy.git',
     apkFile: '',
     playStoreLink: '',
+    livePreviewUrl: '',
   ),
   VideoDataModel(
     title: 'The Soumi\'s Can Product BD',
@@ -68,8 +118,8 @@ List<VideoDataModel> projectsList = [
         "Discover beauty like never before with the Soumis Can Product BD app. Elevate your skincare and makeup game with our curated collection of premium cosmetics. From skincare essentials to makeup must-haves, our app brings you a world of radiant possibilities. Explore, indulge, and redefine your beauty routine with Soumis Can Product BD. Your journey to flawless beauty starts here.",
     githubLink: '',
     apkFile: '',
-    playStoreLink:
-        'https://play.google.com/store/apps/details?id=com.deshitbd.the_soumis_can_product_bd&pcampaignid=web_share',
+    playStoreLink: '',
+    livePreviewUrl: 'https://sifatullah.tech/thesoumiscanproductbd/',
   ),
   VideoDataModel(
     title: 'Task Management App',
@@ -80,6 +130,7 @@ List<VideoDataModel> projectsList = [
     githubLink: 'https://github.com/Md-Sifatullah617/task_management_app.git',
     apkFile: '',
     playStoreLink: '',
+    livePreviewUrl: '',
   ),
   VideoDataModel(
     title: 'Blockchain-Based-Property-Registration',
@@ -87,10 +138,10 @@ List<VideoDataModel> projectsList = [
     videoUrl: 'assets/project_image/lra.mp4',
     description:
         ' A blockchain-based property registration system made using Ethereum Blockchain. It has features like adding property, deleting property, updating property, etc. ',
-    githubLink:
-        'https://github.com/Md-Sifatullah617/Blockchain-Based-Property-Registration.git',
+    githubLink: '',
     apkFile: '',
     playStoreLink: '',
+    livePreviewUrl: 'https://sifatullah.tech/land_web/',
   ),
   VideoDataModel(
     title: 'Wallify',
@@ -101,5 +152,6 @@ List<VideoDataModel> projectsList = [
     githubLink: 'https://github.com/Md-Sifatullah617/Wallify.git',
     apkFile: '',
     playStoreLink: '',
+    livePreviewUrl: '',
   ),
 ];
