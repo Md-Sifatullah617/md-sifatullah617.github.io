@@ -61,9 +61,8 @@ jobs:
       - name: Build web
         # Use pubspec name for base href (requested). NOTE: If repo name differs, ensure Pages path matches.
         run: |
-          PKG_NAME="${{ steps.pkg.outputs.package_name }}"
-          echo "Building with base href: /$PKG_NAME/"
-          flutter build web --release --base-href "/$PKG_NAME/"
+          echo "Building with base href: /"
+          flutter build web --release --base-href "/"
 
       - name: Fix leading slash asset path (flutter_inappwebview script)
         run: |
