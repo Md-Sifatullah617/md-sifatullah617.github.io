@@ -3,11 +3,11 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches: ["**"] # any branch
-    paths:
-      - "lib/**"
-      - "web/**"
-      - "pubspec.yaml"
-      - ".github/workflows/flutter_web_deploy.yml"
+    # paths:
+    #   - "lib/**"
+    #   - "web/**"
+    #   - "pubspec.yaml"
+    #   - ".github/workflows/flutter_web_deploy.yml"
   workflow_dispatch:
     inputs:
       force:
@@ -76,10 +76,10 @@ jobs:
       - name: Add .nojekyll
         run: touch build/web/.nojekyll
 
-      - name: Deploy to gh-pages
+      - name: Deploy to main
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
+          branch: main
           folder: build/web
           clean: true
           commit-message: "Deploy: ${GITHUB_SHA}"
