@@ -12,12 +12,12 @@
             font-family: 'Inter', sans-serif;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
+            font-size: 13px;
         }
 
         @page {
             size: A4;
             margin: 0;
-            margin-top: 2.5rem;
         }
 
         @media print {
@@ -33,6 +33,11 @@
 
             body {
                 display: block !important;
+                margin: 0 !important;
+                padding-top: 1.5rem !important;
+                padding-bottom: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
 
             section,
@@ -44,10 +49,10 @@
             .main-content {
                 width: 100% !important;
                 max-width: none !important;
-                height: 100% !important;
+                height: auto !important;
                 min-height: 0 !important;
                 margin: 0 !important;
-                padding: 2.5rem !important;
+                padding: 1.5rem !important;
                 padding-top: 0 !important;
                 box-shadow: none !important;
                 border-radius: 0 !important;
@@ -65,7 +70,7 @@
 
         <!-- Header Section -->
         <header class="text-center border-b pb-3 mb-4">
-            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Md Sifatullah</h1>
+            <h1 class="text-2xl font-bold" style="color: #4a86e8;">Md Sifatullah</h1>
             <div class="mt-2 text-xs text-gray-600 flex justify-center items-center flex-wrap gap-x-4 gap-y-1">
                 <span>Dhaka, Bangladesh</span>
                 <span>&bull;</span>
@@ -74,104 +79,111 @@
                 <a href="mailto:sifatullah.swe.617@gmail.com"
                     class="hover:text-blue-600">sifatullah.swe.617@gmail.com</a>
             </div>
-            <div class="mt-1 text-xs text-blue-600 flex justify-center items-center flex-wrap gap-x-4 gap-y-1">
-                <a href="https://sifatullah.tech/" target="_blank" class="hover:underline">sifatullah.tech</a>
+            <div class="mt-1 text-xs flex justify-center items-center flex-wrap gap-x-4 gap-y-1">
+                <a href="https://sifatullah.tech/" target="_blank"
+                    class="flex items-center gap-x-1 hover:text-blue-600 text-black">
+                    <span style="font-size:16px;">🔗</span>
+                    sifatullah.tech
+                </a>
                 <span>&bull;</span>
                 <a href="https://www.linkedin.com/in/md-sifatullah617" target="_blank"
-                    class="hover:underline">LinkedIn</a>
+                    class="flex items-center gap-x-1 hover:text-[#4a86e8] text-black">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                        alt="LinkedIn" style="width:16px;height:16px;">
+                    /md-sifatullah617
+                </a>
                 <span>&bull;</span>
-                <a href="https://github.com/Md-Sifatullah617" target="_blank" class="hover:underline">GitHub</a>
+                <a href="https://github.com/Md-Sifatullah617" target="_blank"
+                    class="flex items-center gap-x-1 hover:text-[#4a86e8] text-black">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                        alt="GitHub" style="width:16px;height:16px;">
+                    /Md-Sifatullah617
+                </a>
             </div>
         </header>
 
         <main>
-            <!-- Professional Summary Section -->
-            <section class="mb-4">
-                <h2 class="text-lg font-bold border-b-2 border-gray-200 pb-1 mb-2 text-gray-900">Professional Summary
-                </h2>
-                <p class="text-sm text-gray-700 leading-relaxed">
-                    Proactive Software Engineer specializing in Flutter development with a proven ability to lead mobile
-                    projects from concept to launch. Experienced in managing the end-to-end application lifecycle,
-                    including CI/CD implementation, WebSocket integration for real-time features, and App/Play Store
-                    publishing. Skilled in collaborating with DevOps and backend teams to build scalable,
-                    high-performance solutions.
-                </p>
-            </section>
-
             <!-- Professional Experience Section -->
-            <section class="mb-4">
-                <h2 class="text-lg font-bold border-b-2 border-gray-200 pb-1 mb-2 text-gray-900">Professional Experience
-                </h2>
-                <div class="space-y-4">
+            <section class="mb-2">
+                <h2 class="text-base font-bold pb-0.5 mb-0.5" style="color: #4a86e8;">Professional Experience</h2>
+                <div class="space-y-2">
                     <div class="experience-item">
-                        <div class="flex justify-between items-baseline">
-                            <h3 class="text-base font-semibold text-gray-800">Software Engineer (Android/iOS)</h3>
+                        <div class="flex justify-between items-baseline pl-2">
+                            <h3 class="text-sm font-semibold text-gray-800 flex items-center"><span
+                                    style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>Software
+                                Engineer
+                                (Android/iOS)</h3>
                             <p class="text-xs text-gray-500">July 2024 - Present</p>
                         </div>
-                        <p class="text-sm text-gray-700">Mulytic Energy | Dhanmondi, Bangladesh</p>
-                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 space-y-1">
+                        <p class="text-sm text-gray-700 pl-8">Mulytic Energy | Dhanmondi, Bangladesh</p>
+                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 pl-8">
                             <li>Successfully launched the ChargeAI application to the App Store and Google Play,
-                                establishing a key product for the company.</li>
-                            <li>Engineered a robust and scalable mobile application by integrating with GraphQL APIs,
-                                Google Maps, and payment gateways.</li>
+                                establishing a key product for the company. Engineered a robust and scalable mobile
+                                application by integrating with GraphQL APIs, Google Maps, and payment gateways.</li>
                             <li>Improved development workflow and release reliability by implementing and maintaining
                                 CI/CD pipelines.</li>
                         </ul>
-                        <p class="text-xs mt-1"><strong>Technologies:</strong> Flutter, GraphQL, Google Maps API,
+                        <p class="text-xs mt-1 pl-8"><strong>Technologies:</strong> Flutter, GraphQL, Google Maps API,
                             SSLCOMMERZ, CI/CD, Git</p>
                     </div>
                     <div class="experience-item">
-                        <div class="flex justify-between items-baseline">
-                            <h3 class="text-base font-semibold text-gray-800">Jr. Flutter Developer</h3>
+                        <div class="flex justify-between items-baseline pl-2">
+                            <h3 class="text-sm font-semibold text-gray-800 flex items-center"><span
+                                    style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>Jr. Flutter
+                                Developer</h3>
                             <p class="text-xs text-gray-500">October 2023 - May 2024</p>
                         </div>
-                        <p class="text-sm text-gray-700">DeshIT-BD | Mohammadpur, Bangladesh</p>
-                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 space-y-1">
+                        <p class="text-sm text-gray-700 pl-8">DeshIT-BD | Mohammadpur, Bangladesh</p>
+                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 pl-8">
                             <li>Accelerated feature delivery by taking full ownership of the development cycle for key
-                                client applications.</li>
-                            <li>Enhanced user engagement by engineering real-time features using WebSockets for live
-                                data synchronization.</li>
+                                client applications. Enhanced user engagement by engineering real-time features using
+                                WebSockets for live data synchronization.</li>
                             <li>Expanded application accessibility by contributing to the development of Flutter Web
                                 versions of mobile apps.</li>
                         </ul>
-                        <p class="text-xs mt-1"><strong>Technologies:</strong> Flutter, Flutter Web, REST APIs,
+                        <p class="text-xs mt-1 pl-8"><strong>Technologies:</strong> Flutter, Flutter Web, REST APIs,
                             WebSockets, Firebase, Provider</p>
                     </div>
                     <div class="experience-item">
-                        <div class="flex justify-between items-baseline">
-                            <h3 class="text-base font-semibold text-gray-800">Flutter Developer Intern</h3>
+                        <div class="flex justify-between items-baseline pl-2">
+                            <h3 class="text-sm font-semibold text-gray-800 flex items-center"><span
+                                    style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>Flutter
+                                Developer
+                                Intern</h3>
                             <p class="text-xs text-gray-500">June 2023 - September 2023</p>
                         </div>
-                        <p class="text-sm text-gray-700">DeshIT-BD | Mohammadpur, Bangladesh</p>
-                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 space-y-1">
+                        <p class="text-sm text-gray-700 pl-8">DeshIT-BD | Mohammadpur, Bangladesh</p>
+                        <ul class="list-disc list-inside mt-1 text-sm text-gray-700 pl-8">
                             <li>Contributed to the successful delivery of mobile applications by effectively translating
-                                UI/UX designs into functional, high-quality code.</li>
-                            <li>Developed and integrated core features using Flutter, GetX, and Firebase backend
-                                services.</li>
+                                UI/UX designs into functional, high-quality code. Developed and integrated core features
+                                using Flutter, GetX, and Firebase backend services.</li>
                             <li>Ensured seamless data flow by connecting the mobile application with server-side data
                                 sources via REST APIs.</li>
                         </ul>
-                        <p class="text-xs mt-1"><strong>Technologies:</strong> Flutter, GetX, Firebase, REST APIs</p>
+                        <p class="text-xs mt-1 pl-8"><strong>Technologies:</strong> Flutter, GetX, Firebase, REST APIs
+                        </p>
                     </div>
                 </div>
             </section>
 
             <!-- Education Section -->
-            <section class="mb-4">
-                <h2 class="text-lg font-bold border-b-2 border-gray-200 pb-1 mb-2 text-gray-900">Education</h2>
+            <section class="mb-2">
+                <h2 class="text-base font-bold pb-0.5 mb-0.5" style="color: #4a86e8;">Education</h2>
                 <div>
-                    <h3 class="text-base font-semibold text-gray-800">B.Sc. in Software Engineering</h3>
-                    <div class="flex justify-between items-baseline">
-                        <p class="text-sm text-gray-700">Daffodil International University | Savar, Bangladesh</p>
+                    <h3 class="text-sm font-semibold text-gray-800 pl-2 flex items-center"><span
+                            style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>B.Sc. in Software
+                        Engineering</h3>
+                    <div class="flex justify-between items-baseline pl-8">
+                        <p class="text-xs text-gray-700">Daffodil International University | Savar, Bangladesh</p>
                         <p class="text-xs text-gray-500">January 2020 - June 2024</p>
                     </div>
                 </div>
             </section>
 
             <!-- Technical Skills Section -->
-            <section class="mb-4">
-                <h2 class="text-lg font-bold border-b-2 border-gray-200 pb-1 mb-2 text-gray-900">Technical Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-700">
+            <section class="mb-2">
+                <h2 class="text-base font-bold pb-0.5 mb-0.5" style="color: #4a86e8;">Technical Skills</h2>
+                <div class="flex flex-wrap gap-x-4 gap-y-0.5 text-xs text-gray-700 pl-8">
                     <div><strong>Frameworks/Platforms:</strong> Flutter, Firebase, Serverpod</div>
                     <div><strong>API/Web:</strong> GraphQL, REST API Integration</div>
                     <div><strong>State Management:</strong> Provider, Riverpod, Getx</div>
@@ -183,27 +195,28 @@
             </section>
 
             <!-- Projects Section -->
-            <section>
-                <h2 class="text-lg font-bold border-b-2 border-gray-200 pb-1 mb-2 text-gray-900">Projects</h2>
-                <div class="space-y-3">
+            <section class="mb-2">
+                <h2 class="text-base font-bold pb-0.5 mb-0.5" style="color: #4a86e8;">Projects</h2>
+                <div class="space-y-1.5">
                     <div class="project-item">
-                        <h3 class="text-base font-semibold text-gray-800">CHARGE.AI <span
+                        <h3 class="text-sm font-semibold text-gray-800 pl-2 flex items-center"><span
+                                style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>CHARGE.AI <span
                                 class="text-xs text-gray-500 font-medium ml-2">– Mulytic Energy</span> <a
                                 href="https://play.google.com/store/apps/details?id=com.mulytic_energy.chargeai"
                                 target="_blank" class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a></h3>
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <ul class="list-disc list-inside text-sm text-gray-700 pl-8">
                             <li>Engineered a cross-platform EV charging app using Flutter and GraphQL.</li>
                             <li>Integrated Google Maps for real-time station location and SSLCOMMERZ for payment
                                 processing.</li>
                         </ul>
                     </div>
                     <div class="project-item">
-                        <h3 class="text-base font-semibold text-gray-800">Medilogy <span
-                                class="text-xs text-gray-500 font-medium ml-2">– AAPEdtech</span>
-                            <a href="https://play.google.com/store/apps/details?id=com.aap.medilogy" target="_blank"
-                                class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a>
-                        </h3>
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <h3 class="text-sm font-semibold text-gray-800 pl-2 flex items-center"><span
+                                style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>Medilogy <span
+                                class="text-xs text-gray-500 font-medium ml-2">– AAPEdtech</span> <a
+                                href="https://play.google.com/store/apps/details?id=com.aap.medilogy" target="_blank"
+                                class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a></h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 pl-8">
                             <li>Developed a comprehensive e-learning platform for medical admission candidates using
                                 Flutter.</li>
                             <li>Implemented features for course enrollment, video lectures, and practice examinations.
@@ -211,37 +224,14 @@
                         </ul>
                     </div>
                     <div class="project-item">
-                        <h3 class="text-base font-semibold text-gray-800">Digital Menu <span
-                                class="text-xs text-gray-500 font-medium ml-2">– DeshIT-BD</span>
-                            <a href="https://digitalmenu.deshit-bd.com/" target="_blank"
-                                class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a>
-                        </h3>
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <h3 class="text-sm font-semibold text-gray-800 pl-2 flex items-center"><span
+                                style="font-size:16px;font-weight:normal;margin-right:4px;">✥</span>Digital Menu <span
+                                class="text-xs text-gray-500 font-medium ml-2">– DeshIT-BD</span> <a
+                                href="https://digitalmenu.deshit-bd.com/" target="_blank"
+                                class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a></h3>
+                        <ul class="list-disc list-inside text-sm text-gray-700 pl-8">
                             <li>Developed a QR-based digital menu system using Flutter and a RESTful backend.</li>
                             <li>Implemented real-time order updates for kitchen and staff using WebSockets.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <h3 class="text-base font-semibold text-gray-800">Hiye <span
-                                class="text-xs text-gray-500 font-medium ml-2">– SWE
-                                Dept</span> <a href="https://play.google.com/store/apps/details?id=com.Hiye.hiye"
-                                target="_blank" class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a></h3>
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                            <li>Developed a Flutter-based health monitoring app to track user vitals.</li>
-                            <li>Utilized Firebase Firestore to securely store and sync patient health data online.</li>
-                            <li>Implemented Hive for fast, efficient local storage and offline data access.</li>
-                        </ul>
-                    </div>
-                    <div class="project-item">
-                        <h3 class="text-base font-semibold text-gray-800">The Soumi's Can Product BD <span
-                                class="text-xs text-gray-500 font-medium ml-2">– DeshIT-BD</span>
-                            <a href="https://sifatullah.tech/thesoumiscanproductbd/" target="_blank"
-                                class="text-blue-600 hover:underline text-xs ml-2">[Live Link]</a>
-                        </h3>
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                            <li>Built a complete e-commerce application with Flutter, using Firebase for the backend.
-                            </li>
-                            <li>Managed product catalogs, user authentication, and shopping cart functionality.</li>
                         </ul>
                     </div>
                 </div>
