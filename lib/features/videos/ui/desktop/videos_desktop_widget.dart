@@ -105,38 +105,6 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                         fit: BoxFit.cover)),
                               )),
                         ),
-                        // Row(
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-
-                        //       Container(
-                        //           width: 400,
-                        //           height: 300,
-                        //           decoration: BoxDecoration(
-                        //               borderRadius: BorderRadius.circular(10),
-                        //               image: DecorationImage(
-                        //                   image: AssetImage(
-                        //                       projectsList[index].thumbnail!),
-                        //                   fit: BoxFit.cover))),
-                        //       const SizedBox(width: 40),
-                        //       Expanded(
-                        //           child: Column(
-                        //               crossAxisAlignment:
-                        //                   CrossAxisAlignment.start,
-                        //               mainAxisAlignment:
-                        //                   MainAxisAlignment.start,
-                        //               children: [
-                        //             Text(projectsList[index].title!,
-                        //                 style: const TextStyle(
-                        //                     fontSize: 30,
-                        //                     fontWeight: FontWeight.bold)),
-                        //             const SizedBox(height: 20),
-                        //             Text(projectsList[index].description!,
-                        //                 style: const TextStyle(fontSize: 20)),
-                        //             const SizedBox(height: 20),
-                        //           ]))
-                        //     ]),
-
                         const SizedBox(height: 20),
                         Wrap(
                             alignment: WrapAlignment.center,
@@ -222,7 +190,8 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                                         color: Colors.white))
                                               ]),
                                         ))),
-                              if (projectsList[index].appStoreLink != null)
+                              if (projectsList[index].appStoreLink != null &&
+                                  projectsList[index].appStoreLink != '')
                                 InkWell(
                                     onTap: () => launchUrl(Uri.parse(
                                         projectsList[index].appStoreLink!)),

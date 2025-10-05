@@ -185,7 +185,8 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                                     color: Colors.white,
                                                     fontSize: 12))
                                           ]))),
-                            if (projectsList[index].appStoreLink != null)
+                            if (projectsList[index].appStoreLink != null &&
+                                projectsList[index].appStoreLink != '')
                               InkWell(
                                   onTap: () => launchUrl(Uri.parse(
                                       projectsList[index].appStoreLink!)),
