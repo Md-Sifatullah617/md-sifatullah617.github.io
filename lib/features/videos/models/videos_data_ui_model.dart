@@ -119,7 +119,7 @@ List<VideoDataModel> projectsList = [
     githubLink: '',
     apkFile: '',
     playStoreLink: '',
-    livePreviewUrl: 'https://sifatullah.tech/thesoumiscanproductbd/',
+    livePreviewUrl: 'https://sifatullah.me/thesoumiscanproductbd/',
   ),
   VideoDataModel(
     title: 'Task Management App',
@@ -141,7 +141,7 @@ List<VideoDataModel> projectsList = [
     githubLink: '',
     apkFile: '',
     playStoreLink: '',
-    livePreviewUrl: 'https://sifatullah.tech/land_web/',
+    livePreviewUrl: 'https://sifatullah.me/land_web/',
   ),
   VideoDataModel(
     title: 'Wallify',
