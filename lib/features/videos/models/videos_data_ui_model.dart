@@ -141,7 +141,7 @@ List<VideoDataModel> projectsList = [
     githubLink: '',
     apkFile: '',
     playStoreLink: '',
-    livePreviewUrl: 'https://sifatullah.me/land_web/',
+    livePreviewUrl: 'https://sifatullah.me/Land-Registration/',
   ),
   VideoDataModel(
     title: 'Wallify',
