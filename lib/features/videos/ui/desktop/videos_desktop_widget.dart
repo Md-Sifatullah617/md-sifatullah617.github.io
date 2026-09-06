@@ -1,4 +1,3 @@
-import 'package:chewie/chewie.dart';
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -6,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
+import 'package:md_sifatullah/features/videos/ui/video_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
 
 class VideosDesktopWidget extends StatefulWidget {
   const VideosDesktopWidget({super.key});
@@ -17,16 +16,6 @@ class VideosDesktopWidget extends StatefulWidget {
 }
 
 class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
-  List<VideoPlayerController> videoPlayerControllers = [];
-
-  @override
-  void dispose() {
-    for (var controller in videoPlayerControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,11 +53,6 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
               crossAxisSpacing: 40,
               itemCount: projectsList.length,
               itemBuilder: (context, index) {
-                VideoPlayerController controller = VideoPlayerController.asset(
-                  projectsList[index].videoUrl!,
-                );
-
-                videoPlayerControllers.add(controller);
                 return Container(
                     margin: const EdgeInsets.only(bottom: 40),
                     padding: const EdgeInsets.symmetric(
@@ -231,7 +215,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               FaIcon(
-                                                  FontAwesomeIcons.fileDownload,
+                                                  FontAwesomeIcons.fileArrowDown,
                                                   color: Colors.white),
                                               SizedBox(width: 10),
                                               Text('Apk File',
@@ -244,8 +228,9 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                     onTap: () {
                                       showDialog(
                                           context: context,
-                                          builder: (context) => VideoDialogue(
-                                              controller: controller));
+                                          builder: (context) => VideoDialog(
+                                              url: projectsList[index]
+                                                  .videoUrl!));
                                     },
                                     child: Container(
                                         padding: const EdgeInsets.symmetric(
@@ -272,164 +257,5 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                     ));
               })
         ]));
-  }
-}
-
-class VideoDialogue extends StatefulWidget {
-  const VideoDialogue({
-    super.key,
-    required this.controller,
-  });
-
-  final VideoPlayerController controller;
-
-  @override
-  State<VideoDialogue> createState() => _VideoDialogueState();
-}
-
-class _VideoDialogueState extends State<VideoDialogue> {
-  GlobalKey videoPlayerKey = GlobalKey();
-  bool isLeftSide = false;
-  bool isRightSide = false;
-  late double swidth;
-  late double tps;
-  late Duration pst;
-  late Duration spst;
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Chewie(
-                controller: ChewieController(
-                  videoPlayerController: widget.controller,
-                  autoPlay: true,
-                  looping: true,
-                  showControls: true,
-                  allowFullScreen: true,
-                  allowPlaybackSpeedChanging: true,
-                  allowMuting: true,
-                  showOptions: true,
-                  placeholder: Container(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Positioned(
-          //   left: 0,
-          //   right: 0,
-          //   bottom: 0,
-          //   top: 0,
-          //   child: Listener(
-          //     behavior: HitTestBehavior.opaque,
-          //     onPointerUp: (details) {
-          //       print("GestureDetector tapped");
-          //       var tapPosition = details.localPosition.dx;
-          //       setState(() {
-          //         tps = tapPosition;
-          //       });
-          //     },
-          //     child: GestureDetector(
-          //       behavior: HitTestBehavior.opaque,
-          //       onDoubleTap: () {
-          //         var screenWidth = MediaQuery.of(context).size.width;
-          //         var position = widget.controller.value.position;
-          //         if (tps < screenWidth / 2) {
-          //           widget.controller
-          //               .seekTo(position - const Duration(seconds: 10));
-          //           setState(() {
-          //             isLeftSide = true;
-          //             print("tapPosition $tps");
-          //             Future.delayed(const Duration(seconds: 1), () {
-          //               setState(() {
-          //                 isLeftSide = false;
-          //               });
-          //             });
-          //           });
-          //         } else {
-          //           widget.controller
-          //               .seekTo(position + const Duration(seconds: 10));
-          //           setState(() {
-          //             isRightSide = true;
-          //             print("tapPosition $tps");
-          //             Future.delayed(const Duration(seconds: 1), () {
-          //               setState(() {
-          //                 isRightSide = false;
-          //               });
-          //             });
-          //           });
-          //         }
-          //       },
-          //       child: Row(
-          //         mainAxisSize: MainAxisSize.min,
-          //         mainAxisAlignment: isLeftSide
-          //             ? MainAxisAlignment.start
-          //             : MainAxisAlignment.end,
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         children: [
-          //           Visibility(
-          //             visible: isLeftSide,
-          //             child: Container(
-          //                 height: widget.controller.value.size.height * 0.7,
-          //                 width: widget.controller.value.size.width * 2,
-          //                 decoration: BoxDecoration(
-          //                     color: Colors.white.withValues(alpha:0.2),
-          //                     borderRadius: BorderRadius.only(
-          //                         topRight: Radius.circular(
-          //                             widget.controller.value.size.width),
-          //                         bottomRight: Radius.circular(
-          //                             widget.controller.value.size.width))),
-          //                 child: Icon(
-          //                   Icons.fast_rewind,
-          //                   size: 100,
-          //                   color: Colors.white.withValues(alpha:0.5),
-          //                 )),
-          //           ),
-          //           Visibility(
-          //             visible: isRightSide,
-          //             child: Container(
-          //                 height: widget.controller.value.size.height * 0.7,
-          //                 width: widget.controller.value.size.width * 2,
-          //                 decoration: BoxDecoration(
-          //                     color: Colors.white.withValues(alpha:0.2),
-          //                     borderRadius: BorderRadius.only(
-          //                         topLeft: Radius.circular(
-          //                             widget.controller.value.size.width),
-          //                         bottomLeft: Radius.circular(
-          //                             widget.controller.value.size.width))),
-          //                 child: Icon(
-          //                   Icons.fast_forward,
-          //                   size: 100,
-          //                   color: Colors.white.withValues(alpha:0.5),
-          //                 )),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          Positioned(
-            top: 10,
-            right: 10,
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Icon(Icons.close, color: Colors.black),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
   }
 }

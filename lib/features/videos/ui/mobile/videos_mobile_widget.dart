@@ -1,11 +1,10 @@
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:md_sifatullah/design/utils/app_colors.dart';
 import 'package:md_sifatullah/features/videos/models/videos_data_ui_model.dart';
+import 'package:md_sifatullah/features/videos/ui/video_dialog.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
 
 class VideosMobileWidget extends StatefulWidget {
   const VideosMobileWidget({super.key});
@@ -15,16 +14,6 @@ class VideosMobileWidget extends StatefulWidget {
 }
 
 class _VideosMobileWidgetState extends State<VideosMobileWidget> {
-  List<VideoPlayerController> videoPlayerControllers = [];
-
-  @override
-  void dispose() {
-    for (var controller in videoPlayerControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -60,11 +49,6 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: projectsList.length,
               itemBuilder: (context, index) {
-                VideoPlayerController controller = VideoPlayerController.asset(
-                  projectsList[index].videoUrl!,
-                );
-
-                videoPlayerControllers.add(controller);
                 return Container(
                     margin: EdgeInsets.only(bottom: h * 0.05),
                     padding: const EdgeInsets.symmetric(
@@ -230,7 +214,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            FaIcon(FontAwesomeIcons.fileDownload,
+                                            FaIcon(FontAwesomeIcons.fileArrowDown,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('Apk File',
@@ -244,8 +228,8 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                 onTap: () {
                                   showDialog(
                                       context: context,
-                                      builder: (context) => VideoDialogue(
-                                          controller: controller));
+                                      builder: (context) => VideoDialog(
+                                          url: projectsList[index].videoUrl!));
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
@@ -274,43 +258,5 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                     ]));
               })
         ]));
-  }
-}
-
-class VideoDialogue extends StatefulWidget {
-  const VideoDialogue({
-    super.key,
-    required this.controller,
-  });
-
-  final VideoPlayerController controller;
-
-  @override
-  State<VideoDialogue> createState() => _VideoDialogueState();
-}
-
-class _VideoDialogueState extends State<VideoDialogue> {
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: Chewie(
-          controller: ChewieController(
-            videoPlayerController: widget.controller,
-            autoPlay: true,
-            looping: true,
-            showControls: true,
-            allowFullScreen: true,
-            allowPlaybackSpeedChanging: false,
-            allowMuting: true,
-            showOptions: true,
-            placeholder: Container(
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }
