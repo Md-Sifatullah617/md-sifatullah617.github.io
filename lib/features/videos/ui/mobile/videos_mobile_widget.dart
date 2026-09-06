@@ -119,7 +119,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.github,
+                                            FaIcon(FontAwesomeIcons.github,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('Github Link',
@@ -151,7 +151,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.desktop,
+                                            FaIcon(FontAwesomeIcons.desktop,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('Live Preview',
@@ -177,7 +177,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.googlePlay,
+                                            FaIcon(FontAwesomeIcons.googlePlay,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('Play Store',
@@ -204,7 +204,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.apple,
+                                            FaIcon(FontAwesomeIcons.apple,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('App Store Link',
@@ -230,7 +230,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                       child: const Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Icon(FontAwesomeIcons.fileDownload,
+                                            FaIcon(FontAwesomeIcons.fileDownload,
                                                 color: Colors.white, size: 15),
                                             SizedBox(width: 10),
                                             Text('Apk File',
@@ -260,7 +260,7 @@ class _VideosMobileWidgetState extends State<VideosMobileWidget> {
                                   child: const Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Icon(FontAwesomeIcons.video,
+                                        FaIcon(FontAwesomeIcons.video,
                                             color: Colors.white, size: 15),
                                         SizedBox(width: 10),
                                         Text('Watch Video',

@@ -127,7 +127,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                           child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Icon(FontAwesomeIcons.github,
+                                                FaIcon(FontAwesomeIcons.github,
                                                     color: Colors.white),
                                                 SizedBox(width: 10),
                                                 Text('Github Link',
@@ -157,7 +157,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                           child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Icon(FontAwesomeIcons.desktop,
+                                                FaIcon(FontAwesomeIcons.desktop,
                                                     color: Colors.white),
                                                 SizedBox(width: 10),
                                                 Text('Live Preview',
@@ -181,7 +181,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                           child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Icon(
+                                                FaIcon(
                                                     FontAwesomeIcons.googlePlay,
                                                     color: Colors.white),
                                                 SizedBox(width: 10),
@@ -207,7 +207,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                           child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Icon(FontAwesomeIcons.apple,
+                                                FaIcon(FontAwesomeIcons.apple,
                                                     color: Colors.white),
                                                 SizedBox(width: 10),
                                                 Text('App Store Link',
@@ -230,7 +230,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                         child: const Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Icon(
+                                              FaIcon(
                                                   FontAwesomeIcons.fileDownload,
                                                   color: Colors.white),
                                               SizedBox(width: 10),
@@ -259,7 +259,7 @@ class _VideosDesktopWidgetState extends State<VideosDesktopWidget> {
                                           child: const Row(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                Icon(FontAwesomeIcons.video,
+                                                FaIcon(FontAwesomeIcons.video,
                                                     color: Colors.white),
                                                 SizedBox(width: 10),
                                                 Text('Watch Video',
