@@ -1,27 +1,27 @@
 # sifatullah.me — Speed fix plan
 
-## Result (deployed 2026-09-06)
+## Result (deployed 2026-09-06, three deploys)
 
-| | Before | After |
-|---|---|---|
-| **Overall** | **46 / 100 (F)** | **77 / 100 (C)** |
-| Speed | 23 / 100 | 70 / 100 |
-| Delivery | 90 / 100 | 90 / 100 |
-| Assets | 0 / 100 | 79 / 100 |
-| Lighthouse mobile (S1) | 0 / 100 | **60 / 100** |
-| LCP (S2) | unmeasurable | **900 ms** ✅ |
-| FCP (S5) | (pass) | 900 ms ✅ |
-| CLS (S3) | 0.000 ✅ | 0.000 ✅ |
-| TBT (S4) | not reported | **15.7 s** ❌ still failing |
-| Page weight (A5) | 3.0 MB | 2.9 MB (partial) |
-| Minified JS/CSS (A2) | ungraded | 100% ✅ |
-| Brotli (D3) | gzip only | gzip only (GitHub Pages) |
+| | Baseline | After #1–6 | After #7–9 (final) |
+|---|---|---|---|
+| **Overall** | **46 / 100 (F)** | 77 / 100 (C) | **79 / 100 (C)** |
+| Speed | 23 | 70 | 72 |
+| Delivery | 90 | 90 | 90 |
+| Assets | 0 | 79 | 79 |
+| Lighthouse mobile (S1) | 0 | 60 | **66** |
+| Lighthouse desktop | — | — | 61 |
+| LCP (S2) | unmeasurable | 900 ms | **761 ms** ✅ |
+| FCP (S5) | — | 900 ms | **761 ms** ✅ |
+| CLS (S3) | 0.000 ✅ | 0.000 ✅ | 0.000 ✅ |
+| TBT (S4) | not reported | 15.7 s | **1.5 s** ❌ (target ≤200 ms) |
+| Page weight (A5) | 3.0 MB | 2.9 MB | **2.6 MB** (partial 1.5/3) |
+| Minified (A2) | ungraded | 100% ✅ | 100% ✅ |
+| Brotli (D3) | gzip | gzip | gzip (partial 2.5/5) |
 
-The boot splash + restored viewport meta are what moved the needle: Lighthouse
-can now measure the page at all (LCP/FCP register at 900 ms instead of a blank
-canvas → 0). **TBT 15.7 s is the remaining ceiling** — that's Flutter parsing and
-executing ~2.9 MB on the main thread, and it does not come down without moving
-the landing page off Flutter.
+**+33 points overall.** The boot splash + viewport let Lighthouse measure the
+page at all; the dep/asset trimming pulled TBT from 15.7 s to 1.5 s and weight
+to 2.6 MB. What's left (TBT ≤200 ms, Brotli, cache policy, ≤1.5 MB weight) is the
+structural Flutter-web + GitHub-Pages floor.
 
 ---
 
@@ -50,11 +50,18 @@ page, which is a rewrite and out of scope here.
 | 4 | Drop 4 unused deps: `device_preview`, `flutter_inappwebview`, `marquee`, `simple_ripple_animation` (28 packages) | A5 weight | Smaller `main.dart.js`, removes the render-blocking `web_support.js` script + its CI patch hack | small | ✅ applied |
 | 5 | Real `<meta description>` + `lang="en"` + `theme-color` | (SEO, not scored here) | Search/social preview correctness | trivial | ✅ applied |
 | 6 | `preload` hint for `flutter_bootstrap.js` | S1/S2 | Starts the critical script sooner | trivial | ✅ applied |
-| 7 | Move the 34 MB of project `.mp4` out of bundled assets → external host + network URL | A5 weight | 34 MB out of the deploy; videos cost bandwidth only when watched. Zero score impact (already lazy-loaded) | medium | ⏳ needs host decision — `VideoDialog` already accepts http URLs; swap the 6 strings in `videos_data_ui_model.dart` + `git rm` the files |
+| 7 | Move the 34 MB of project `.mp4` to a GitHub release, load by URL | A5 weight | `build/web/assets` 36 MB → 2.2 MB; clips cost bandwidth only when a visitor hits "Watch Video". No page-weight change (already lazy) | medium | ✅ applied — release `media-v1` |
 | 8 | Convert bundled images to WebP; drop dead `my.jpg` | A3, A5 | ~1.5 MB off the asset bundle (medilogy 827→18 KB, hero 124→60 KB, 4 PNGs) | small | ✅ applied |
 | 9 | Drop `chewie`, minimal `video_player` dialog | A5 weight | Smaller bundle, one less dep, unblocks a future wasm attempt | small | ✅ applied |
 | 9b | `--wasm` build (skwasm) | A5, S2, S4 | ~800 KB lighter critical path + faster parse | — | ❌ **not viable on GitHub Pages** — skwasm needs COOP/COEP cross-origin isolation, which GitHub Pages cannot serve. Renders a blank canvas. Only unlocks after #10 (a host that sets those headers) |
-| 10 | Move hosting off GitHub Pages → Cloudflare Pages / Firebase Hosting / Netlify | D3 Brotli, D4 cache policy, unblocks 9b | Brotli (−15–20% on every text asset), `immutable` long-cache on hashed assets, and enables the wasm renderer. GitHub Pages does none of this and allows no header config | medium | ⏳ needs account + custom-domain DNS decision |
+| 10 | Move hosting off GitHub Pages → Cloudflare Pages / Firebase Hosting / Netlify | D3 Brotli, D4 cache policy, unblocks 9b | Brotli (−15–20% on every text asset), `immutable` long-cache on hashed assets, and enables the wasm renderer. GitHub Pages does none of this and allows no header config | medium | ⛔ declined — staying on GitHub Pages. Caps the score near ~77 (TBT is the real limiter regardless) |
+
+## Backlog complete
+
+Everything actionable without a hosting migration is done. Remaining ceiling:
+- **TBT 15.7 s** — Flutter main-thread cost. Only a non-Flutter landing page fixes this.
+- **D3 Brotli (2.5/5)** and **D4 cache policy (0/5, ungraded)** — need a host that isn't GitHub Pages. Declined.
+- **A5 page weight 2.9 MB** — CanvasKit + Dartcode floor for Flutter web. `--wasm` would help but needs #10.
 
 ## Applied in this branch
 
