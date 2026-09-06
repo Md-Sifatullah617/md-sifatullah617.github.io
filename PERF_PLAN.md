@@ -50,10 +50,11 @@ page, which is a rewrite and out of scope here.
 | 4 | Drop 4 unused deps: `device_preview`, `flutter_inappwebview`, `marquee`, `simple_ripple_animation` (28 packages) | A5 weight | Smaller `main.dart.js`, removes the render-blocking `web_support.js` script + its CI patch hack | small | ✅ applied |
 | 5 | Real `<meta description>` + `lang="en"` + `theme-color` | (SEO, not scored here) | Search/social preview correctness | trivial | ✅ applied |
 | 6 | `preload` hint for `flutter_bootstrap.js` | S1/S2 | Starts the critical script sooner | trivial | ✅ applied |
-| 7 | Move the 34 MB of project `.mp4` out of bundled assets → external host (YouTube / R2 / GitHub release) + `VideoPlayerController.networkUrl` | A5 weight, D4 | 34 MB out of the deploy; videos cost bandwidth only when actually watched | medium | ⏳ recommended |
-| 8 | Convert PNG thumbnails to WebP (`medilogy.png` 828 KB, `my.jpg` 246 KB, `sifat.jpg`) | A3, A5 | ~1 MB off the asset bundle | small | ⏳ recommended |
-| 9 | `--wasm` build (skwasm ~1.4 MB vs CanvasKit ~2.4 MB compressed) | A5, S2, S4 | ~1 MB lighter + faster parse | small | ❌ blocked — `chewie` calls `dart:io Platform`, throws on wasm. Needs chewie replaced or patched first |
-| 10 | Move hosting off GitHub Pages → Cloudflare Pages / Firebase Hosting / Netlify | D3 Brotli, D4 cache policy | Brotli (−15–20% on every text asset) + `immutable` long-cache on hashed assets. GitHub Pages does neither and allows no header config | medium | ⏳ recommended |
+| 7 | Move the 34 MB of project `.mp4` out of bundled assets → external host + network URL | A5 weight | 34 MB out of the deploy; videos cost bandwidth only when watched. Zero score impact (already lazy-loaded) | medium | ⏳ needs host decision — `VideoDialog` already accepts http URLs; swap the 6 strings in `videos_data_ui_model.dart` + `git rm` the files |
+| 8 | Convert bundled images to WebP; drop dead `my.jpg` | A3, A5 | ~1.5 MB off the asset bundle (medilogy 827→18 KB, hero 124→60 KB, 4 PNGs) | small | ✅ applied |
+| 9 | Drop `chewie`, minimal `video_player` dialog | A5 weight | Smaller bundle, one less dep, unblocks a future wasm attempt | small | ✅ applied |
+| 9b | `--wasm` build (skwasm) | A5, S2, S4 | ~800 KB lighter critical path + faster parse | — | ❌ **not viable on GitHub Pages** — skwasm needs COOP/COEP cross-origin isolation, which GitHub Pages cannot serve. Renders a blank canvas. Only unlocks after #10 (a host that sets those headers) |
+| 10 | Move hosting off GitHub Pages → Cloudflare Pages / Firebase Hosting / Netlify | D3 Brotli, D4 cache policy, unblocks 9b | Brotli (−15–20% on every text asset), `immutable` long-cache on hashed assets, and enables the wasm renderer. GitHub Pages does none of this and allows no header config | medium | ⏳ needs account + custom-domain DNS decision |
 
 ## Applied in this branch
 

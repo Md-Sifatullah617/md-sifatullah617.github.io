@@ -79,7 +79,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Holy Heart Halal Food BD',
     thumbnail: 'assets/project_image/hhhf.png',
-    videoUrl: 'assets/project_image/hhhf.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/hhhf.mp4',
     description:
         'Welcome to Holy Heart Halal Food, your one-stop destination for all your grocery needs in Japan. We are proud to offer a wide range of halal-certified products, ensuring that our customers can conveniently access quality groceries while adhering to their dietary requirements.',
     githubLink: 'https://github.com/Md-Sifatullah617/halal-food.git',
@@ -90,7 +90,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Ostadjee',
     thumbnail: 'assets/project_image/ostadjee.webp',
-    videoUrl: 'assets/project_image/ostad.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/ostad.mp4',
     description:
         'Ostadjee.com Limited is a Bangladeshi EdTech company that connects students and tutors 24/7 through website and mobile apps utilizing digital mechanism and confirms security and quality. This platform includes e-learning and examination, job placement and career development and education blog.',
     githubLink: '',
@@ -102,7 +102,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Discount Hut',
     thumbnail: 'assets/project_image/dh.png',
-    videoUrl: 'assets/project_image/dh.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/dh.mp4',
     description:
         'Discount Hut is a discount app that helps you find the best deals, discount, and offers on food, fashion, electronics, and more. You can save money on your favorite brands and stores by using the Discount Hut app. Get the best deals, offers, and discounts on food, fashion, electronics, and more.',
     githubLink: 'https://github.com/Md-Sifatullah617/DiscountHut-copy.git',
@@ -124,7 +124,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Task Management App',
     thumbnail: 'assets/project_image/todo.png',
-    videoUrl: 'assets/project_image/tma.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/tma.mp4',
     description:
         "A task management app made using Flutter and Rest API. It has features like adding tasks, deleting tasks, updating tasks, etc. It also has features like Profile update, Profile picture update, etc.",
     githubLink: 'https://github.com/Md-Sifatullah617/task_management_app.git',
@@ -135,7 +135,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Blockchain-Based-Property-Registration',
     thumbnail: 'assets/project_image/lrs.png',
-    videoUrl: 'assets/project_image/lra.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/lra.mp4',
     description:
         ' A blockchain-based property registration system made using Ethereum Blockchain. It has features like adding property, deleting property, updating property, etc. ',
     githubLink: '',
@@ -146,7 +146,7 @@ List<VideoDataModel> projectsList = [
   VideoDataModel(
     title: 'Wallify',
     thumbnail: 'assets/project_image/wallify.png',
-    videoUrl: 'assets/project_image/wallify.mp4',
+    videoUrl: 'https://github.com/Md-Sifatullah617/md-sifatullah617.github.io/releases/download/media-v1/wallify.mp4',
     description:
         'Wallify is a wallpaper app made using Flutter and Rest API. It has features like adding wallpaper, deleting wallpaper, updating wallpaper, etc.',
     githubLink: 'https://github.com/Md-Sifatullah617/Wallify.git',
