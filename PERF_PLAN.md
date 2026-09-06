@@ -1,5 +1,30 @@
 # sifatullah.me — Speed fix plan
 
+## Result (deployed 2026-09-06)
+
+| | Before | After |
+|---|---|---|
+| **Overall** | **46 / 100 (F)** | **77 / 100 (C)** |
+| Speed | 23 / 100 | 70 / 100 |
+| Delivery | 90 / 100 | 90 / 100 |
+| Assets | 0 / 100 | 79 / 100 |
+| Lighthouse mobile (S1) | 0 / 100 | **60 / 100** |
+| LCP (S2) | unmeasurable | **900 ms** ✅ |
+| FCP (S5) | (pass) | 900 ms ✅ |
+| CLS (S3) | 0.000 ✅ | 0.000 ✅ |
+| TBT (S4) | not reported | **15.7 s** ❌ still failing |
+| Page weight (A5) | 3.0 MB | 2.9 MB (partial) |
+| Minified JS/CSS (A2) | ungraded | 100% ✅ |
+| Brotli (D3) | gzip only | gzip only (GitHub Pages) |
+
+The boot splash + restored viewport meta are what moved the needle: Lighthouse
+can now measure the page at all (LCP/FCP register at 900 ms instead of a blank
+canvas → 0). **TBT 15.7 s is the remaining ceiling** — that's Flutter parsing and
+executing ~2.9 MB on the main thread, and it does not come down without moving
+the landing page off Flutter.
+
+---
+
 Baseline (xspeedcache, 2026-09-06): **46/100 (F)**
 - Core Web Vitals: 23/100 — Lighthouse mobile **0/100**, LCP/TBT unmeasurable
 - Server & Caching: 90/100 — only gap is gzip vs Brotli
