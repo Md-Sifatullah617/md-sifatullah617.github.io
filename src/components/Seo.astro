@@ -1,0 +1,33 @@
+---
+import { SITE_TITLE, DEFAULT_OG_IMAGE } from '../consts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute or root-relative OG image URL. Defaults to the site-wide image. */
+  image?: string;
+  ogType?: 'website' | 'article' | 'profile';
+}
+
+const { title, description, image = DEFAULT_OG_IMAGE, ogType = 'website' } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '') || Astro.site!.href;
+const ogImage = new URL(image, Astro.site).href;
+const fullTitle = title === SITE_TITLE ? title : `${title} — ${SITE_TITLE}`;
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={SITE_TITLE} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

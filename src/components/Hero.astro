@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import headshot from '../../assets/images/sifat.webp';
+import { EMAIL, LINKEDIN } from '../consts';
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__body">
+      <p class="hero__eyebrow">Md Sifatullah</p>
+      <h1>I build production software <span class="nowrap">end-to-end</span> and lead the people who ship it.</h1>
+      <p class="hero__roles">
+        Software Engineer at <strong>Metal Plus</strong>. CTO at
+        <strong>Manobsheba</strong> <span class="hero__note">(private beta)</span>. Founding a
+        software studio.
+      </p>
+      <p class="hero__prev">Previously Mulytic Energy, DeshIT-BD.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={`mailto:${EMAIL}`}>Email me</a>
+        <a class="btn" href={LINKEDIN} rel="me">LinkedIn</a>
+      </div>
+    </div>
+    <Image
+      class="hero__photo"
+      src={headshot}
+      alt="Md Sifatullah"
+      widths={[280, 480]}
+      sizes="(max-width: 720px) 180px, 280px"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 2rem + 6vw, 6rem);
+  }
+  .hero__inner {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    gap: clamp(1.5rem, 1rem + 4vw, 4rem);
+  }
+  .hero__body {
+    flex: 1 1 22rem;
+  }
+  .hero__eyebrow {
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+  .hero h1 {
+    max-width: 18ch;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .hero__roles {
+    font-size: var(--step-1);
+    max-width: 34ch;
+    color: var(--text);
+  }
+  .hero__note {
+    color: var(--text-muted);
+  }
+  .hero__prev {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  .hero__photo {
+    flex: 0 0 auto;
+    width: clamp(9rem, 6rem + 12vw, 17.5rem);
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
+</style>

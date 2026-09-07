@@ -1,0 +1,73 @@
+---
+// Real button, aria state, choice persisted in localStorage. The no-flash
+// initial theme is set by the inline script in BaseLayout's <head>.
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="theme-toggle"
+  aria-label="Toggle colour theme"
+  aria-pressed="false"
+>
+  <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+  </svg>
+  <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent);
+  }
+  .theme-toggle__sun,
+  .theme-toggle__moon {
+    grid-area: 1 / 1;
+  }
+  :root:not([data-theme='light']) .theme-toggle__sun {
+    display: none;
+  }
+  :root[data-theme='light'] .theme-toggle__moon {
+    display: none;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+
+  function current(): 'light' | 'dark' {
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  }
+
+  function sync() {
+    btn?.setAttribute('aria-pressed', current() === 'light' ? 'true' : 'false');
+  }
+
+  btn?.addEventListener('click', () => {
+    const next = current() === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* private mode — ignore */
+    }
+    sync();
+  });
+
+  sync();
+</script>

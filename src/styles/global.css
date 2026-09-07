@@ -1,0 +1,170 @@
+/* ---------------------------------------------------------------------------
+   Design tokens. Dark is the default; [data-theme="light"] overrides.
+   Editorial-minimal: typography-led, one restrained accent, generous space.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Palette — dark (default) */
+  --bg: #0e0f12;
+  --bg-raised: #16181d;
+  --text: #e8e8ea;
+  --text-muted: #a0a0a8;
+  --border: #2a2c33;
+  --accent: #e8a33d;
+  --accent-text: #0e0f12;
+  --focus: #7cc4ff;
+
+  /* Type */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia,
+    'Times New Roman', serif;
+
+  /* Scale */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 1vw, 2.25rem);
+  --step-3: clamp(2.1rem, 1.7rem + 2vw, 3.5rem);
+
+  --measure: 68ch;
+  --space: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+  --radius: 10px;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #fbfaf8;
+  --bg-raised: #ffffff;
+  --text: #1b1c1e;
+  --text-muted: #5c5d63;
+  --border: #e4e2dd;
+  --accent: #8a5200; /* white text on this is 6.3:1 — WCAG AA */
+  --accent-text: #ffffff;
+  --focus: #1a63c4;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: var(--step-3);
+  margin: 0 0 0.5em;
+}
+
+h2 {
+  font-size: var(--step-2);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Buttons / CTAs */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.btn:hover {
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

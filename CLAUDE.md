@@ -1,8 +1,9 @@
 # CLAUDE
 
-Flutter web portfolio, deployed to GitHub Pages at `sifatullah.me`. Push to any branch
-with `[deploy-web]` in the commit message to trigger the deploy workflow; `main` is the
-built output, not source. Source lives on `sifat`.
+Astro static site (personal-brand hub), deployed to GitHub Pages at `sifatullah.me`.
+`main` is the source branch; pushing to `main` builds and deploys via
+`.github/workflows/deploy.yml` (no magic commit-message string). The old Flutter app is
+archived on the `sifat` branch. See `README.md` and `docs/adr/0001-rebuild-portfolio-on-astro.md`.
 
 ## Agent skills
 

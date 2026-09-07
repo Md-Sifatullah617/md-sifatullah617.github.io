@@ -1,32 +1,33 @@
-# Md. Sifatullah
+# sifatullah.me
 
-**Personal Portfolio Website**
+The personal-brand hub for Md Sifatullah — a fast, content-first static site built
+with [Astro](https://astro.build). See `CONTEXT.md` for the brand vocabulary and
+`docs/adr/0001-rebuild-portfolio-on-astro.md` for why it's no longer a Flutter app
+(the old Flutter source is archived on the `sifat` branch).
 
-This is the repository for my personal portfolio website, built using Flutter. It showcases my projects, skills, and experience as a developer.
+## Develop
 
-## Features
+```sh
+npm install
+npm run dev        # local dev server
+npm run build      # build to dist/
+npm test           # build, then run the Seam 1 assertions against dist/
+```
 
-- **Responsive Design:** Adapts to different screen sizes (desktop and mobile).
-- **Showcase Projects:** Highlights key projects with descriptions and links.
-- **List Skills:** Displays my technical skills and expertise.
-- **Contact Information:** Provides ways for visitors to get in touch.
-- **Animations and Visuals:** Includes engaging animations and images.
+## Content & structure
 
-## Technologies Used
+- `src/consts.ts` — identity, links, nav. Single source of truth.
+- `src/layouts/BaseLayout.astro` — `<head>` (via `Seo`), skip link, header, footer,
+  no-flash theme script.
+- `src/components/` — `Hero`, `Header`, `Footer`, `ThemeToggle`, `Seo`, `PersonSchema`.
+- `public/cv/` — the CV, served verbatim at `/cv`.
+- `tests/built-output.test.ts` — **Seam 1**: routes, `<head>` metadata, internal-link
+  resolution, build artifacts. The reference for future tests here.
+- `lighthouserc.json` — **Seam 3**: Lighthouse budget gate (Perf/A11y/BP ≥ 95, SEO = 100).
 
-- **Flutter:** The UI toolkit used for building the application.
-- **Dart:** The programming language used with Flutter.
-- **Firebase (Optional):** Used for hosting and potentially other backend services (depending on implementation).
-- **Rive:** Used for animations (based on the presence of `.riv` files).
-- **SVG:** Used for icons (based on the presence of `.svg` files).
+## Deploy
 
-## Getting Started
+Push to `main`. `.github/workflows/deploy.yml` builds, runs both seams, and deploys via
+the official GitHub Pages actions. No magic commit-message string.
 
-To run this project locally, make sure you have Flutter installed. If not, follow the official Flutter installation guide: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
-
-1. Clone the repository:
-
-
-
-flutter run -d chrome --web-renderer html
-flutter build web --web-renderer html --release --no-tree-shake-icons
+> **Repo setting:** Pages source must be **"GitHub Actions"** (Settings → Pages).

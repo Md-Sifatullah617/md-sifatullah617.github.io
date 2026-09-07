@@ -1,0 +1,14 @@
+---
+import { SITE_URL, SITE_TITLE, JOB_TITLE, GITHUB, LINKEDIN } from '../consts';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE_TITLE,
+  url: SITE_URL,
+  jobTitle: JOB_TITLE,
+  sameAs: [GITHUB, LINKEDIN],
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

@@ -1,0 +1,56 @@
+---
+import { NAV_LINKS, SITE_TITLE } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand" aria-label={`MS — ${SITE_TITLE}, home`}>MS</a>
+    <nav aria-label="Primary">
+      <ul>
+        {NAV_LINKS.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    min-height: 3.75rem;
+  }
+  .site-header__brand {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: var(--step-1);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  nav {
+    margin-inline-start: auto;
+  }
+  nav ul {
+    display: flex;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+  nav a:hover {
+    color: var(--text);
+  }
+</style>
