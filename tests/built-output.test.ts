@@ -118,6 +118,58 @@ describe('internal links from the home page resolve', () => {
   });
 });
 
+describe('blog + RSS', () => {
+  const PUBLISHED = [
+    'building-a-telecom-event-platform-solo',
+    'rural-healthtech-needs-agent-points',
+    'three-years-of-flutter-shipping',
+  ];
+
+  it('/blog/ index exists', () => {
+    expect(existsSync(join(DIST, 'blog/index.html'))).toBe(true);
+  });
+
+  it.each(PUBLISHED)('published post /blog/%s/ exists', (slug) => {
+    expect(existsSync(join(DIST, `blog/${slug}/index.html`))).toBe(true);
+  });
+
+  it('the blog index lists posts newest-first', () => {
+    const $ = cheerio.load(readFileSync(join(DIST, 'blog/index.html'), 'utf8'));
+    const dates = $('.bloglist__item time')
+      .map((_, el) => new Date($(el).attr('datetime')!).getTime())
+      .get();
+    expect(dates.length).toBe(PUBLISHED.length);
+    expect([...dates].sort((a, b) => b - a)).toEqual(dates);
+  });
+
+  it('a draft post is excluded from routes, the index, and the feed', () => {
+    expect(existsSync(join(DIST, 'blog/draft-example'))).toBe(false);
+    const index = readFileSync(join(DIST, 'blog/index.html'), 'utf8');
+    const rss = readFileSync(join(DIST, 'rss.xml'), 'utf8');
+    expect(index).not.toMatch(/draft example/i);
+    expect(rss).not.toMatch(/draft example/i);
+  });
+
+  it('RSS feed exists and is well-formed with the published posts', () => {
+    const rss = readFileSync(join(DIST, 'rss.xml'), 'utf8');
+    expect(rss).toMatch(/^<\?xml/);
+    expect(rss).toContain('<rss');
+    expect(rss).toContain('</rss>');
+    const items = rss.match(/<item>/g) ?? [];
+    expect(items.length).toBe(PUBLISHED.length);
+  });
+
+  it('RSS feed is discoverable from every page <head>', () => {
+    for (const file of htmlFiles().filter((f) => !PASSTHROUGH.has(f))) {
+      const $ = cheerio.load(readFileSync(join(DIST, file), 'utf8'));
+      expect(
+        $('link[rel="alternate"][type="application/rss+xml"]').attr('href'),
+        `${file} missing RSS <link>`,
+      ).toBe('/rss.xml');
+    }
+  });
+});
+
 describe('work collection / case studies', () => {
   it('the flagship case study is generated', () => {
     expect(existsSync(join(DIST, 'work/telecom-event-platform/index.html'))).toBe(true);

@@ -18,5 +18,6 @@ export const DEFAULT_OG_IMAGE = '/og-default.png';
 // Grows per slice as landing sections land. Ventures / About / Contact arrive in slice 5.
 export const NAV_LINKS = [
   { href: '/#work', label: 'Work' },
+  { href: '/blog', label: 'Blog' },
   { href: '/cv', label: 'CV' },
 ];

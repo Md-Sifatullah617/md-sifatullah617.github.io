@@ -29,4 +29,21 @@ const work = defineCollection({
     }),
 });
 
-export const collections = { work };
+/**
+ * `blog` — hand-written posts. Schema is a Seam 2 contract. No automated feed
+ * content lands here (see #5 / ADR 0001).
+ */
+const blog = defineCollection({
+  loader: glob({ base: './src/content/blog', pattern: '**/[^_]*.md' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+    ogImage: z.string().optional(),
+  }),
+});
+
+export const collections = { work, blog };
