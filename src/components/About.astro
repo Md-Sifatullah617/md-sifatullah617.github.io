@@ -1,0 +1,83 @@
+<section id="about" class="about">
+  <div class="container about__inner">
+    <h2>About</h2>
+    <div class="about__body">
+      <p>
+        I am a software engineer who builds whole systems — architecture, API,
+        client, and deployment — and increasingly leads the people who build them.
+        I started as a Flutter intern, shipped mobile and full-stack products at
+        Mulytic Energy and DeshIT-BD, and now work at Metal Plus, where I took a
+        telecom client's operations from spreadsheets to a deployed multi-client
+        platform as the sole engineer.
+      </p>
+      <p>
+        The direction I am working towards is technical leadership: leading
+        engineering teams, growing Manobsheba as its CTO, and founding a software
+        company of my own. The through-line is ownership — of the system, of the
+        outcome, and of the team.
+      </p>
+      <h3 class="about__h3">How I work</h3>
+      <p>
+        I default to layered, clean architecture with versioned migrations. I own
+        the full lifecycle — architecture to API to client to deploy — and ship to
+        production on AWS and Docker. I am comfortable inheriting and stabilising
+        legacy codebases before adding to them.
+      </p>
+      <ul class="about__skills" role="list">
+        <li><b>Languages</b> — Go, Dart, C/C++</li>
+        <li><b>Backend</b> — REST, PostgreSQL, JWT/RBAC, sqlx, migrations</li>
+        <li><b>Mobile</b> — Flutter, BLoC, Clean Architecture</li>
+        <li><b>Web</b> — Next.js, React, TypeScript</li>
+        <li><b>Infra</b> — AWS (S3, EC2), Docker, Nginx, CI/CD</li>
+        <li><b>Practice</b> — code review, Scrum</li>
+      </ul>
+
+      <p class="about__cv">
+        The full timeline is on my <a href="/cv">CV</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    border-top: 1px solid var(--border);
+  }
+  .about__inner {
+    display: grid;
+    gap: 1.5rem 3rem;
+  }
+  @media (min-width: 48rem) {
+    .about__inner {
+      grid-template-columns: 12rem 1fr;
+    }
+  }
+  .about__body {
+    max-width: 48ch;
+  }
+  .about__body p {
+    margin: 0 0 1rem;
+  }
+  .about__h3 {
+    font-size: var(--step-0);
+    margin: 1.75rem 0 0.5rem;
+  }
+  .about__skills {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step--1);
+  }
+  .about__skills li {
+    padding: 0.3rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .about__skills b {
+    color: var(--text);
+  }
+  .about__cv a {
+    text-underline-offset: 0.2em;
+  }
+</style>

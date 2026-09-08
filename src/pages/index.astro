@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SelectedWork from '../components/SelectedWork.astro';
+import Ventures from '../components/Ventures.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
 import PersonSchema from '../components/PersonSchema.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
@@ -10,4 +13,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <PersonSchema slot="head" />
   <Hero />
   <SelectedWork />
+  <Ventures />
+  <About />
+  <Contact />
 </BaseLayout>

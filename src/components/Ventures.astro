@@ -1,0 +1,56 @@
+---
+// The anchor target for the Manobsheba card in Selected Work (/#ventures).
+// Deliberately restrained: no architecture, no metrics — Manobsheba is in private beta.
+---
+
+<section id="ventures" class="ventures">
+  <div class="container ventures__inner">
+    <h2>Ventures</h2>
+    <div class="ventures__body">
+      <h3>Manobsheba</h3>
+      <p>
+        Manobsheba brings basic healthcare to rural citizens of Bangladesh through a
+        network of <strong>Health Care Agent Points</strong> — local, in-person
+        delivery points where a trained agent operates the Manobsheba platform on
+        behalf of someone who would not otherwise have digital access. The citizen
+        gets the service without needing their own device or connectivity. I
+        co-founded Manobsheba and lead its technology as CTO. It is in private beta.
+      </p>
+      <p class="ventures__link">
+        <a href="https://manobshebabd.com" target="_blank" rel="noopener">
+          manobshebabd.com →
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ventures {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    border-top: 1px solid var(--border);
+  }
+  .ventures__inner {
+    display: grid;
+    gap: 1.5rem 3rem;
+  }
+  @media (min-width: 48rem) {
+    .ventures__inner {
+      grid-template-columns: 12rem 1fr;
+    }
+  }
+  .ventures__body {
+    max-width: 44ch;
+  }
+  .ventures__body h3 {
+    font-size: var(--step-1);
+    margin: 0 0 0.6rem;
+  }
+  .ventures__body p {
+    margin: 0 0 1rem;
+  }
+  .ventures__link a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>

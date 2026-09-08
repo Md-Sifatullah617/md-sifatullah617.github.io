@@ -230,6 +230,57 @@ describe('Selected Work section', () => {
   });
 });
 
+describe('landing page — Ventures, About, Contact, footer', () => {
+  const $ = cheerio.load(readFileSync(join(DIST, 'index.html'), 'utf8'));
+
+  it('has Ventures, About and Contact sections', () => {
+    expect($('#ventures').length).toBe(1);
+    expect($('#about').length).toBe(1);
+    expect($('#contact').length).toBe(1);
+  });
+
+  it('Ventures links to manobshebabd.com and names the agent-point model', () => {
+    expect($('#ventures a[href*="manobshebabd.com"]').length).toBeGreaterThan(0);
+    expect($('#ventures').text()).toMatch(/Health Care Agent Point/i);
+  });
+
+  it('Contact has a Formspree form with name, email, message and a honeypot', () => {
+    const form = $('#contact form');
+    expect(form.attr('action')).toMatch(/formspree\.io\/f\//);
+    expect(form.find('input[name="name"]').length).toBe(1);
+    expect(form.find('input[name="email"]').length).toBe(1);
+    expect(form.find('textarea[name="message"]').length).toBe(1);
+    expect(form.find('input[name="_gotcha"]').length).toBe(1);
+  });
+
+  it('Contact has an Email-me link to the correct address', () => {
+    const mailtos = $('#contact a[href^="mailto:"]')
+      .map((_, el) => $(el).attr('href'))
+      .get();
+    expect(mailtos).toContain('mailto:sifatullah.swe.617@gmail.com');
+  });
+
+  it('footer has exactly GitHub, LinkedIn and email', () => {
+    const hrefs = $('.site-footer a').map((_, el) => $(el).attr('href')!).get();
+    expect(hrefs.length).toBe(3);
+    expect(hrefs.some((h) => /github\.com/i.test(h))).toBe(true);
+    expect(hrefs.some((h) => /linkedin\.com/i.test(h))).toBe(true);
+    expect(hrefs.some((h) => h.startsWith('mailto:'))).toBe(true);
+  });
+});
+
+describe('no removed socials anywhere in the build', () => {
+  it('dist/ contains no Instagram, Facebook or beecrowd references', () => {
+    const offenders: string[] = [];
+    for (const file of htmlFiles()) {
+      if (/instagram|facebook|beecrowd/i.test(readFileSync(join(DIST, file), 'utf8'))) {
+        offenders.push(file);
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+});
+
 describe('build artifacts', () => {
   it('dist/CNAME equals sifatullah.me', () => {
     expect(readFileSync(join(DIST, 'CNAME'), 'utf8').trim()).toBe('sifatullah.me');

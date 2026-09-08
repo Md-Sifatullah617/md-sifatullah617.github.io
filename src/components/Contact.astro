@@ -1,0 +1,107 @@
+---
+import { EMAIL } from '../consts';
+
+// Owner-supplied: set PUBLIC_FORMSPREE_ID in the deploy environment (or a .env
+// file) to the Formspree form ID. Until then the form posts to a placeholder
+// endpoint that will 404 on submit.
+const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'REPLACE_WITH_FORMSPREE_ID';
+const formAction = `https://formspree.io/f/${formspreeId}`;
+---
+
+<section id="contact" class="contact">
+  <div class="container contact__inner">
+    <h2>Contact</h2>
+    <div class="contact__body">
+      <p class="contact__open">
+        Open to advising, hard backend and mobile problems, and Manobsheba
+        partnerships.
+      </p>
+
+      <form class="contact__form" action={formAction} method="POST">
+        <label>
+          <span>Name</span>
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <p class="contact__hp" aria-hidden="true">
+          <label>
+            Leave this field empty
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
+        <div class="contact__actions">
+          <button type="submit" class="btn btn--primary">Send</button>
+          <a class="btn" href={`mailto:${EMAIL}`}>Email me</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+    border-top: 1px solid var(--border);
+  }
+  .contact__inner {
+    display: grid;
+    gap: 1.5rem 3rem;
+  }
+  @media (min-width: 48rem) {
+    .contact__inner {
+      grid-template-columns: 12rem 1fr;
+    }
+  }
+  .contact__body {
+    max-width: 34rem;
+  }
+  .contact__open {
+    margin: 0 0 1.75rem;
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact__form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: var(--step--1);
+  }
+  .contact__form input,
+  .contact__form textarea {
+    font: inherit;
+    color: var(--text);
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.6rem 0.7rem;
+  }
+  .contact__form input:focus-visible,
+  .contact__form textarea:focus-visible {
+    border-color: var(--focus);
+  }
+  .contact__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+</style>
