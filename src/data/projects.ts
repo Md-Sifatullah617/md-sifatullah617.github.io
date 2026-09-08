@@ -32,7 +32,6 @@ const raw: unknown[] = [
     tags: ['Go', 'PostgreSQL', 'Flutter', 'Next.js', 'AWS'],
     href: '/work/telecom-event-platform',
     caseStudy: true,
-    pending: true, // slice 3 delivers the case study page and drops this
     order: 1,
   },
   {

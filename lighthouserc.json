@@ -2,7 +2,10 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["http://localhost/index.html"],
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/work/telecom-event-platform/index.html"
+      ],
       "numberOfRuns": 3
     },
     "assert": {

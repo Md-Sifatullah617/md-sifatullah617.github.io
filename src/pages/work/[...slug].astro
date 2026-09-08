@@ -1,0 +1,185 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_URL, SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work', ({ data }) =>
+    import.meta.env.PROD ? data.draft !== true : true,
+  );
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: data.title,
+  abstract: data.summary,
+  author: { '@type': 'Person', name: SITE_TITLE, url: SITE_URL },
+  ...(data.org ? { publisher: { '@type': 'Organization', name: data.org } } : {}),
+};
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  ogType="article"
+  image={data.cover?.src}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonld)}
+  />
+
+  <article class="case container">
+    <p class="case__back"><a href="/#work">← Selected work</a></p>
+
+    <header class="case__header">
+      <h1>{data.title}</h1>
+      <p class="case__meta">{data.role}{data.org ? ` · ${data.org}` : ''}</p>
+      <p class="case__summary">{data.summary}</p>
+    </header>
+
+    {
+      data.cover && (
+        <Image class="case__cover" src={data.cover} alt="" widths={[720, 1200]} sizes="(max-width: 60rem) 100vw, 60rem" loading="eager" />
+      )
+    }
+
+    <section class="case__block">
+      <h2>The problem</h2>
+      <p>{data.problem}</p>
+    </section>
+
+    <section class="case__block">
+      <h2>My role</h2>
+      <p>{data.contribution}</p>
+      <ul class="case__stack" role="list">
+        {data.stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </section>
+
+    <div class="case__body">
+      <Content />
+    </div>
+
+    <section class="case__block">
+      <h2>Outcomes</h2>
+      <ul class="case__outcomes">
+        {data.outcomes.map((o) => <li>{o}</li>)}
+      </ul>
+    </section>
+
+    {
+      data.links && data.links.length > 0 && (
+        <section class="case__block">
+          <h2>Links</h2>
+          <ul class="case__links" role="list">
+            {data.links.map((l) => (
+              <li>
+                <a href={l.url} target="_blank" rel="noopener">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .case {
+    max-width: 44rem;
+    padding-block: clamp(2rem, 1rem + 4vw, 4rem);
+  }
+  .case__back {
+    margin: 0 0 2rem;
+    font-size: var(--step--1);
+  }
+  .case__back a {
+    text-decoration: none;
+    color: var(--text-muted);
+  }
+  .case__back a:hover {
+    color: var(--text);
+  }
+  .case__meta {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 1.25rem;
+  }
+  .case__summary {
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+  .case__cover {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 1.5rem 0;
+  }
+  .case__block {
+    margin-top: 2.75rem;
+  }
+  .case__block h2 {
+    font-size: var(--step-1);
+    margin-bottom: 0.6rem;
+  }
+  .case__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .case__stack li {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.12rem 0.6rem;
+  }
+  .case__body {
+    margin-top: 2.75rem;
+  }
+  .case__body :global(h2) {
+    font-size: var(--step-1);
+    margin: 2.5rem 0 0.6rem;
+  }
+  .case__body :global(h3) {
+    font-size: var(--step-0);
+    margin: 1.75rem 0 0.4rem;
+  }
+  .case__body :global(p) {
+    margin: 0 0 1rem;
+  }
+  .case__body :global(code) {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05em 0.35em;
+    font-size: 0.9em;
+  }
+  .case__outcomes {
+    padding-left: 1.1rem;
+  }
+  .case__outcomes li {
+    margin-bottom: 0.5rem;
+  }
+  .case__links {
+    padding: 0;
+    list-style: none;
+  }
+</style>

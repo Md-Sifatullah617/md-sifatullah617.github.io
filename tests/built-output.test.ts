@@ -118,6 +118,40 @@ describe('internal links from the home page resolve', () => {
   });
 });
 
+describe('work collection / case studies', () => {
+  it('the flagship case study is generated', () => {
+    expect(existsSync(join(DIST, 'work/telecom-event-platform/index.html'))).toBe(true);
+  });
+
+  it('draft entries produce no route (manobsheba is draft: true)', () => {
+    expect(existsSync(join(DIST, 'work/manobsheba'))).toBe(false);
+    expect(existsSync(join(DIST, 'work/manobsheba/index.html'))).toBe(false);
+  });
+
+  it('the flagship case study has CreativeWork or Article JSON-LD', () => {
+    const html = readFileSync(join(DIST, 'work/telecom-event-platform/index.html'), 'utf8');
+    const ld = cheerio
+      .load(html)('script[type="application/ld+json"]')
+      .map((_, el) => cheerio.load(html)(el).text())
+      .get()
+      .join(' ');
+    expect(ld).toMatch(/"@type":"(CreativeWork|Article)"/);
+  });
+
+  it('internal links on the case study resolve', () => {
+    const $ = cheerio.load(
+      readFileSync(join(DIST, 'work/telecom-event-platform/index.html'), 'utf8'),
+    );
+    const internal = $('a[href^="/"]')
+      .map((_, el) => $(el).attr('href')!)
+      .get()
+      .filter((h) => !h.startsWith('/#'));
+    for (const href of internal) {
+      expect(hrefToDistFile(href), `${href} unresolved`).not.toBeNull();
+    }
+  });
+});
+
 describe('Selected Work section', () => {
   const $ = cheerio.load(readFileSync(join(DIST, 'index.html'), 'utf8'));
 
