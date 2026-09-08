@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import headshot from '../../assets/images/sifat.webp';
+import headshot from '../../assets/images/sifat-portrait.webp';
 import { EMAIL, LINKEDIN } from '../consts';
 ---
 
@@ -10,9 +10,9 @@ import { EMAIL, LINKEDIN } from '../consts';
       <p class="hero__eyebrow">Md Sifatullah</p>
       <h1>I build production software <span class="nowrap">end-to-end</span> and lead the people who ship it.</h1>
       <p class="hero__roles">
-        Software Engineer at <strong>Metal Plus</strong>. CTO at
-        <strong>Manobsheba</strong> <span class="hero__note">(private beta)</span>. Founding a
-        software studio.
+        Software Engineer at <strong>Metal&nbsp;Plus</strong>.
+        CTO at <strong>Manobsheba</strong> <span class="hero__note">(private beta)</span>.
+        Founding a software studio.
       </p>
       <p class="hero__prev">Previously Mulytic Energy, DeshIT-BD.</p>
       <div class="hero__cta">
@@ -24,8 +24,8 @@ import { EMAIL, LINKEDIN } from '../consts';
       class="hero__photo"
       src={headshot}
       alt="Md Sifatullah"
-      widths={[280, 480]}
-      sizes="(max-width: 720px) 180px, 280px"
+      widths={[320, 520, 760]}
+      sizes="(max-width: 720px) 60vw, 20rem"
       loading="eager"
       fetchpriority="high"
     />
@@ -40,6 +40,7 @@ import { EMAIL, LINKEDIN } from '../consts';
     display: flex;
     flex-wrap: wrap-reverse;
     align-items: center;
+    justify-content: space-between;
     gap: clamp(1.5rem, 1rem + 4vw, 4rem);
   }
   .hero__body {
@@ -77,11 +78,12 @@ import { EMAIL, LINKEDIN } from '../consts';
     margin-top: 1.75rem;
   }
   .hero__photo {
-    flex: 0 0 auto;
-    width: clamp(9rem, 6rem + 12vw, 17.5rem);
+    flex: 0 1 auto;
+    width: clamp(12rem, 8rem + 16vw, 20rem);
     height: auto;
+    aspect-ratio: 864 / 1124;
+    object-fit: cover;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    object-fit: cover;
   }
 </style>
