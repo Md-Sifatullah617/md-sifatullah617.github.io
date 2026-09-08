@@ -15,5 +15,8 @@ export const JOB_TITLE = 'Software Engineer';
 /** Default OpenGraph image, relative to site root. */
 export const DEFAULT_OG_IMAGE = '/og-default.png';
 
-// Slice 1 ships the hero + CV only. Later slices add Work / Ventures / About / Contact.
-export const NAV_LINKS = [{ href: '/cv', label: 'CV' }];
+// Grows per slice as landing sections land. Ventures / About / Contact arrive in slice 5.
+export const NAV_LINKS = [
+  { href: '/#work', label: 'Work' },
+  { href: '/cv', label: 'CV' },
+];

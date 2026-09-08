@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import { projects } from '../data/projects';
+import { GITHUB } from '../consts';
+
+const isExternal = (href: string) => /^https?:/i.test(href);
+const linkOf = (p: (typeof projects)[number]) => (p.href && !p.pending ? p.href : null);
+---
+
+<section id="work" class="work">
+  <div class="container">
+    <h2>Selected work</h2>
+    <ul class="work__grid" role="list">
+      {
+        projects.map((p) => {
+          const link = linkOf(p);
+          return (
+          <li class="card">
+            {p.cover && (
+              <Image class="card__cover" src={p.cover} alt="" widths={[320, 640]} sizes="(max-width: 640px) 90vw, 320px" loading="lazy" />
+            )}
+            <div class="card__body">
+              <h3 class="card__title">
+                {link ? (
+                  <a
+                    href={link}
+                    {...(isExternal(link) ? { target: '_blank', rel: 'noopener' } : {})}
+                  >
+                    {p.name}
+                  </a>
+                ) : (
+                  p.name
+                )}
+              </h3>
+              <p class="card__blurb">{p.blurb}</p>
+              {p.tags.length > 0 && (
+                <ul class="card__tags" role="list">
+                  {p.tags.map((t) => (
+                    <li>{t}</li>
+                  ))}
+                </ul>
+              )}
+              {p.caseStudy && (
+                <span class="card__badge">{p.pending ? 'Case study — soon' : 'Case study'}</span>
+              )}
+            </div>
+          </li>
+          );
+        })
+      }
+    </ul>
+    <p class="work__more">
+      <a href={GITHUB} target="_blank" rel="noopener">More projects on GitHub →</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .work {
+    padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+  }
+  .work__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    overflow: hidden;
+  }
+  .card__cover {
+    width: 100%;
+    height: 9rem;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.1rem 1.15rem 1.25rem;
+  }
+  .card__title {
+    font-size: var(--step-1);
+    margin: 0;
+  }
+  .card__title a {
+    text-decoration: none;
+  }
+  .card__title a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+  }
+  .card__blurb {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+  .card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card__tags li {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+  }
+  .card__badge {
+    align-self: flex-start;
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .work__more {
+    margin: 2rem 0 0;
+  }
+  .work__more a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>

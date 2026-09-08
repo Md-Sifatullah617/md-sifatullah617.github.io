@@ -118,6 +118,32 @@ describe('internal links from the home page resolve', () => {
   });
 });
 
+describe('Selected Work section', () => {
+  const $ = cheerio.load(readFileSync(join(DIST, 'index.html'), 'utf8'));
+
+  it('renders the curated project cards', () => {
+    // Kept in sync with src/data/projects.ts deliberately — the count is a curation decision.
+    expect($('#work .card').length).toBe(6);
+  });
+
+  it('has a "More projects on GitHub" link', () => {
+    const more = $('#work a')
+      .filter((_, el) => /more projects on github/i.test($(el).text()))
+      .attr('href');
+    expect(more).toMatch(/github\.com/i);
+  });
+
+  it('every internal card link resolves to a generated file', () => {
+    const internal = $('#work a[href^="/"]')
+      .map((_, el) => $(el).attr('href')!)
+      .get()
+      .filter((h) => !h.startsWith('/#'));
+    for (const href of internal) {
+      expect(hrefToDistFile(href), `${href} does not map to a file in dist/`).not.toBeNull();
+    }
+  });
+});
+
 describe('build artifacts', () => {
   it('dist/CNAME equals sifatullah.me', () => {
     expect(readFileSync(join(DIST, 'CNAME'), 'utf8').trim()).toBe('sifatullah.me');

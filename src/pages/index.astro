@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import SelectedWork from '../components/SelectedWork.astro';
 import PersonSchema from '../components/PersonSchema.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
@@ -8,4 +9,5 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} ogType="profile">
   <PersonSchema slot="head" />
   <Hero />
+  <SelectedWork />
 </BaseLayout>
