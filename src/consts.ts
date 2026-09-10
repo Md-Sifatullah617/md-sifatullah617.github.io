@@ -10,6 +10,29 @@ export const EMAIL = 'sifatullah.swe.617@gmail.com';
 export const LINKEDIN = 'https://www.linkedin.com/in/md-sifatullah617';
 export const GITHUB = 'https://github.com/Md-Sifatullah617';
 
+/** Shipped apps, by store. Surfaced in the hero and reused in Selected Work. */
+export const APPS = [
+  {
+    name: 'ChargeAI',
+    stores: [
+      { label: 'App Store', url: 'https://apps.apple.com/app/id6478091732' },
+      {
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.mulytic_energy.chargeai',
+      },
+    ],
+  },
+  {
+    name: 'Hiye',
+    stores: [
+      {
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.Hiye.hiye',
+      },
+    ],
+  },
+];
+
 export const JOB_TITLE = 'Software Engineer';
 
 /** Default OpenGraph image, relative to site root. */
