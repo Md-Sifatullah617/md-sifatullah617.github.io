@@ -1,10 +1,18 @@
 import React, { useRef, useState } from 'react';
 import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
+
+// SplitForms (splitforms.com) — a static-site form backend, same category as
+// Formspree/Web3Forms: the access key identifies which form submissions route
+// to, not an account secret, so it's fine baked into the client bundle. Set via
+// REACT_APP_SPLITFORMS_ACCESS_KEY at build time (see .github/workflows/deploy.yml).
+const SPLITFORMS_ACCESS_KEY = process.env.REACT_APP_SPLITFORMS_ACCESS_KEY;
+
+type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
 function Contact() {
 
@@ -16,37 +24,57 @@ function Contact() {
   const [emailError, setEmailError] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
 
+  const [submitState, setSubmitState] = useState<SubmitState>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   const form = useRef();
 
-  const sendEmail = (e: any) => {
+  const sendEmail = async (e: any) => {
     e.preventDefault();
 
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
+    const hasNameError = name === '';
+    const hasEmailError = email === '';
+    const hasMessageError = message === '';
+    setNameError(hasNameError);
+    setEmailError(hasEmailError);
+    setMessageError(hasMessageError);
+    if (hasNameError || hasEmailError || hasMessageError) return;
 
-    /* Uncomment below if you want to enable the emailJS */
+    if (!SPLITFORMS_ACCESS_KEY) {
+      setSubmitState('error');
+      setErrorMessage('Contact form is not configured yet — email me directly instead.');
+      return;
+    }
 
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+    setSubmitState('submitting');
+    try {
+      const res = await fetch('https://splitforms.com/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: SPLITFORMS_ACCESS_KEY,
+          name,
+          email,
+          message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitState('success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        setSubmitState('error');
+        setErrorMessage(data.message || 'Something went wrong — please try again.');
+      }
+    } catch (error) {
+      setSubmitState('error');
+      setErrorMessage('Network error — please try again or email me directly.');
+    }
   };
 
   return (
@@ -103,9 +131,24 @@ function Contact() {
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
-              Send
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={sendEmail}
+              disabled={submitState === 'submitting'}
+            >
+              {submitState === 'submitting' ? 'Sending…' : 'Send'}
             </Button>
+            {submitState === 'success' && (
+              <Alert severity="success" sx={{ marginTop: '1rem' }}>
+                Message sent — I'll get back to you soon.
+              </Alert>
+            )}
+            {submitState === 'error' && (
+              <Alert severity="error" sx={{ marginTop: '1rem' }}>
+                {errorMessage}
+              </Alert>
+            )}
           </Box>
         </div>
       </div>
