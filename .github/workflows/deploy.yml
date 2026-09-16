@@ -31,28 +31,19 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Set repo variable PUBLIC_FORMSPREE_ID to wire up the contact form.
-          PUBLIC_FORMSPREE_ID: ${{ vars.PUBLIC_FORMSPREE_ID }}
-
-      - name: Seam 1 — built-output assertions
-        run: npx vitest run
+          CI: true
+          # Set repo variable REACT_APP_SPLITFORMS_ACCESS_KEY to wire up the contact form.
+          REACT_APP_SPLITFORMS_ACCESS_KEY: ${{ vars.REACT_APP_SPLITFORMS_ACCESS_KEY }}
 
       - name: Verify CNAME survived the build
         run: |
-          test "$(cat dist/CNAME)" = "sifatullah.me" || {
-            echo "::error::dist/CNAME missing or wrong"; exit 1;
+          test "$(cat build/CNAME)" = "sifatullah.me" || {
+            echo "::error::build/CNAME missing or wrong"; exit 1;
           }
-
-      - name: Seam 3 — Lighthouse budget
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: ./lighthouserc.json
-          uploadArtifacts: true
-          temporaryPublicStorage: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: build
 
   deploy:
     needs: build
