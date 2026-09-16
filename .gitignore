@@ -19,3 +19,6 @@ npm-debug.log*
 
 # Lighthouse CI
 .lighthouseci/
+
+# Reference-only, not part of this site
+/react-portfolio-template/
