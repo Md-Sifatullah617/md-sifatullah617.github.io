@@ -1,12 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import headshot from '../../assets/images/sifat-portrait.webp';
-import HeroWave from './HeroWave.astro';
 import { EMAIL, LINKEDIN, APPS } from '../consts';
 ---
 
 <section class="hero">
-  <HeroWave />
   <div class="container hero__inner">
     <div class="hero__body">
       <p class="hero__eyebrow">Md Sifatullah</p>
@@ -56,13 +54,9 @@ import { EMAIL, LINKEDIN, APPS } from '../consts';
 
 <style>
   .hero {
-    position: relative;
-    overflow: hidden;
     padding-block: clamp(3rem, 2rem + 6vw, 6rem);
   }
   .hero__inner {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-wrap: wrap-reverse;
     align-items: center;
