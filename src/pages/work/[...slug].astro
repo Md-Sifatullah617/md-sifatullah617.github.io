@@ -2,7 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TelecomArchitecture from '../../components/diagrams/TelecomArchitecture.astro';
 import { SITE_URL, SITE_TITLE } from '../../consts';
+
+// One-off diagrams per case study. Extend this map as more case studies get one.
+const DIAGRAMS: Record<string, any> = {
+  'telecom-event-platform': TelecomArchitecture,
+};
 
 export async function getStaticPaths() {
   const entries = await getCollection('work', ({ data }) =>
@@ -14,6 +20,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { data } = entry;
 const { Content } = await render(entry);
+const Diagram = DIAGRAMS[entry.id];
 
 const jsonld = {
   '@context': 'https://schema.org',
@@ -65,6 +72,15 @@ const jsonld = {
         {data.stack.map((s) => <li>{s}</li>)}
       </ul>
     </section>
+
+    {
+      Diagram && (
+        <section class="case__block">
+          <h2>System overview</h2>
+          <Diagram />
+        </section>
+      )
+    }
 
     <div class="case__body">
       <Content />

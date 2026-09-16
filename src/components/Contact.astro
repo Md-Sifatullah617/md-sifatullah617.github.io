@@ -1,11 +1,13 @@
 ---
 import { EMAIL } from '../consts';
 
-// Owner-supplied: set PUBLIC_FORMSPREE_ID in the deploy environment (or a .env
-// file) to the Formspree form ID. Until then the form posts to a placeholder
-// endpoint that will 404 on submit.
-const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID ?? 'REPLACE_WITH_FORMSPREE_ID';
-const formAction = `https://formspree.io/f/${formspreeId}`;
+// Owner-supplied: set the PUBLIC_FORMSPREE_ID repo variable (Settings > Secrets
+// and variables > Actions > Variables) to the Formspree form ID. Until it's set,
+// the raw env value is '' (GitHub Actions substitutes an unset repo variable
+// with an empty string, not undefined) — trim() catches that, `??` alone would not.
+const rawId = import.meta.env.PUBLIC_FORMSPREE_ID?.trim();
+const isConfigured = !!rawId;
+const formAction = isConfigured ? `https://formspree.io/f/${rawId}` : undefined;
 ---
 
 <section id="contact" class="contact">
@@ -17,30 +19,44 @@ const formAction = `https://formspree.io/f/${formspreeId}`;
         partnerships.
       </p>
 
-      <form class="contact__form" action={formAction} method="POST">
-        <label>
-          <span>Name</span>
-          <input type="text" name="name" autocomplete="name" required />
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" autocomplete="email" required />
-        </label>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <p class="contact__hp" aria-hidden="true">
-          <label>
-            Leave this field empty
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </label>
-        </p>
-        <div class="contact__actions">
-          <button type="submit" class="btn btn--primary">Send</button>
-          <a class="btn" href={`mailto:${EMAIL}`}>Email me</a>
-        </div>
-      </form>
+      {
+        isConfigured ? (
+          <form class="contact__form" action={formAction} method="POST">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5" required />
+            </label>
+            <p class="contact__hp" aria-hidden="true">
+              <label>
+                Leave this field empty
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+            <div class="contact__actions">
+              <button type="submit" class="btn btn--primary">
+                Send
+              </button>
+              <a class="btn" href={`mailto:${EMAIL}`}>
+                Email me
+              </a>
+            </div>
+          </form>
+        ) : (
+          <div class="contact__actions">
+            <a class="btn btn--primary" href={`mailto:${EMAIL}`}>
+              Email me
+            </a>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>

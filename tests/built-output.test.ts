@@ -244,9 +244,17 @@ describe('landing page — Ventures, About, Contact, footer', () => {
     expect($('#ventures').text()).toMatch(/Health Care Agent Point/i);
   });
 
-  it('Contact has a Formspree form with name, email, message and a honeypot', () => {
+  it('Contact renders either a real Formspree form or a clean fallback — never a dead form', () => {
     const form = $('#contact form');
-    expect(form.attr('action')).toMatch(/formspree\.io\/f\//);
+    if (form.length === 0) {
+      // PUBLIC_FORMSPREE_ID not configured yet: no form, but Email-me must still work.
+      expect($('#contact a[href^="mailto:"]').length).toBeGreaterThan(0);
+      return;
+    }
+    // Guards the exact regression this once shipped with: GitHub Actions substitutes
+    // an unset repo variable with '', not undefined, so a bare `?? fallback` doesn't
+    // catch it and the form silently posts to https://formspree.io/f/ (no id).
+    expect(form.attr('action')).toMatch(/^https:\/\/formspree\.io\/f\/[^/]+$/);
     expect(form.find('input[name="name"]').length).toBe(1);
     expect(form.find('input[name="email"]').length).toBe(1);
     expect(form.find('textarea[name="message"]').length).toBe(1);

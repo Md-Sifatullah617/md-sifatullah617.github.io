@@ -1,0 +1,148 @@
+---
+// One-off system diagram for the telecom-event-platform case study. Theme-aware
+// via CSS custom properties (inherits the page's light/dark tokens, no JS).
+---
+
+<figure class="arch">
+  <svg
+    viewBox="0 0 880 300"
+    role="img"
+    aria-labelledby="arch-title arch-desc"
+    class="arch__svg"
+  >
+    <title id="arch-title">Telecom Event Management Platform — system architecture</title>
+    <desc id="arch-desc">
+      The Flutter field app and the Next.js admin console both call Nginx over HTTPS.
+      Nginx routes to the Go REST API, which is guarded by JWT and RBAC middleware.
+      The API reads and writes PostgreSQL and uploads files to AWS S3. Nginx, the API,
+      and PostgreSQL run together in one Docker Compose stack on a single EC2 host.
+    </desc>
+
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" class="arch__arrowhead" />
+      </marker>
+    </defs>
+
+    <!-- Docker Compose / EC2 boundary -->
+    <rect x="270" y="20" width="420" height="220" rx="10" class="arch__boundary" />
+    <text x="286" y="42" class="arch__boundary-label">Docker Compose · EC2 (ap-southeast-1)</text>
+
+    <!-- Clients -->
+    <g class="arch__node">
+      <rect x="16" y="40" width="170" height="58" rx="8" />
+      <text x="101" y="64" class="arch__label">Flutter</text>
+      <text x="101" y="82" class="arch__sublabel">Field app · BLoC</text>
+    </g>
+
+    <g class="arch__node">
+      <rect x="16" y="196" width="170" height="58" rx="8" />
+      <text x="101" y="220" class="arch__label">Next.js Admin</text>
+      <text x="101" y="238" class="arch__sublabel">React 19 · MUI</text>
+    </g>
+
+    <!-- Nginx -->
+    <g class="arch__node arch__node--infra">
+      <rect x="300" y="88" width="110" height="86" rx="8" />
+      <text x="355" y="126" class="arch__label">Nginx</text>
+      <text x="355" y="144" class="arch__sublabel">TLS · routing</text>
+    </g>
+
+    <!-- API -->
+    <g class="arch__node arch__node--infra">
+      <rect x="460" y="70" width="190" height="120" rx="8" />
+      <text x="555" y="106" class="arch__label">Go REST API</text>
+      <text x="555" y="126" class="arch__sublabel">REST → Service → Repo</text>
+      <text x="555" y="144" class="arch__sublabel">sqlx · golang-migrate</text>
+      <text x="555" y="162" class="arch__sublabel">JWT (HS256) · RBAC</text>
+    </g>
+
+    <!-- Data stores -->
+    <g class="arch__node arch__node--infra">
+      <rect x="700" y="30" width="150" height="56" rx="8" />
+      <text x="775" y="54" class="arch__label">PostgreSQL</text>
+      <text x="775" y="72" class="arch__sublabel">events, staff, kit</text>
+    </g>
+
+    <g class="arch__node">
+      <rect x="700" y="176" width="150" height="56" rx="8" />
+      <text x="775" y="200" class="arch__label">AWS S3</text>
+      <text x="775" y="218" class="arch__sublabel">uploads, exports</text>
+    </g>
+
+    <!-- Edges -->
+    <path d="M186,69 L300,110" class="arch__edge" marker-end="url(#arrow)" />
+    <path d="M186,225 L300,152" class="arch__edge" marker-end="url(#arrow)" />
+    <text x="225" y="90" class="arch__edge-label">HTTPS</text>
+    <text x="225" y="215" class="arch__edge-label">HTTPS</text>
+
+    <path d="M410,130 L460,130" class="arch__edge" marker-end="url(#arrow)" />
+
+    <path d="M650,110 L700,66" class="arch__edge" marker-end="url(#arrow)" />
+    <path d="M650,150 L700,196" class="arch__edge" marker-end="url(#arrow)" />
+  </svg>
+  <figcaption class="arch__caption">
+    Both clients reach the API only through Nginx; JWT + RBAC middleware gates every
+    write. Nginx, the API, and Postgres run as one Docker Compose stack on a single
+    EC2 host — S3 is the one external AWS service.
+  </figcaption>
+</figure>
+
+<style>
+  .arch {
+    margin: 1.75rem 0 0;
+  }
+  .arch__svg {
+    width: 100%;
+    height: auto;
+    font-family: var(--font-sans);
+  }
+  .arch__boundary {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+  }
+  .arch__boundary-label {
+    fill: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .arch__node rect {
+    fill: var(--bg-raised);
+    stroke: var(--border);
+    stroke-width: 1.5;
+  }
+  .arch__node--infra rect {
+    stroke: var(--accent);
+  }
+  .arch__label {
+    fill: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    text-anchor: middle;
+  }
+  .arch__sublabel {
+    fill: var(--text-muted);
+    font-size: 11px;
+    text-anchor: middle;
+  }
+  .arch__edge {
+    fill: none;
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+  }
+  .arch__edge-label {
+    fill: var(--text-muted);
+    font-size: 10px;
+    font-style: italic;
+  }
+  .arch__arrowhead {
+    fill: var(--text-muted);
+  }
+  .arch__caption {
+    margin: 0.9rem 0 0;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+</style>
