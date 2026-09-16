@@ -2,6 +2,13 @@
 import { Image } from 'astro:assets';
 import headshot from '../../assets/images/sifat-portrait.webp';
 import { EMAIL, LINKEDIN, APPS } from '../consts';
+
+// Hero background: the flowing wave from yujisatojr/react-portfolio-template's
+// bg-dark.png, used as-is (recreated faithfully, not redrawn) — pre-flattened
+// onto black and re-encoded to mozjpeg in public/hero-wave-dark.jpg (420KB PNG
+// -> 53KB; webp was worse than PNG here, 859KB, because of the alpha channel).
+// Always the dark variant, in both site themes — see the --text overrides
+// below for why.
 ---
 
 <section class="hero">
@@ -54,9 +61,39 @@ import { EMAIL, LINKEDIN, APPS } from '../consts';
 
 <style>
   .hero {
+    /* The wave is a fixed dark banner regardless of site theme — both of the
+       template's own background variants are near-black (bg-light.png is
+       still black, just with white instead of purple lines), so following
+       the light/dark toggle here would put dark theme-token text on a black
+       hero in "light" mode. Pin dark-theme-equivalent tokens locally instead;
+       everything below already reads through var(--text) etc. */
+    --text: #e8e8ea;
+    --text-muted: #a0a0a8;
+    --border: #2a2c33;
+    --accent: #e8a33d;
+    --accent-text: #0e0f12;
+    /* h1 and other hero text with no color of their own inherit body's
+       already-computed `color` (resolved against :root), not a fresh lookup
+       against the --text redefined above — set color here explicitly so the
+       override actually reaches them. */
+    color: var(--text);
+    position: relative;
+    overflow: hidden;
     padding-block: clamp(3rem, 2rem + 6vw, 6rem);
   }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/hero-wave-dark.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
   .hero__inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap-reverse;
     align-items: center;
