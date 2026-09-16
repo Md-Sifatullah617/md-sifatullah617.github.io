@@ -1,6 +1,5 @@
 # Build output
-dist/
-.astro/
+build/
 
 # Dependencies
 node_modules/
@@ -16,9 +15,6 @@ npm-debug.log*
 .idea/
 *.iml
 .history
-
-# Lighthouse CI
-.lighthouseci/
 
 # Reference-only, not part of this site
 /react-portfolio-template/
