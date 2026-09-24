@@ -23,27 +23,38 @@
   }
 
   pre {
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
-    padding: 1em;
+    padding: 1.25em;
     overflow-x: auto;
+    line-height: 1.6;
   }
 
   pre code {
-    color: inherit;
+    color: #c9d1d9 !important;
+    font-size: 0.95rem !important;
+    background: none;
   }
 
   code {
     color: #a5d6ff;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
   }
 }
 
 .light-mode .article pre {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #f6f8fa;
   border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .article pre code {
+  color: #24292f !important;
 }
 
 .light-mode .article code {
   color: #5000ca;
+  background-color: rgba(0, 0, 0, 0.05);
 }

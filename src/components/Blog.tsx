@@ -15,7 +15,12 @@ function Blog() {
                 {posts.length === 0 && <p>No posts yet — check back soon.</p>}
                 {posts.map((post) => (
                     <div key={post.slug} style={{ marginBottom: "2em" }}>
-                        <h2><Link to={`/blog/${post.slug}`}>{post.title}</Link></h2>
+                        <Link to={`/blog/${post.slug}`}>
+                            {post.headerImage && (
+                                <img src={post.headerImage} alt={post.title} className="header-image" width="100%" />
+                            )}
+                            <h2>{post.title}</h2>
+                        </Link>
                         <p>{post.date}</p>
                         <p>{post.excerpt}</p>
                     </div>
