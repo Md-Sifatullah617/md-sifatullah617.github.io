@@ -27,6 +27,9 @@ function BlogPost() {
             <div className="items-container article">
                 <Link to="/blog" className="back-link">&larr; Back to blog</Link>
                 <h1>{post.title}</h1>
+                {post.headerImage && (
+                    <img src={post.headerImage} alt={post.title} className="header-image" width="100%" />
+                )}
                 <p>{post.date}</p>
                 {post.content}
             </div>

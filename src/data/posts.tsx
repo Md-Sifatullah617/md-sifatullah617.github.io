@@ -1,10 +1,12 @@
 import React from "react";
+import treeShakingHeader from "../assets/images/tree-shaking-header.webp";
 
 export interface BlogPost {
     slug: string;
     title: string;
     date: string;
     excerpt: string;
+    headerImage?: string;
     content: React.ReactNode;
 }
 
@@ -14,6 +16,7 @@ export const posts: BlogPost[] = [
         title: "Shake Your Flutter App to Its Core: The Magic of Tree Shaking 🌳",
         date: "2025-09-21",
         excerpt: "Tree shaking is Flutter's silent optimizer — here's how the Dart compiler strips dead code, and how to write code that lets it do its job.",
+        headerImage: treeShakingHeader,
         content: (
             <>
                 <p>
