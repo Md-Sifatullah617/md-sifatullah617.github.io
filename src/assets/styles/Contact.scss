@@ -18,8 +18,12 @@
     color: white;
   }
 
-  fieldset {
+  .MuiOutlinedInput-root {
     background-color: white;
+  }
+
+  .MuiOutlinedInput-input {
+    color: #050f0b;
   }
 }
 

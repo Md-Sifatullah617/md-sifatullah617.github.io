@@ -15,13 +15,23 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems: [string, string, 'anchor' | 'route'][] = [
+  ['Expertise', 'expertise', 'anchor'],
+  ['History', 'history', 'anchor'],
+  ['Projects', 'projects', 'anchor'],
+  ['Blog', '/blog', 'route'],
+  ['Contact', 'contact', 'anchor'],
+];
 
 function Navigation({parentToChild, modeChange}: any) {
 
   const {mode} = parentToChild;
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -47,13 +57,21 @@ function Navigation({parentToChild, modeChange}: any) {
   }, []);
 
   const scrollToSection = (section: string) => {
-    console.log(section)
-    const expertiseElement = document.getElementById(section);
-    if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
+    const sectionElement = document.getElementById(section);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNavClick = (target: string, kind: 'anchor' | 'route') => {
+    if (kind === 'route') {
+      navigate(target);
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: target } });
     } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
+      scrollToSection(target);
     }
   };
 
@@ -64,7 +82,7 @@ function Navigation({parentToChild, modeChange}: any) {
       <List>
         {navItems.map((item) => (
           <ListItem key={item[0]} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => scrollToSection(item[1])}>
+            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavClick(item[1], item[2])}>
               <ListItemText primary={item[0]} />
             </ListItemButton>
           </ListItem>
@@ -94,7 +112,7 @@ function Navigation({parentToChild, modeChange}: any) {
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: '#fff' }}>
+              <Button key={item[0]} onClick={() => handleNavClick(item[1], item[2])} sx={{ color: '#fff' }}>
                 {item[0]}
               </Button>
             ))}

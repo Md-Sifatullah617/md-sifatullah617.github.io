@@ -5,3 +5,7 @@ export { default as Expertise } from "./Expertise";
 export { default as Timeline } from "./Timeline";
 export { default as Project } from "./Project";
 export { default as Contact } from "./Contact";
+export { default as Home } from "./Home";
+export { default as CaseStudy } from "./CaseStudy";
+export { default as Blog } from "./Blog";
+export { default as BlogPost } from "./BlogPost";

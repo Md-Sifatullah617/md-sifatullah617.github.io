@@ -1,24 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import chargeaiImg from '../assets/images/chargeai.png';
 import lrsImg from '../assets/images/lrs.png';
 import hiyeImg from '../assets/images/Hiye.webp';
+import grameenphoneImg from '../assets/images/grameenphone-logo.png';
 import '../assets/styles/Project.scss';
 
 interface ProjectEntry {
     name: string;
     blurb: string;
     href?: string;
+    caseStudySlug?: string;
     image?: string;
 }
 
-// Ported from src/data/projects.ts on the Astro site. The case-study route
-// (/work/telecom-event-platform) and the Ventures-section anchor (/#ventures)
-// don't exist in this single-page app, so those two link out to a real
-// external URL (Manobsheba) or render unlinked (Telecom, Grameenphone) instead.
+// Ported from src/data/projects.ts on the Astro site. The Ventures-section
+// anchor (/#ventures) doesn't exist in this single-page app, so Manobsheba
+// links out to its real external URL instead. Telecom and Grameenphone now
+// link to their case-study pages (see src/data/caseStudies.tsx).
 const projects: ProjectEntry[] = [
     {
         name: "Telecom Event Management Platform",
         blurb: "Sole full-stack engineer on Metal Plus' event-management platform for Grameenphone — Go REST API, PostgreSQL, a Flutter field client, and a Next.js admin, shipped to production on AWS.",
+        caseStudySlug: "telecom-event-platform",
+        image: grameenphoneImg,
     },
     {
         name: "ChargeAI",
@@ -34,6 +39,8 @@ const projects: ProjectEntry[] = [
     {
         name: "Grameenphone delivery",
         blurb: "Rescued and stabilised the legacy GP Sync codebase, then took on the in-progress Grameenphone equipment-inventory system.",
+        caseStudySlug: "gp-sync",
+        image: grameenphoneImg,
     },
     {
         name: "Blockchain-based property registration",
@@ -54,23 +61,22 @@ function Project() {
     <div className="projects-container" id="projects">
         <h1>Personal Projects</h1>
         <div className="projects-grid">
-            {projects.map((p) => (
-                <div className="project" key={p.name}>
-                    {p.image && (
-                        p.href ? (
-                            <a href={p.href} target="_blank" rel="noreferrer"><img src={p.image} className="zoom" alt="thumbnail" width="100%"/></a>
+            {projects.map((p) => {
+                const image = p.image && <img src={p.image} className="zoom" alt="thumbnail" width="100%"/>;
+                const title = <h2>{p.name}</h2>;
+                return (
+                    <div className="project" key={p.name}>
+                        {p.caseStudySlug ? (
+                            <Link to={`/work/${p.caseStudySlug}`}>{image}{title}</Link>
+                        ) : p.href ? (
+                            <a href={p.href} target="_blank" rel="noreferrer">{image}{title}</a>
                         ) : (
-                            <img src={p.image} className="zoom" alt="thumbnail" width="100%"/>
-                        )
-                    )}
-                    {p.href ? (
-                        <a href={p.href} target="_blank" rel="noreferrer"><h2>{p.name}</h2></a>
-                    ) : (
-                        <h2>{p.name}</h2>
-                    )}
-                    <p>{p.blurb}</p>
-                </div>
-            ))}
+                            <>{image}{title}</>
+                        )}
+                        <p>{p.blurb}</p>
+                    </div>
+                );
+            })}
         </div>
     </div>
     );

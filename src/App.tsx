@@ -1,15 +1,26 @@
 import React, {useState, useEffect} from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
-  Main,
-  Timeline,
-  Expertise,
-  Project,
-  Contact,
+  Home,
+  CaseStudy,
+  Blog,
+  BlogPost,
   Navigation,
   Footer,
 } from "./components";
-import FadeIn from './components/FadeIn';
 import './index.scss';
+
+function ScrollManager() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (!(location.state as { scrollTo?: string } | null)?.scrollTo) {
+            window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        }
+    }, [location]);
+
+    return null;
+}
 
 function App() {
     const [mode, setMode] = useState<string>('dark');
@@ -22,22 +33,20 @@ function App() {
         }
     }
 
-    useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-      }, []);
-
     return (
-    <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-        <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
-            <Expertise/>
-            <Timeline/>
-            <Project/>
-            <Contact/>
-        </FadeIn>
-        <Footer />
-    </div>
+    <BrowserRouter>
+        <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
+            <ScrollManager/>
+            <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
+            <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/work/:slug" element={<CaseStudy/>} />
+                <Route path="/blog" element={<Blog/>} />
+                <Route path="/blog/:slug" element={<BlogPost/>} />
+            </Routes>
+            <Footer />
+        </div>
+    </BrowserRouter>
     );
 }
 
