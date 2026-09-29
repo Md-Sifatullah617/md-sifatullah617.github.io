@@ -5,11 +5,12 @@
   .back-link {
     display: inline-block;
     margin-bottom: 1.5em;
-    color: #5000ca;
+    color: #b18cff;
   }
 
   .header-image {
     display: block;
+    height: auto;
     border-radius: 8px;
     margin: 1em 0;
   }
@@ -80,6 +81,7 @@
     margin: 1.25em 0;
     overflow-x: auto;
     font-size: 0.95rem;
+    color: #fff;
   }
 
   th, td {
@@ -95,7 +97,7 @@
   }
 
   p a, li a, td a, blockquote a {
-    color: #5000ca;
+    color: #b18cff;
     text-decoration: underline;
   }
 }
@@ -125,4 +127,16 @@
 
 .light-mode .article th {
   background-color: rgba(0, 0, 0, 0.04);
+}
+
+.light-mode .article table {
+  color: #0d1116;
+}
+
+.light-mode .article .back-link,
+.light-mode .article p a,
+.light-mode .article li a,
+.light-mode .article td a,
+.light-mode .article blockquote a {
+  color: #5000ca;
 }

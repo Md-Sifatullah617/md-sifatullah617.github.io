@@ -1,5 +1,7 @@
 import React from "react";
 import treeShakingHeader from "../assets/images/tree-shaking-header.webp";
+import manobShebaHeader from "../assets/images/manobsheba-logo.png";
+import { caseStudies } from "./caseStudies";
 
 export interface BlogPost {
     slug: string;
@@ -10,7 +12,17 @@ export interface BlogPost {
     content: React.ReactNode;
 }
 
+const manobSheba = caseStudies.find((c) => c.slug === "manobsheba");
+
 export const posts: BlogPost[] = [
+    {
+        slug: "manobsheba",
+        title: "Manob Sheba: Taking a Doctor to the Pharmacy",
+        date: "2026-09-29",
+        excerpt: "A founding engineer's account of taking care to the pharmacy: building a compliance-gated, rural telemedicine platform for Bangladesh, from research memo to production in one summer.",
+        headerImage: manobShebaHeader,
+        content: manobSheba?.content,
+    },
     {
         slug: "shake-your-flutter-app-tree-shaking",
         title: "Shake Your Flutter App to Its Core: The Magic of Tree Shaking 🌳",
