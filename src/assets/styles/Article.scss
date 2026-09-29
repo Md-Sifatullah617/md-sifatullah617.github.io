@@ -43,6 +43,61 @@
     border-radius: 4px;
     padding: 0.15em 0.4em;
   }
+
+  h2 {
+    margin-top: 1.75em;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.4em;
+    font-size: 1.15rem;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin: 2em 0;
+  }
+
+  blockquote {
+    margin: 1.25em 0;
+    padding: 0.4em 1em;
+    border-left: 3px solid #5000ca;
+    border-radius: 0 6px 6px 0;
+    background-color: rgba(80, 0, 202, 0.08);
+  }
+
+  blockquote p {
+    margin: 0.5em 0;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25em 0;
+    overflow-x: auto;
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.5em 0.75em;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  p a, li a, td a, blockquote a {
+    color: #5000ca;
+    text-decoration: underline;
+  }
 }
 
 .light-mode .article pre {
@@ -57,4 +112,17 @@
 .light-mode .article code {
   color: #5000ca;
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .article hr {
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+.light-mode .article th,
+.light-mode .article td {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.light-mode .article th {
+  background-color: rgba(0, 0, 0, 0.04);
 }

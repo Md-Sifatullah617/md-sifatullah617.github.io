@@ -4,6 +4,7 @@ import chargeaiImg from '../assets/images/chargeai.png';
 import lrsImg from '../assets/images/lrs.png';
 import hiyeImg from '../assets/images/Hiye.webp';
 import grameenphoneImg from '../assets/images/grameenphone-logo.png';
+import manobshebaImg from '../assets/images/manobsheba-logo.png';
 import '../assets/styles/Project.scss';
 
 interface ProjectEntry {
@@ -14,10 +15,9 @@ interface ProjectEntry {
     image?: string;
 }
 
-// Ported from src/data/projects.ts on the Astro site. The Ventures-section
-// anchor (/#ventures) doesn't exist in this single-page app, so Manobsheba
-// links out to its real external URL instead. Telecom and Grameenphone now
-// link to their case-study pages (see src/data/caseStudies.tsx).
+// Ported from src/data/projects.ts on the Astro site. Telecom, Grameenphone,
+// and Manobsheba link to their case-study pages (see src/data/caseStudies.tsx);
+// the rest link out to their external URLs.
 const projects: ProjectEntry[] = [
     {
         name: "Telecom Event Management Platform",
@@ -33,8 +33,9 @@ const projects: ProjectEntry[] = [
     },
     {
         name: "Manobsheba",
-        blurb: "Healthtech venture bringing basic care to rural Bangladesh through Health Care Agent Points. Co-founder and CTO; in private beta.",
-        href: "https://manobshebabd.com",
+        blurb: "Healthtech venture bringing basic care to rural Bangladesh through Health Care Agent Points. Co-founder, CTO, and founding engineer; live in production.",
+        caseStudySlug: "manobsheba",
+        image: manobshebaImg,
     },
     {
         name: "Grameenphone delivery",
