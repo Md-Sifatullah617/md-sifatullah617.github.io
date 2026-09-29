@@ -74,6 +74,31 @@
     margin: 0.5em 0;
   }
 
+  figure {
+    margin: 1.5em 0;
+  }
+
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  figcaption {
+    margin-top: 0.6em;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    align-items: start;
+  }
+
   table {
     display: block;
     width: 100%;
@@ -131,6 +156,14 @@
 
 .light-mode .article table {
   color: #0d1116;
+}
+
+.light-mode .article figure img {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.light-mode .article figcaption {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .light-mode .article .back-link,

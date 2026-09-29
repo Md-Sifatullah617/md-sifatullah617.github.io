@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import hcapImage from "../assets/images/manobsheba-hcap.webp";
+import docTimeImage from "../assets/images/manobsheba-ref-doctime.webp";
+import shukheeImage from "../assets/images/manobsheba-ref-shukhee.webp";
+import praavaImage from "../assets/images/manobsheba-ref-praava.webp";
 
 export interface CaseStudy {
     slug: string;
@@ -255,12 +259,16 @@ export const caseStudies: CaseStudy[] = [
                         </tr>
                     </tbody>
                 </table>
-                <blockquote>
-                    <p>
-                        <strong>Visual:</strong> <code>web-frontend/src/assets/hcap agent example.jpg</code> — the
-                        HCAP workflow in situ.
-                    </p>
-                </blockquote>
+                <figure>
+                    <img
+                        src={hcapImage}
+                        alt="An HCAP agent standing among shelves of medicine in a pharmacy."
+                    />
+                    <figcaption>
+                        The HCAP workflow in situ — the pharmacy agent registers the patient, hosts the
+                        consultation, and hands over the medicine.
+                    </figcaption>
+                </figure>
 
                 <h3>The decision I would defend hardest: killing the mocked prototype</h3>
                 <p>
@@ -284,12 +292,16 @@ export const caseStudies: CaseStudy[] = [
                     I rebuilt the patient account area after a session sizing us against <strong>DocTime</strong>{" "}
                     and <strong>Shukhee</strong>:
                 </p>
-                <blockquote>
-                    <p>
-                        <strong>Visual:</strong> <code>ref/Dr-Maisha-Maliha-DocTime-*.jpg</code>,{" "}
-                        <code>ref/Shukhee-*.jpg</code>, <code>ref/Dr-Raghib-Manzoor-Praava-Health-*.jpg</code>
-                    </p>
-                </blockquote>
+                <figure>
+                    <div className="image-gallery">
+                        <img src={docTimeImage} alt="DocTime doctor profile page" />
+                        <img src={shukheeImage} alt="Shukhee doctor profile page" />
+                        <img src={praavaImage} alt="Praava Health doctor profile page" />
+                    </div>
+                    <figcaption>
+                        Competitive teardown: DocTime, Shukhee, and Praava Health doctor profiles.
+                    </figcaption>
+                </figure>
                 <p>
                     Two things I deliberately <strong>cut</strong> rather than copy: family-member profiles (no
                     data model justified it yet) and points/subscription tiles (no monetization system existed to
