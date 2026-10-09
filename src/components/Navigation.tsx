@@ -18,11 +18,12 @@ import Toolbar from '@mui/material/Toolbar';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems: [string, string, 'anchor' | 'route'][] = [
+const navItems: [string, string, 'anchor' | 'route' | 'page'][] = [
   ['Expertise', 'expertise', 'anchor'],
   ['History', 'history', 'anchor'],
   ['Projects', 'projects', 'anchor'],
   ['Blog', '/blog', 'route'],
+  ['CV', '/cv/', 'page'],
   ['Contact', 'contact', 'anchor'],
 ];
 
@@ -80,10 +81,15 @@ function Navigation({parentToChild, modeChange}: any) {
       <p className="mobile-menu-top"><ListIcon/>Menu</p>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item[0]} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavClick(item[1], item[2])}>
-              <ListItemText primary={item[0]} />
+        {navItems.map(([label, target, kind]) => (
+          <ListItem key={label} disablePadding>
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              {...(kind === 'page'
+                ? { component: 'a', href: target, target: '_blank', rel: 'noreferrer' }
+                : { onClick: () => handleNavClick(target, kind) })}
+            >
+              <ListItemText primary={label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -111,9 +117,15 @@ function Navigation({parentToChild, modeChange}: any) {
             <DarkModeIcon onClick={() => modeChange()}/>
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item[0]} onClick={() => handleNavClick(item[1], item[2])} sx={{ color: '#fff' }}>
-                {item[0]}
+            {navItems.map(([label, target, kind]) => (
+              <Button
+                key={label}
+                sx={{ color: '#fff' }}
+                {...(kind === 'page'
+                  ? { component: 'a', href: target, target: '_blank', rel: 'noreferrer' }
+                  : { onClick: () => handleNavClick(target, kind) })}
+              >
+                {label}
               </Button>
             ))}
           </Box>
