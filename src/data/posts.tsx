@@ -1,6 +1,6 @@
 import React from "react";
 import treeShakingHeader from "../assets/images/tree-shaking-header.webp";
-import manobShebaHeader from "../assets/images/manobsheba-logo.png";
+import manobShebaHeader from "../assets/images/manobsheba-logo.webp";
 import { caseStudies } from "./caseStudies";
 
 export interface BlogPost {

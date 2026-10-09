@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import chargeaiImg from '../assets/images/chargeai.png';
-import lrsImg from '../assets/images/lrs.png';
+import chargeaiImg from '../assets/images/chargeai.webp';
+import lrsImg from '../assets/images/lrs.webp';
 import hiyeImg from '../assets/images/Hiye.webp';
-import grameenphoneImg from '../assets/images/grameenphone-logo.png';
-import manobshebaImg from '../assets/images/manobsheba-logo.png';
+import grameenphoneImg from '../assets/images/grameenphone-logo.webp';
+import manobshebaImg from '../assets/images/manobsheba-logo.webp';
 import '../assets/styles/Project.scss';
 
 interface ProjectEntry {
@@ -63,7 +63,7 @@ function Project() {
         <h1>Personal Projects</h1>
         <div className="projects-grid">
             {projects.map((p) => {
-                const image = p.image && <img src={p.image} className="zoom" alt="thumbnail" width="100%"/>;
+                const image = p.image && <img src={p.image} className="zoom" alt={`${p.name} thumbnail`} width="100%" loading="lazy" decoding="async"/>;
                 const title = <h2>{p.name}</h2>;
                 return (
                     <div className="project" key={p.name}>
