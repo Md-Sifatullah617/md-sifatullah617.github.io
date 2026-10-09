@@ -21,26 +21,6 @@
     text-align: left;
     z-index: 2;
 
-    .cv-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 20px;
-
-        a {
-            text-transform: none;
-        }
-
-        a.MuiButton-contained {
-            color: white;
-        }
-
-        a.MuiButton-outlined {
-            color: inherit;
-            border-color: currentColor;
-        }
-    }
-
     .social_icons {
         display: flex;
         flex-direction: row;
