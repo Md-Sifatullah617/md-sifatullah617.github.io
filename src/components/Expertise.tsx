@@ -1,5 +1,4 @@
 import React from "react";
-import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact, faGolang, faDocker } from '@fortawesome/free-brands-svg-icons';
 import Chip from '@mui/material/Chip';
